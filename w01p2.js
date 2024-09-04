@@ -38,4 +38,6 @@ async function main()
         topology: "triangle-strip",
         },
         });
+    pass.setPipeline(pipeline);
+    pass.draw(4);
 }

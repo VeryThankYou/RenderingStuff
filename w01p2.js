@@ -19,8 +19,7 @@ async function main()
         }] 
     }); 
     // Insert render pass commands here 
-    pass.end(); 
-    device.queue.submit([encoder.finish()]);
+    
 
     const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
     const pipeline = device.createRenderPipeline({
@@ -40,4 +39,7 @@ async function main()
         });
     pass.setPipeline(pipeline);
     pass.draw(4);
+    pass.end(); 
+    
+    device.queue.submit([encoder.finish()]);
 }

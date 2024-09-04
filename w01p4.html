@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="w01p4.js"></script>
+    <title>WebGPU Life</title>
+  </head>
+  <body>
+    <canvas id="webgpu-canvas" width="512" height="512"> 
+            Please use a browser that supports HTML5 canvas. 
+    </canvas>
+    <script type="module">
+      const canvas = document.querySelector("canvas");
+    </script>
+    <script id="wgsl" type="x-shader"> 
+      struct VSOut {
+        @builtin(position) position: vec4f,
+        @location(0) coords : vec2f,
+      };
+
+      struct HitInfo {
+        
+      }
+      @vertex
+      fn main_vs(@builtin(vertex_index) VertexIndex : u32) -> VSOut
+      {
+        const pos = array<vec2f, 4>(vec2f(-1.0, 1.0), vec2f(-1.0, -1.0), vec2f(1.0, 1.0), vec2f(1.0, -1.0));
+        var vsOut: VSOut;
+        vsOut.position = vec4f(pos[VertexIndex], 0.0, 1.0);
+        vsOut.coords = pos[VertexIndex];
+        return vsOut;
+      }
+      // Define Ray struct
+      struct Ray {
+        origin: vec3f,
+        direction: vec3f,
+        tmin: f32,
+        tmax: f32,
+      }
+
+      fn get_camera_ray(ipcoords: vec2f) -> Ray
+      {
+        // Implement ray generation (WGSL has vector operations like normalize and cross)
+        const e = vec3f(2.0, 1.5, 2.0);
+        const u = vec3f(0.0, 1.0, 0.0);
+        const l = vec3f(0.0, 0.5, 0.0);
+        const d = 1.0;
+        let v = normalize(l - e);
+        let b1 = normalize(cross(v, u));
+        let b2 = cross(b1, v);
+        let q = b1*ipcoords.x + b2*ipcoords.y + v*d;
+        var ray: Ray;
+        ray.direction = normalize(q);
+        ray.origin = e;
+        ray.tmin = 0;
+        ray.tmax = 1;
+        return ray;
+      }
+
+      @fragment
+      fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
+      {
+        let ipcoords = coords*0.5;
+        var r = get_camera_ray(ipcoords);
+        return vec4f(r.direction*0.5 + 0.5, 1.0);
+      }
+    </script>
+  </body>
+</html>

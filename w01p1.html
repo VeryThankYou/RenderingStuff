@@ -3,18 +3,16 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script type="text/javascript" src="w01p1.js"></script>
     <title>WebGPU Life</title>
   </head>
   <body>
-    <canvas width="512" height="512"></canvas>
+    <canvas id="webgpu-canvas" width="512" height="512"> 
+            Please use a browser that supports HTML5 canvas. 
+    </canvas>
     <script type="module">
       const canvas = document.querySelector("canvas");
       
-      // Your WebGPU code will begin here!
-      if (!navigator.gpu) 
-      {
-        throw new Error("WebGPU not supported on this browser.");
-      }
     </script>
   </body>
 </html>

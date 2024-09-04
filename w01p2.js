@@ -22,10 +22,8 @@ async function main()
     pass.end(); 
     device.queue.submit([encoder.finish()]);
 
-    const wgsl = device.createShaderModule({
-        code: document.getElementById("wgsl").text
-        });
-        const pipeline = device.createRenderPipeline({
+    const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
+    const pipeline = device.createRenderPipeline({
         layout: "auto",
         vertex: {
         module: wgsl,

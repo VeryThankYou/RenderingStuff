@@ -21,4 +21,23 @@ async function main()
     // Insert render pass commands here 
     pass.end(); 
     device.queue.submit([encoder.finish()]);
+
+    const wgsl = device.createShaderModule({
+        code: document.getElementById("wgsl").text
+        });
+        const pipeline = device.createRenderPipeline({
+        layout: "auto",
+        vertex: {
+        module: wgsl,
+        entryPoint: "main_vs",
+        },
+        fragment: {
+        module: wgsl,
+        entryPoint: "main_fs",
+        targets: [{ format: canvasFormat }]
+        },
+        primitive: {
+        topology: "triangle-strip",
+        },
+        });
 }

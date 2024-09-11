@@ -35,14 +35,66 @@
           if (tm <= r.tmax && tm >= r.tmin)
           {
             (*hit).has_hit = true;
-            (*hit).dist = length(r.origin + tm * r.direction);
+            (*hit).dist = tm;
             (*hit).position = r.origin + tm * r.direction;
             (*hit).normal = normal;
-            (*hit).color = vec3f(0.1, 0.7, 0.0);
             return true;
           }
           return false;
         }
+
+        fn intersect_triangle(r: Ray, hit: ptr<function, HitInfo>, v: array<vec3f, 3>) -> bool 
+          {
+            let position = v[0];
+            let e0 = v[1] - v[0];
+            let e1 = v[2] - v[0];
+            let normal = cross(e0, e1);
+            let dirdotnorm = dot(r.direction, normal);
+            let tm = dot((position-r.origin), normal)/dirdotnorm;
+            if (tm <= r.tmax && tm >= r.tmin)
+            {
+              let beta = (dot(cross((v[0] - r.origin), r.direction), e1))/dirdotnorm;
+              let gamma = -(dot(cross((v[0] - r.origin), r.direction), e0))/dirdotnorm;
+              if (beta + gamma <= 1 && (beta >= 0 && gamma >= 0))
+              {
+                (*hit).has_hit = true;
+                (*hit).dist = tm;
+                (*hit).position = r.origin + tm * r.direction;
+                (*hit).normal = normal;
+                return true;
+              }
+            }
+            return false;
+          }
+
+          fn intersect_sphere(r: Ray, hit: ptr<function, HitInfo>, center: vec3f, radius: f32) -> bool 
+            {
+              let bhalf = dot((r.origin - center), r.direction);
+              let c = dot((r.origin - center), (r.origin - center)) - radius*radius;
+              let d = bhalf*bhalf - c;
+              if (d >= 0)
+              {
+                let tm1 = -bhalf - sqrt(d);
+                let tm2 = -bhalf + sqrt(d);
+                if (tm1 <= r.tmax && tm1 >= r.tmin)
+                {
+                  (*hit).has_hit = true;
+                  (*hit).dist = tm1;
+                  (*hit).position = r.origin + tm1 * r.direction;
+                  (*hit).normal = normalize((*hit).position - center);
+                  return true;
+                }
+                else if (tm2 <= r.tmax && tm2 >= r.tmin)
+                {
+                  (*hit).has_hit = true;
+                  (*hit).dist = tm2;
+                  (*hit).position = r.origin + tm2 * r.direction;
+                  (*hit).normal = normalize((*hit).position - center);
+                  return true;
+                }
+              }
+              return false;
+            }
 
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
           {
@@ -83,7 +135,7 @@
         ray.direction = normalize(q);
         ray.origin = e;
         ray.tmin = 0;
-        ray.tmax = 1;
+        ray.tmax = 10000;
         return ray;
       }
 
@@ -92,7 +144,8 @@
       {
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
-        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
+        const aspect = 1;
+        let uv = vec2f(coords.x*aspect*0.5f, coords.y*0.5f);
         var r = get_camera_ray(uv);
         var result = vec3f(0.0);
         var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), 0);
@@ -102,7 +155,7 @@
           else { result += bgcolor.rgb; break; }
           if(hit.has_hit) { break; }
           }
-        return vec4f(pow(result, vec3f(1.0/uniforms.gamma)), bgcolor.a);
+        return vec4f(pow(result, vec3f(1.0)), bgcolor.a);
       }
 
       fn intersect_scene(r: ptr<function, Ray>, hit : ptr<function, HitInfo>) -> bool
@@ -112,7 +165,21 @@
       // For each intersection found, update (*r).tmax and store additional info about the hit.
         let planepos = vec3f(0.0, 0.0, 0.0);
         let planenormal = vec3f(0.0, 1.0, 0.0);
-        intersect_plane((*r), hit, planepos, planenormal);
+        if (intersect_plane((*r), hit, planepos, planenormal))
+        {
+          (*hit).color = vec3f(0.1, 0.7, 0.0);
+        }
+        const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));
+        if (intersect_triangle((*r), hit, v))
+        {
+          (*hit).color = vec3f(0.4, 0.3, 0.2);
+        }
+        const center = vec3f(0.0, 0.5, 0.0);
+        const radius = 0.3;
+        if (intersect_sphere((*r), hit, center, radius))
+        {
+          (*hit).color = vec3f(0.0, 0.0, 0.0);
+        }
         (*r).tmax = hit.dist;
         return (*hit).has_hit;
       }

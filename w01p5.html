@@ -149,8 +149,7 @@
       {
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
-        const aspect = 1;
-        let uv = vec2f(coords.x*aspect*0.5f, coords.y*0.5f);
+        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
         var r = get_camera_ray(uv);
         var result = vec3f(0.0);
         var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), 0);

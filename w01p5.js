@@ -2,7 +2,6 @@
 window.onload = function() { main(); } 
 async function main() 
 { 
-    
     const adapter = await navigator.gpu.requestAdapter(); 
     const device = await adapter.requestDevice(); 
     const canvas = document.getElementById("webgpu-canvas");  
@@ -10,7 +9,16 @@ async function main()
     const canvasFormat = navigator.gpu.getPreferredCanvasFormat(); 
     context.configure({device: device, format: canvasFormat,   });   
     // Create a render pass in a command buffer and submit it
-    const encoder = device.createCommandEncoder(); 
+    
+
+    const aspect = canvas.width/canvas.height;
+    var cam_const = 1.0;
+    var uniforms = new Float32Array([aspect, cam_const]);
+    
+    
+    function render()
+    {
+        const encoder = device.createCommandEncoder(); 
     const pass = encoder.beginRenderPass(
     { 
         colorAttachments: [{ 
@@ -19,14 +27,19 @@ async function main()
         storeOp:"store",
         }] 
     }); 
-    
     // Insert render pass commands here 
-    
-    
-    
+    const bindGroupLayout = device.createBindGroupLayout({
+        entries: [
+          {
+            binding: 0,
+            visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+            buffer: {},
+          },],
+      });
+
     const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
     const pipeline = device.createRenderPipeline({
-        layout: "auto",
+        layout: device.createPipelineLayout({bindGroupLayouts: [bindGroupLayout],}),
         vertex: {
         module: wgsl,
         entryPoint: "main_vs",
@@ -40,8 +53,9 @@ async function main()
         topology: "triangle-strip",
         },
         });
-    const aspect = canvas.width/canvas.height;
-    var cam_const = 1.0;
+    
+    pass.setPipeline(pipeline);
+
     const uniformBuffer = device.createBuffer({
         size: 8, // number of bytes
         usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -54,36 +68,24 @@ async function main()
         }],
         });
     
-        var uniforms = new Float32Array([aspect, cam_const]);
-        device.queue.writeBuffer(uniformBuffer, 0, uniforms);
-    
-    
-    
-    
-    
-    function render(device, context, pipeline, bindGroup)
-    {
         pass.setBindGroup(0, bindGroup);
-        pass.setPipeline(pipeline);
+        
+        device.queue.writeBuffer(uniformBuffer, 0, uniforms);
         pass.draw(4);
+        pass.end(); 
+        device.queue.submit([encoder.finish()]);
     }
-    render(device, context, pipeline, bindGroup);
-    
+        
     addEventListener("wheel", (event) => {
         cam_const *= 1.0 + 2.5e-4*event.deltaY;
         requestAnimationFrame(animate);
         });
-    
     function animate()
         {
         uniforms[1] = cam_const;
-        device.queue.writeBuffer(uniformBuffer, 0, uniforms);
-        render(device, context, pipeline, bindGroup);
+        //device.queue.writeBuffer(uniformBuffer, 0, uniforms);
+        render();
         }
-    animate();
-    device.queue.submit([encoder.finish()]);
-    pass.end(); 
+    render();
+    
 }
-
-
-

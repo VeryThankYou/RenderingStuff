@@ -10,11 +10,14 @@ async function main()
     context.configure({device: device, format: canvasFormat,   });   
     // Create a render pass in a command buffer and submit it
     
-
     const aspect = canvas.width/canvas.height;
     var cam_const = 1.0;
     var uniforms = new Float32Array([aspect, cam_const]);
-    
+
+    var plane_shader = 1;
+    var triangle_shader = 1;
+    var sphere_shader = 2;
+    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader]);
     
     function render()
     {
@@ -32,6 +35,11 @@ async function main()
         entries: [
           {
             binding: 0,
+            visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+            buffer: {},
+          },
+          {
+            binding: 1,
             visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
             buffer: {},
           },],
@@ -57,20 +65,23 @@ async function main()
     pass.setPipeline(pipeline);
 
     const uniformBuffer = device.createBuffer({
-        size: 8, // number of bytes
+        size: 32, // number of bytes
         usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
         });
         const bindGroup = device.createBindGroup({
         layout: pipeline.getBindGroupLayout(0),
         entries: [{
         binding: 0,
-        resource: { buffer: uniformBuffer }
-        }],
+        resource: { buffer: uniformBuffer },
+        }, {binding: 1,
+            resource: { buffer: uniformBuffer },
+            }],
         });
     
         pass.setBindGroup(0, bindGroup);
         
         device.queue.writeBuffer(uniformBuffer, 0, uniforms);
+        device.queue.writeBuffer(uniformBuffer, 1, shaderuniforms);
         pass.draw(4);
         pass.end(); 
         device.queue.submit([encoder.finish()]);

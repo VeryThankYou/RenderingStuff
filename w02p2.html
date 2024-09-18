@@ -10,6 +10,34 @@
     <canvas id="webgpu-canvas" width="512" height="512"> 
             Please use a browser that supports HTML5 canvas. 
     </canvas>
+    <br>
+    Shader options for the plane
+    <form>
+      <input type="radio" id="shader1" name="plane" value="Shader 1" checked="checked" onclick="main()">
+      <label for="shader1">Shader 1</label><br>
+      <input type="radio" id="shader2" name="plane" value="Shader 2" onclick="main()">
+      <label for="shader2">Shader 2</label><br>
+      <input type="radio" id="shader3" name="plane" value="Shader 3" onclick="main()">
+      <label for="shader1">Shader 3</label><br>
+    </form>
+    Shader options for the triangle
+    <form>
+      <input type="radio" id="shader1" name="triangle" value="Shader 1" checked="checked" onclick="main()">
+      <label for="shader1">Shader 1</label><br>
+      <input type="radio" id="shader2" name="triangle" value="Shader 2" onclick="main()">
+      <label for="shader2">Shader 2</label><br>
+      <input type="radio" id="shader3" name="triangle" value="Shader 3" onclick="main()">
+      <label for="shader1">Shader 3</label><br>
+    </form>
+    Shader options for the sphere
+    <form>
+      <input type="radio" id="shader1" name="sphere" value="Shader 1" checked="checked" onclick="main()">
+      <label for="shader1">Shader 1</label><br>
+      <input type="radio" id="shader2" name="sphere" value="Shader 2" onclick="main()">
+      <label for="shader2">Shader 2</label><br>
+      <input type="radio" id="shader3" name="sphere" value="Shader 3" onclick="main()">
+      <label for="shader1">Shader 3</label><br>
+    </form>
     <script type="module">
       const canvas = document.querySelector("canvas");
     </script>
@@ -19,6 +47,13 @@
         cam_const: f32,
         };
         @group(0) @binding(0) var<uniform> uniforms : Uniforms;
+
+      struct ShaderUniforms {
+        plane_shader: i32,
+        triangle_shader: i32,
+        sphere_shader: i32,
+        };
+        @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
 
       const pi = radians(180);
 
@@ -132,39 +167,10 @@
             return reflight;
           }
 
-        fn mirror_shader(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
-          {
-            const bgcolor = vec3f(0.1, 0.3, 0.6);
-            const max_depth = 10;
-            var refray: Ray;
-            refray.origin = (*hit).position;
-            refray.direction = reflect(((*r).direction), (*hit).normal);
-            //return refray.direction;
-            refray.tmin = 1e-4;
-            refray.tmax = 1000;
-            var refhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1);
-            if(intersect_scene(&refray, &refhit)) 
-            { 
-              let light = sample_point_light(refhit.position);
-              let lightpos = refhit.position + light.w_i*light.dist;
-              var shadowray = get_shadow_ray(refhit.position, lightpos);
-              var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1);
-              if(intersect_scene(&shadowray, &shadowhit))
-                {
-                  refhit.diffuse = vec3f(0.0, 0.0, 0.0);
-                  //return vec3f(0.0,0.0,0.0);
-                }
-              if(refhit.has_hit && refhit.shader == 1) { return lambertian(&refray, &refhit) + 0.1 * refhit.ambient; }
-            }
-            else{return bgcolor;}
-            return vec3f(0.0,0.0,0.0);
-          }
-
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
           {
           switch (*hit).shader {
           case 1 { return lambertian(r, hit) + 0.1 * (*hit).ambient; }
-          case 2 { return mirror_shader(r, hit); }
           case default { return (*hit).diffuse; }
           }
           }
@@ -263,14 +269,14 @@
         {
           (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
           (*hit).ambient = vec3f(0.1, 0.7, 0.0);
-          (*hit).shader = 1;
+          (*hit).shader = shader_uniforms.plane_shader;
         }
         const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));
         if (intersect_triangle((*r), hit, v))
         {
           (*hit).diffuse = vec3f(0.4, 0.3, 0.2);
           (*hit).ambient = vec3f(0.4, 0.3, 0.2);
-          (*hit).shader = 1;
+          (*hit).shader = shader_uniforms.triangle_shader;
         }
         const center = vec3f(0.0, 0.5, 0.0);
         const radius = 0.3;
@@ -278,7 +284,7 @@
         {
           (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
           (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-          (*hit).shader = 2;
+          (*hit).shader = shader_uniforms.sphere_shader;
           //(*hit).has_hit = false;
           var refray: Ray;
           refray.origin = (*hit).position;

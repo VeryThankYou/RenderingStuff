@@ -228,12 +228,14 @@
         {
           (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
           (*hit).ambient = vec3f(0.1, 0.7, 0.0);
+          (*hit).shader = 1;
         }
         const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));
         if (intersect_triangle((*r), hit, v))
         {
           (*hit).diffuse = vec3f(0.4, 0.3, 0.2);
           (*hit).ambient = vec3f(0.4, 0.3, 0.2);
+          (*hit).shader = 1;
         }
         const center = vec3f(0.0, 0.5, 0.0);
         const radius = 0.3;

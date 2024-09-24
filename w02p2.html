@@ -12,31 +12,31 @@
     </canvas>
     <br>
     Shader options for the plane
-    <form>
-      <input type="radio" id="shader1" name="plane" value="Shader 1" checked="checked" onclick="main()">
-      <label for="shader1">Shader 1</label><br>
-      <input type="radio" id="shader2" name="plane" value="Shader 2" onclick="main()">
-      <label for="shader2">Shader 2</label><br>
-      <input type="radio" id="shader3" name="plane" value="Shader 3" onclick="main()">
-      <label for="shader1">Shader 3</label><br>
-    </form>
+    <form id="pform">
+      <input type="radio" id="pshader1" name="plane" value="1" checked="checked" onclick="main()">
+      <label for="pshader1">Shader 1</label><br>
+      <input type="radio" id="pshader2" name="plane" value="2" onclick="main()">
+      <label for="pshader2">Shader 2</label><br>
+      <input type="radio" id="pshader3" name="plane" value="3" onclick="main()">
+      <label for="pshader1">Shader 3</label><br>
+    </form id="tform">
     Shader options for the triangle
     <form>
-      <input type="radio" id="shader1" name="triangle" value="Shader 1" checked="checked" onclick="main()">
-      <label for="shader1">Shader 1</label><br>
-      <input type="radio" id="shader2" name="triangle" value="Shader 2" onclick="main()">
-      <label for="shader2">Shader 2</label><br>
-      <input type="radio" id="shader3" name="triangle" value="Shader 3" onclick="main()">
-      <label for="shader1">Shader 3</label><br>
+      <input type="radio" id="tshader1" name="triangle" value="1" checked="checked" onclick="main()">
+      <label for="tshader1">Shader 1</label><br>
+      <input type="radio" id="tshader2" name="triangle" value="2" onclick="main()">
+      <label for="tshader2">Shader 2</label><br>
+      <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
+      <label for="tshader1">Shader 3</label><br>
     </form>
     Shader options for the sphere
-    <form>
-      <input type="radio" id="shader1" name="sphere" value="Shader 1" checked="checked" onclick="main()">
-      <label for="shader1">Shader 1</label><br>
-      <input type="radio" id="shader2" name="sphere" value="Shader 2" onclick="main()">
-      <label for="shader2">Shader 2</label><br>
-      <input type="radio" id="shader3" name="sphere" value="Shader 3" onclick="main()">
-      <label for="shader1">Shader 3</label><br>
+    <form id="sform">
+      <input type="radio" id="sshader1" name="sphere" value="1" onclick="main()">
+      <label for="sshader1">Shader 1</label><br>
+      <input type="radio" id="sshader2" name="sphere" value="2" checked="checked" onclick="main()">
+      <label for="sshader2">Shader 2</label><br>
+      <input type="radio" id="sshader3" name="sphere" value="3" onclick="main()">
+      <label for="sshader1">Shader 3</label><br>
     </form>
     <script type="module">
       const canvas = document.querySelector("canvas");
@@ -171,7 +171,8 @@
           {
           switch (*hit).shader {
           case 1 { return lambertian(r, hit) + 0.1 * (*hit).ambient; }
-          case default { return (*hit).diffuse; }
+          case default { return (*hit).ambient; }
+          //case default { return vec3f(0.0, 0.0, 0.0); }
           }
           }
 
@@ -234,10 +235,12 @@
         var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1);
         for(var i = 0; i < max_depth; i++) 
           {
+            //if(i==9){return vec4f(1.0, 1.0, 1.0, 1.0);}
           if(intersect_scene(&r, &hit)) 
           { 
             if(hit.shader == 2)
             {
+              //return vec4f(1.0, 1.0, 1.0, 1.0);
               hit.has_hit = false;
               continue;
             }
@@ -251,7 +254,7 @@
               }
             result += shade(&r, &hit); 
           }
-          if(hit.has_hit && hit.shader == 1) { break; }
+          if(hit.has_hit) { break; }
           else { result += bgcolor.rgb; break; }
           
           }
@@ -270,6 +273,7 @@
           (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
           (*hit).ambient = vec3f(0.1, 0.7, 0.0);
           (*hit).shader = shader_uniforms.plane_shader;
+          //(*hit).shader = 1;
         }
         const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));
         if (intersect_triangle((*r), hit, v))
@@ -277,6 +281,7 @@
           (*hit).diffuse = vec3f(0.4, 0.3, 0.2);
           (*hit).ambient = vec3f(0.4, 0.3, 0.2);
           (*hit).shader = shader_uniforms.triangle_shader;
+          //(*hit).shader = 1;
         }
         const center = vec3f(0.0, 0.5, 0.0);
         const radius = 0.3;
@@ -285,15 +290,18 @@
           (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
           (*hit).ambient = vec3f(0.0, 0.0, 0.0);
           (*hit).shader = shader_uniforms.sphere_shader;
-          //(*hit).has_hit = false;
-          var refray: Ray;
-          refray.origin = (*hit).position;
-          refray.direction = reflect(((*r).direction), (*hit).normal);
-          refray.tmin = 1e-4;
-          refray.tmax = 1000;
-          (*r) = refray;
+          //(*hit).shader = 2;
         }
-        (*r).tmax = hit.dist;
+        (*r).tmax = hit.dist - 1e-4;
+        if((*hit).shader == 2)
+          {
+            var refray: Ray;
+            refray.origin = (*hit).position;
+            refray.direction = reflect(((*r).direction), (*hit).normal);
+            refray.tmin = 1e-4;
+            refray.tmax = 1000;
+            (*r) = refray;
+          }
         return (*hit).has_hit;
       }
     </script>

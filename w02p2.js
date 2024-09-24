@@ -14,77 +14,87 @@ async function main()
     var cam_const = 1.0;
     var uniforms = new Float32Array([aspect, cam_const]);
 
-    var plane_shader = 1;
-    var triangle_shader = 1;
-    var sphere_shader = 2;
+
+    var plane_shader = document.querySelector('input[name="plane"]:checked').value;
+    var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
+    var sphere_shader = document.querySelector('input[name="sphere"]:checked').value;
     var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader]);
     
     function render()
     {
         const encoder = device.createCommandEncoder(); 
-    const pass = encoder.beginRenderPass(
-    { 
-        colorAttachments: [{ 
-        view: context.getCurrentTexture().createView(), 
-        loadOp: "clear", 
-        storeOp:"store",
-        }] 
-    }); 
-    // Insert render pass commands here 
-    const bindGroupLayout = device.createBindGroupLayout({
-        entries: [
-          {
-            binding: 0,
-            visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-            buffer: {},
-          },
-          {
-            binding: 1,
-            visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-            buffer: {},
-          },],
-      });
+        const pass = encoder.beginRenderPass(
+        { 
+            colorAttachments: [{ 
+            view: context.getCurrentTexture().createView(), 
+            loadOp: "clear", 
+            storeOp:"store",
+            }]
+        }); 
+        // Insert render pass commands here 
+        const bindGroupLayout = device.createBindGroupLayout({
+            entries: [
+            {
+                binding: 0,
+                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+                buffer: {},
+            },
+            {
+                binding: 1,
+                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+                buffer: {},
+            },],
+        });
 
-    const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
-    const pipeline = device.createRenderPipeline({
-        layout: device.createPipelineLayout({bindGroupLayouts: [bindGroupLayout],}),
-        vertex: {
-        module: wgsl,
-        entryPoint: "main_vs",
-        },
-        fragment: {
-        module: wgsl,
-        entryPoint: "main_fs",
-        targets: [{ format: canvasFormat }]
-        },
-        primitive: {
-        topology: "triangle-strip",
-        },
-        });
-    
-    pass.setPipeline(pipeline);
-
-    const uniformBuffer = device.createBuffer({
-        size: 32, // number of bytes
-        usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
-        });
-        const bindGroup = device.createBindGroup({
-        layout: pipeline.getBindGroupLayout(0),
-        entries: [{
-        binding: 0,
-        resource: { buffer: uniformBuffer },
-        }, {binding: 1,
-            resource: { buffer: uniformBuffer },
-            }],
-        });
-    
-        pass.setBindGroup(0, bindGroup);
+        const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
+        const pipeline = device.createRenderPipeline({
+            layout: device.createPipelineLayout({bindGroupLayouts: [bindGroupLayout],}),
+            vertex: {
+            module: wgsl,
+            entryPoint: "main_vs",
+            },
+            fragment: {
+            module: wgsl,
+            entryPoint: "main_fs",
+            targets: [{ format: canvasFormat }]
+            },
+            primitive: {
+            topology: "triangle-strip",
+            },
+            });
         
-        device.queue.writeBuffer(uniformBuffer, 0, uniforms);
-        device.queue.writeBuffer(uniformBuffer, 1, shaderuniforms);
-        pass.draw(4);
-        pass.end(); 
-        device.queue.submit([encoder.finish()]);
+        pass.setPipeline(pipeline);
+
+        const uniformBuffer = device.createBuffer({
+            size: 32, // number of bytes
+            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+            });
+
+        const shaderBuffer = device.createBuffer({
+            size: 32, // number of bytes
+            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+            });
+
+        const bindGroup = device.createBindGroup({
+            layout: pipeline.getBindGroupLayout(0),
+            entries: [
+                {binding: 0,
+                resource: { buffer: uniformBuffer },
+                }, 
+                {binding: 1,
+                resource: { buffer: shaderBuffer },
+                }],
+            });
+        
+        
+
+            pass.setBindGroup(0, bindGroup);
+            
+            device.queue.writeBuffer(uniformBuffer, 0, uniforms);
+            device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
+            pass.draw(4);
+            pass.end(); 
+            device.queue.submit([encoder.finish()]);
     }
         
     addEventListener("wheel", (event) => {

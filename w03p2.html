@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="w03p1.js"></script>
+    <script type="text/javascript" src="w03p2.js"></script>
     <title>WebGPU Life</title>
   </head>
   <body>
@@ -120,6 +120,7 @@
         IoR: f32,
         specular: f32,
         shininess: f32,
+        texcoords: vec2f,
       }
 
       struct Light {
@@ -128,15 +129,18 @@
         dist: f32
         };
 
-      fn intersect_plane(r: Ray, hit: ptr<function, HitInfo>, position: vec3f, normal: vec3f) -> bool 
+      fn intersect_plane(r: Ray, hit: ptr<function, HitInfo>, plane: Onb, position: vec3f, scaling: f32) -> bool 
         {
-          let tm = dot((position-r.origin), normal)/(dot(r.direction, normal));
+          let tm = dot((position-r.origin), plane.normal)/(dot(r.direction, plane.normal));
           if (tm <= r.tmax && tm >= r.tmin)
           {
             (*hit).has_hit = true;
             (*hit).dist = tm;
             (*hit).position = r.origin + tm * r.direction;
-            (*hit).normal = normal;
+            (*hit).normal = plane.normal;
+            let u = scaling*dot(((*hit).position - position), plane.tangent);
+            let v = scaling*dot(((*hit).position - position), plane.binormal);
+            (*hit).texcoords = vec2f(u, v);
             return true;
           }
           return false;
@@ -256,6 +260,12 @@
         tmax: f32,
       }
 
+      struct Onb {
+        tangent: vec3f,
+        binormal: vec3f,
+        normal: vec3f,
+        }
+
       fn get_shadow_ray(x: vec3f, lightpos: vec3f) -> Ray
       {
         // Implement ray generation (WGSL has vector operations like normalize and cross)
@@ -310,11 +320,11 @@
           case default {st = texcoords - floor(texcoords);}
         }
         let ab = st*vec2f(res);
-        let UV = vec2u(floor(ab));
-        let factor = ab - vec2f(UV);
+        let UV = vec2u(ab + 0.5) % res;
+        let factor = vec2f(UV) - ab;
         let v1 = textureLoad(texture, UV, 0);
-        let v2 = textureLoad(texture, UV + vec2u(1, 0), 0);
-        let v3 = textureLoad(texture, UV + vec2u(0, 1), 0);
+        let v2 = textureLoad(texture, UV + vec2u(0, 1), 0);
+        let v3 = textureLoad(texture, UV + vec2u(1, 0), 0);
         let v4 = textureLoad(texture, UV + vec2u(1, 1), 0);
         let v12 = mix(v1, v2, factor.x);
         let v34 = mix(v3, v4, factor.x);
@@ -325,17 +335,46 @@
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
       {
-        let filtering = shader_uniforms.nearest_or_linear;
-        let uv = vec2f(coords.x*uniforms.aspect*0.5, coords.y*0.5);
-        //let use_repeat = uniforms_ui.use_repeat != 0; let use_linear = uniforms_ui.use_linear != 0;
-        var color: vec3f;
-        switch filtering
-        {
-          case 0 {color = texture_nearest(my_texture, uv, shader_uniforms.clamp_or_repeat);}
-          case default {color = texture_linear(my_texture, uv, shader_uniforms.clamp_or_repeat);}
-        }
-        //let color = texture_nearest(my_texture, uv, shader_uniforms.clamp_or_repeat);
-        return vec4f(color, 1.0);
+        let res = textureDimensions(my_texture);
+        const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
+        const max_depth = 10;
+        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
+        var r = get_camera_ray(uv);
+        var result = vec3f(0.0);
+        var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0));
+        for(var i = 0; i < max_depth; i++) 
+          {
+            if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
+          if(intersect_scene(&r, &hit)) 
+          { 
+            if(hit.shader == 6)
+            {
+              result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
+              //result += shade(&r, &hit); 
+              hit.has_hit = false;
+              continue;
+            }
+            if(hit.shader == 3 || hit.shader == 4)
+            {
+              //return vec4f(r.direction, 1.0);
+              hit.has_hit = false;
+              continue;
+            }
+            let light = sample_point_light(hit.position);
+            let lightpos = hit.position + light.w_i*light.dist;
+            var shadowray = get_shadow_ray(hit.position, lightpos);
+            var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0));
+            if(intersect_scene(&shadowray, &shadowhit))
+              {
+                hit.diffuse = vec3f(0.0, 0.0, 0.0);
+              }
+            result += shade(&r, &hit); 
+          }
+          if(hit.has_hit) { break; }
+          else { result += bgcolor.rgb; break; }
+          
+          }
+        return vec4f(pow(result, vec3f(1.0)), bgcolor.a);
       }
 
       fn intersect_scene(r: ptr<function, Ray>, hit : ptr<function, HitInfo>) -> bool
@@ -345,11 +384,17 @@
       // For each intersection found, update (*r).tmax and store additional info about the hit.
         let planepos = vec3f(0.0, 0.0, 0.0);
         let planenormal = vec3f(0.0, 1.0, 0.0);
-        if (intersect_plane((*r), hit, planepos, planenormal))
+        const plane_onb = Onb(vec3f(-1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), vec3f(0.0, 1.0, 0.0));
+        const tex_scaling = 0.2;
+        if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
-          (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
-          (*hit).ambient = vec3f(0.1, 0.7, 0.0);
+          let color = texture_linear(my_texture, (*hit).texcoords, 1);
+          //(*hit).diffuse = vec3f(0.1, 0.7, 0.0);
+          //(*hit).ambient = vec3f(0.1, 0.7, 0.0);
+          (*hit).diffuse = color;
+          (*hit).ambient = color;
           (*hit).shader = shader_uniforms.plane_shader;
+          
           //(*hit).shader = 1;
         }
         const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));

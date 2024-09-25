@@ -23,6 +23,8 @@
       <label for="pshader4">Refraction shader</label><br>
       <input type="radio" id="pshader5" name="plane" value="5" onclick="main()">
       <label for="pshader5">Phong shader</label><br>
+      <input type="radio" id="pshader6" name="plane" value="6" onclick="main()">
+      <label for="pshader5">Glossy shader</label><br>
     </form>
     Shader options for the triangle
     <form>
@@ -36,6 +38,8 @@
       <label for="tshader4">Refraction shader</label><br>
       <input type="radio" id="tshader5" name="triangle" value="5" onclick="main()">
       <label for="tshader5">Phong shader</label><br>
+      <input type="radio" id="tshader6" name="triangle" value="6" onclick="main()">
+      <label for="tshader6">Glossy shader</label><br>
     </form>
     Shader options for the sphere
     <form>
@@ -47,8 +51,10 @@
       <label for="sshader1">Mirror shader</label><br>
       <input type="radio" id="sshader4" name="sphere" value="4" onclick="main()">
       <label for="sshader3">Refraction shader</label><br>
-      <input type="radio" id="sshader5" name="sphere" value="5" checked="checked" onclick="main()">
+      <input type="radio" id="sshader5" name="sphere" value="5" onclick="main()">
       <label for="sshader5">Phong shader</label><br>
+      <input type="radio" id="sshader6" name="sphere" value="6" checked="checked" onclick="main()">
+      <label for="sshader6">Glossy shader</label><br>
     </form>
     <script type="module">
       const canvas = document.querySelector("canvas");
@@ -200,6 +206,7 @@
           case 1 { return (*hit).ambient; }
           case 2 { return lambertian(r, hit) + 0.1 * (*hit).ambient; }
           case 5 { return phong(r, hit); }
+          case 6 { return phong(r, hit); }
           case default { return (*hit).ambient; }
           }
           }
@@ -266,6 +273,13 @@
             if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
           if(intersect_scene(&r, &hit)) 
           { 
+            if(hit.shader == 6)
+            {
+              result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
+              //result += shade(&r, &hit); 
+              hit.has_hit = false;
+              continue;
+            }
             if(hit.shader == 3 || hit.shader == 4)
             {
               //return vec4f(r.direction, 1.0);
@@ -332,14 +346,16 @@
             refray.tmax = 1000;
             (*r) = refray;
           }
-          if((*hit).shader == 4)
+          if((*hit).shader == 4 || (*hit).shader == 6)
           {
+            var flipped = false;
             if(dot(-(*r).direction, (*hit).normal) >= 0)
             {
               (*hit).IoR = (*hit).IoR/1.5;
             } else {
               (*hit).IoR = 1.0/(*hit).IoR;
               (*hit).normal = - (*hit).normal;
+              flipped = true;
             }
             let cosi = dot(-(*r).direction, (*hit).normal);
             let sin2i = 1.0 - pow(cosi, 2.0);
@@ -357,6 +373,7 @@
             refractray.tmin = 1e-4;
             refractray.tmax = 1000;
             (*r) = refractray;
+            if((*hit).shader == 6 && flipped){(*hit).normal = - (*hit).normal;}
           }
         return (*hit).has_hit;
       }

@@ -1,61 +1,86 @@
 <!doctype html>
 
+
+
 <html>
   <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="w02p5.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" src="w03p1.js"></script>
     <title>WebGPU Life</title>
   </head>
   <body>
-    <canvas id="webgpu-canvas" width="512" height="512"> 
-            Please use a browser that supports HTML5 canvas. 
-    </canvas>
+    <div class="row">
+      <div class="column">
+        <canvas id="webgpu-canvas" width="512" height="512"> 
+          Please use a browser that supports HTML5 canvas. 
+        </canvas>
+      </div>
+      <div class="column">
+      Shader options for the plane
+      <form>
+        <input type="radio" id="pshader1" name="plane" value="1" onclick="main()">
+        <label for="pshader1">Basic color shader</label><br>
+        <input type="radio" id="pshader2" name="plane" value="2" checked="checked" onclick="main()">
+        <label for="pshader2">Lambertian shader</label><br>
+        <input type="radio" id="pshader3" name="plane" value="3" onclick="main()">
+        <label for="pshader1">Mirror shader</label><br>
+        <input type="radio" id="pshader4" name="plane" value="4" onclick="main()">
+        <label for="pshader4">Refraction shader</label><br>
+        <input type="radio" id="pshader5" name="plane" value="5" onclick="main()">
+        <label for="pshader5">Phong shader</label><br>
+        <input type="radio" id="pshader6" name="plane" value="6" onclick="main()">
+        <label for="pshader5">Glossy shader</label><br>
+      </form>
+      Shader options for the triangle
+      <form>
+        <input type="radio" id="tshader1" name="triangle" value="1" onclick="main()">
+        <label for="tshader1">Basic color shader</label><br>
+        <input type="radio" id="tshader2" name="triangle" value="2" checked="checked" onclick="main()">
+        <label for="tshader2">Lambertian shader</label><br>
+        <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
+        <label for="tshader1">Mirror shader</label><br>
+        <input type="radio" id="tshader4" name="triangle" value="4" onclick="main()">
+        <label for="tshader4">Refraction shader</label><br>
+        <input type="radio" id="tshader5" name="triangle" value="5" onclick="main()">
+        <label for="tshader5">Phong shader</label><br>
+        <input type="radio" id="tshader6" name="triangle" value="6" onclick="main()">
+        <label for="tshader6">Glossy shader</label><br>
+      </form>
+      Shader options for the sphere
+      <form>
+        <input type="radio" id="sshader1" name="sphere" value="1" onclick="main()">
+        <label for="sshader1">Basic color shader</label><br>
+        <input type="radio" id="sshader2" name="sphere" value="2" onclick="main()">
+        <label for="sshader2">Lambertian shader</label><br>
+        <input type="radio" id="sshader3" name="sphere" value="3" onclick="main()">
+        <label for="sshader1">Mirror shader</label><br>
+        <input type="radio" id="sshader4" name="sphere" value="4" onclick="main()">
+        <label for="sshader3">Refraction shader</label><br>
+        <input type="radio" id="sshader5" name="sphere" value="5" onclick="main()">
+        <label for="sshader5">Phong shader</label><br>
+        <input type="radio" id="sshader6" name="sphere" value="6" checked="checked" onclick="main()">
+        <label for="sshader6">Glossy shader</label><br>
+      </form>
+      Texture look-up
+      <form>
+        <input type="radio" id="tex_lu_clamp" name="tex_lu" value="0" checked="checked" onclick="main()">
+        <label for="tex_lu_clamp">Clamp to edge</label><br>
+        <input type="radio" id="tex_lu_repeat" name="tex_lu" value="1" onclick="main()">
+        <label for="tex_lu_repeat">Repeat</label><br>
+      </form>
+      Texture filtering
+      <form>
+        <input type="radio" id="tex_filtering_nn" name="tex_filtering" value="0" checked="checked" onclick="main()">
+        <label for="tex_filtering_nn">Nearest Neighbor</label><br>
+        <input type="radio" id="tex_filtering_linear" name="tex_filtering" value="1" onclick="main()">
+        <label for="tex_filtering_linear">Bilinear</label><br>
+      </form>
+      </div>
+    </div>
+    
     <br>
-    Shader options for the plane
-    <form>
-      <input type="radio" id="pshader1" name="plane" value="1" onclick="main()">
-      <label for="pshader1">Basic color shader</label><br>
-      <input type="radio" id="pshader2" name="plane" value="2" checked="checked" onclick="main()">
-      <label for="pshader2">Lambertian shader</label><br>
-      <input type="radio" id="pshader3" name="plane" value="3" onclick="main()">
-      <label for="pshader1">Mirror shader</label><br>
-      <input type="radio" id="pshader4" name="plane" value="4" onclick="main()">
-      <label for="pshader4">Refraction shader</label><br>
-      <input type="radio" id="pshader5" name="plane" value="5" onclick="main()">
-      <label for="pshader5">Phong shader</label><br>
-      <input type="radio" id="pshader6" name="plane" value="6" onclick="main()">
-      <label for="pshader5">Glossy shader</label><br>
-    </form>
-    Shader options for the triangle
-    <form>
-      <input type="radio" id="tshader1" name="triangle" value="1" onclick="main()">
-      <label for="tshader1">Basic color shader</label><br>
-      <input type="radio" id="tshader2" name="triangle" value="2" checked="checked" onclick="main()">
-      <label for="tshader2">Lambertian shader</label><br>
-      <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
-      <label for="tshader1">Mirror shader</label><br>
-      <input type="radio" id="tshader4" name="triangle" value="4" onclick="main()">
-      <label for="tshader4">Refraction shader</label><br>
-      <input type="radio" id="tshader5" name="triangle" value="5" onclick="main()">
-      <label for="tshader5">Phong shader</label><br>
-      <input type="radio" id="tshader6" name="triangle" value="6" onclick="main()">
-      <label for="tshader6">Glossy shader</label><br>
-    </form>
-    Shader options for the sphere
-    <form>
-      <input type="radio" id="sshader1" name="sphere" value="1" onclick="main()">
-      <label for="sshader1">Basic color shader</label><br>
-      <input type="radio" id="sshader2" name="sphere" value="2" onclick="main()">
-      <label for="sshader2">Lambertian shader</label><br>
-      <input type="radio" id="sshader3" name="sphere" value="3" onclick="main()">
-      <label for="sshader1">Mirror shader</label><br>
-      <input type="radio" id="sshader4" name="sphere" value="4" onclick="main()">
-      <label for="sshader3">Refraction shader</label><br>
-      <input type="radio" id="sshader5" name="sphere" value="5" onclick="main()">
-      <label for="sshader5">Phong shader</label><br>
-      <input type="radio" id="sshader6" name="sphere" value="6" checked="checked" onclick="main()">
-      <label for="sshader6">Glossy shader</label><br>
-    </form>
+    
     <script type="module">
       const canvas = document.querySelector("canvas");
     </script>
@@ -70,8 +95,11 @@
         plane_shader: i32,
         triangle_shader: i32,
         sphere_shader: i32,
+        clamp_or_repeat: i32,
+        nearest_or_linear: i32,
         };
         @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
+        @group(0) @binding(2) var my_texture: texture_2d<f32>;
 
       const pi = radians(180);
 
@@ -259,48 +287,55 @@
         return ray;
       }
 
+      fn texture_nearest(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
+        let res = textureDimensions(texture);
+        var st: vec2f;
+        switch repeat
+        {
+          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
+          case default {st = texcoords - floor(texcoords);}
+        }
+        let ab = st*vec2f(res);
+        let UV = vec2u(ab + 0.5) % res;
+        let texcolor = textureLoad(texture, UV, 0);
+        return texcolor.rgb;
+        }
+
+      fn texture_linear(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
+        let res = textureDimensions(texture);
+        var st: vec2f;
+        switch repeat
+        {
+          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
+          case default {st = texcoords - floor(texcoords);}
+        }
+        let ab = st*vec2f(res);
+        let UV = vec2u(ab + 0.5) % res;
+        let factor = vec2f(UV) - ab;
+        let v1 = textureLoad(texture, UV, 0);
+        let v2 = textureLoad(texture, UV + vec2u(0, 1), 0);
+        let v3 = textureLoad(texture, UV + vec2u(1, 0), 0);
+        let v4 = textureLoad(texture, UV + vec2u(1, 1), 0);
+        let v12 = mix(v1, v2, factor.x);
+        let v34 = mix(v3, v4, factor.x);
+        let texcolor = mix(v12, v34, factor.y);
+        return texcolor.rgb;
+        }
+
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
       {
-        const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
-        const max_depth = 10;
-        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
-        var r = get_camera_ray(uv);
-        var result = vec3f(0.0);
-        var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0);
-        for(var i = 0; i < max_depth; i++) 
-          {
-            if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
-          if(intersect_scene(&r, &hit)) 
-          { 
-            if(hit.shader == 6)
-            {
-              result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
-              //result += shade(&r, &hit); 
-              hit.has_hit = false;
-              continue;
-            }
-            if(hit.shader == 3 || hit.shader == 4)
-            {
-              //return vec4f(r.direction, 1.0);
-              hit.has_hit = false;
-              continue;
-            }
-            let light = sample_point_light(hit.position);
-            let lightpos = hit.position + light.w_i*light.dist;
-            var shadowray = get_shadow_ray(hit.position, lightpos);
-            var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0);
-            if(intersect_scene(&shadowray, &shadowhit))
-              {
-                hit.diffuse = vec3f(0.0, 0.0, 0.0);
-              }
-            result += shade(&r, &hit); 
-          }
-          if(hit.has_hit) { break; }
-          else { result += bgcolor.rgb; break; }
-          
-          }
-        return vec4f(pow(result, vec3f(1.0)), bgcolor.a);
+        let filtering = shader_uniforms.nearest_or_linear;
+        let uv = vec2f(coords.x*uniforms.aspect*0.5, coords.y*0.5);
+        //let use_repeat = uniforms_ui.use_repeat != 0; let use_linear = uniforms_ui.use_linear != 0;
+        var color: vec3f;
+        switch filtering
+        {
+          case 0 {color = texture_nearest(my_texture, uv, shader_uniforms.clamp_or_repeat);}
+          case default {color = texture_linear(my_texture, uv, shader_uniforms.clamp_or_repeat);}
+        }
+        //let color = texture_nearest(my_texture, uv, shader_uniforms.clamp_or_repeat);
+        return vec4f(color, 1.0);
       }
 
       fn intersect_scene(r: ptr<function, Ray>, hit : ptr<function, HitInfo>) -> bool

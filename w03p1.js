@@ -18,7 +18,10 @@ async function main()
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
     var sphere_shader = document.querySelector('input[name="sphere"]:checked').value;
-    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader]);
+    var use_repeat = document.querySelector('input[name="tex_lu"]:checked').value;
+    var use_linear = document.querySelector('input[name="tex_filtering"]:checked').value;
+    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader, use_repeat, use_linear]);
+    const texture = await load_texture(device, "grass.jpg");
     
     function render()
     {
@@ -41,6 +44,11 @@ async function main()
             },
             {
                 binding: 1,
+                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+                buffer: {},
+            },
+            {
+                binding: 2,
                 visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
                 buffer: {},
             },],
@@ -83,7 +91,11 @@ async function main()
                 }, 
                 {binding: 1,
                 resource: { buffer: shaderBuffer },
-                }],
+                },
+                {binding: 2, 
+                resource: texture.createView() 
+            },
+            ],
             });
         
         
@@ -109,4 +121,21 @@ async function main()
         }
     render();
     
+}
+async function load_texture(device, filename)
+{
+const response = await fetch(filename);
+const blob = await response.blob();
+const img = await createImageBitmap(blob, { colorSpaceConversion: 'none' });
+const texture = device.createTexture({
+size: [img.width, img.height, 1],
+format: "rgba8unorm",
+usage: GPUTextureUsage.COPY_DST | GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.RENDER_ATTACHMENT
+});
+device.queue.copyExternalImageToTexture(
+{ source: img, flipY: true },
+{ texture: texture },
+{ width: img.width, height: img.height },
+);
+return texture;
 }

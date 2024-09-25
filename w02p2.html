@@ -12,31 +12,31 @@
     </canvas>
     <br>
     Shader options for the plane
-    <form id="pform">
-      <input type="radio" id="pshader1" name="plane" value="1" checked="checked" onclick="main()">
-      <label for="pshader1">Shader 1</label><br>
-      <input type="radio" id="pshader2" name="plane" value="2" onclick="main()">
-      <label for="pshader2">Shader 2</label><br>
+    <form>
+      <input type="radio" id="pshader1" name="plane" value="1" onclick="main()">
+      <label for="pshader1">Basic color shader</label><br>
+      <input type="radio" id="pshader2" name="plane" value="2" checked="checked" onclick="main()">
+      <label for="pshader2">Lambertian shader</label><br>
       <input type="radio" id="pshader3" name="plane" value="3" onclick="main()">
-      <label for="pshader1">Shader 3</label><br>
-    </form id="tform">
+      <label for="pshader1">Mirror shader</label><br>
+    </form>
     Shader options for the triangle
     <form>
-      <input type="radio" id="tshader1" name="triangle" value="1" checked="checked" onclick="main()">
-      <label for="tshader1">Shader 1</label><br>
-      <input type="radio" id="tshader2" name="triangle" value="2" onclick="main()">
-      <label for="tshader2">Shader 2</label><br>
+      <input type="radio" id="tshader1" name="triangle" value="1" onclick="main()">
+      <label for="tshader1">Basic color shader</label><br>
+      <input type="radio" id="tshader2" name="triangle" value="2" checked="checked" onclick="main()">
+      <label for="tshader2">Lambertian shader</label><br>
       <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
-      <label for="tshader1">Shader 3</label><br>
+      <label for="tshader1">Mirror shader</label><br>
     </form>
     Shader options for the sphere
-    <form id="sform">
+    <form>
       <input type="radio" id="sshader1" name="sphere" value="1" onclick="main()">
-      <label for="sshader1">Shader 1</label><br>
-      <input type="radio" id="sshader2" name="sphere" value="2" checked="checked" onclick="main()">
-      <label for="sshader2">Shader 2</label><br>
-      <input type="radio" id="sshader3" name="sphere" value="3" onclick="main()">
-      <label for="sshader1">Shader 3</label><br>
+      <label for="sshader1">Basic color shader</label><br>
+      <input type="radio" id="sshader2" name="sphere" value="2" onclick="main()">
+      <label for="sshader2">Lambertian shader</label><br>
+      <input type="radio" id="sshader3" name="sphere" value="3" checked="checked" onclick="main()">
+      <label for="sshader1">Mirror shader</label><br>
     </form>
     <script type="module">
       const canvas = document.querySelector("canvas");
@@ -170,9 +170,9 @@
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
           {
           switch (*hit).shader {
-          case 1 { return lambertian(r, hit) + 0.1 * (*hit).ambient; }
+          case 1 { return (*hit).ambient; }
+          case 2 { return lambertian(r, hit) + 0.1 * (*hit).ambient; }
           case default { return (*hit).ambient; }
-          //case default { return vec3f(0.0, 0.0, 0.0); }
           }
           }
 
@@ -238,7 +238,7 @@
             //if(i==9){return vec4f(1.0, 1.0, 1.0, 1.0);}
           if(intersect_scene(&r, &hit)) 
           { 
-            if(hit.shader == 2)
+            if(hit.shader == 3)
             {
               //return vec4f(1.0, 1.0, 1.0, 1.0);
               hit.has_hit = false;
@@ -293,7 +293,7 @@
           //(*hit).shader = 2;
         }
         (*r).tmax = hit.dist - 1e-4;
-        if((*hit).shader == 2)
+        if((*hit).shader == 3)
           {
             var refray: Ray;
             refray.origin = (*hit).position;

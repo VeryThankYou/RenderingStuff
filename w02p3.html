@@ -315,6 +315,7 @@
               (*hit).IoR = (*hit).IoR/1.5;
             } else {
               (*hit).IoR = 1.0/(*hit).IoR;
+              (*hit).normal = - (*hit).normal;
             }
             let cosi = dot(-(*r).direction, (*hit).normal);
             let sin2i = 1.0 - pow(cosi, 2.0);

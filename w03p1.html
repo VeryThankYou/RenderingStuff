@@ -313,9 +313,9 @@
         let UV = vec2u(floor(ab));
         let factor = ab - vec2f(UV);
         let v1 = textureLoad(texture, UV, 0);
-        let v2 = textureLoad(texture, UV + vec2u(1, 0), 0);
-        let v3 = textureLoad(texture, UV + vec2u(0, 1), 0);
-        let v4 = textureLoad(texture, UV + vec2u(1, 1), 0);
+        let v2 = textureLoad(texture, (UV + vec2u(1, 0)) % res, 0);
+        let v3 = textureLoad(texture, (UV + vec2u(0, 1)) % res, 0);
+        let v4 = textureLoad(texture, (UV + vec2u(1, 1)) % res, 0);
         let v12 = mix(v1, v2, factor.x);
         let v34 = mix(v3, v4, factor.x);
         let texcolor = mix(v12, v34, factor.y);

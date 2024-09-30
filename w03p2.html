@@ -76,6 +76,13 @@
         <input type="radio" id="tex_filtering_linear" name="tex_filtering" value="1" onclick="main()">
         <label for="tex_filtering_linear">Bilinear</label><br>
       </form>
+      Plane texturing
+      <form>
+        <input type="radio" id="ptex0" name="ptex" value="0" onclick="main()">
+        <label for="ptex0">Use basic colors</label><br>
+        <input type="radio" id="ptex1" name="ptex" value="1" checked="checked" onclick="main()">
+        <label for="ptex1">Use texture</label><br>
+      </form>
       </div>
     </div>
     
@@ -97,6 +104,7 @@
         sphere_shader: i32,
         clamp_or_repeat: i32,
         nearest_or_linear: i32,
+        use_texturing: i32,
         };
         @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
         @group(0) @binding(2) var my_texture: texture_2d<f32>;
@@ -388,13 +396,21 @@
         const tex_scaling = 0.2;
         if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
-          let color = texture_linear(my_texture, (*hit).texcoords, 1);
-          //(*hit).diffuse = vec3f(0.1, 0.7, 0.0);
-          //(*hit).ambient = vec3f(0.1, 0.7, 0.0);
-          (*hit).diffuse = color;
-          (*hit).ambient = color;
+          switch shader_uniforms.use_texturing
+          {
+            case 0 
+            {
+              (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
+              (*hit).ambient = vec3f(0.1, 0.7, 0.0);
+            }
+            case default
+            {
+              let color = texture_linear(my_texture, (*hit).texcoords, 1);
+              (*hit).diffuse = color;
+              (*hit).ambient = color;
+            }
+          }
           (*hit).shader = shader_uniforms.plane_shader;
-          
           //(*hit).shader = 1;
         }
         const v = array(vec3f(-0.2, 0.1, 0.9), vec3f(0.2, 0.1, 0.9), vec3f(-0.2, 0.1, -0.1));

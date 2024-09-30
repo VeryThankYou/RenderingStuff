@@ -20,7 +20,8 @@ async function main()
     var sphere_shader = document.querySelector('input[name="sphere"]:checked').value;
     var use_repeat = document.querySelector('input[name="tex_lu"]:checked').value;
     var use_linear = document.querySelector('input[name="tex_filtering"]:checked').value;
-    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader, use_repeat, use_linear]);
+    var use_texture = document.querySelector('input[name="ptex"]:checked').value;
+    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, sphere_shader, use_repeat, use_linear, use_texture]);
     const texture = await load_texture(device, "grass.jpg");
     
     function render()

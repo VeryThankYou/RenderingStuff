@@ -356,6 +356,7 @@
         var pxresult = vec3f(0.0);
         for(var is = 0; is < shader_uniforms.sub_divisions; is++)
         {
+          //if(is == 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
           let jittervec = jitter[is];
           let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jittervec;
           var r = get_camera_ray(uv);

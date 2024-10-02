@@ -14,7 +14,7 @@ async function main()
     var cam_const = 1.0;
     var uniforms = new Float32Array([aspect, cam_const]);
 
-    let subdivs = document.querySelector('input[name="ptex"]:checked').value;
+    let subdivs = document.querySelector('input[name="pxsubdivs"]').value**2;
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
     var sphere_shader = document.querySelector('input[name="sphere"]:checked').value;

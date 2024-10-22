@@ -128,3 +128,43 @@ l = 0.1
 A = l*l
 Phi = M.evalf() * A
 print(f"The power of the light source is {Phi}")
+
+"""
+Part 8 (optional)
+The Earth and Mars receive energy from the Sun. Is the radiance from the Sun identical on the two planets?
+Explain your answer. Why is it warmest on the Earth? Reconsider your answers after the next calculations.
+Assume the Sun is a diffuse emitter of total power 3.91 · 1026 W and the surface area is 6.07 · 1018 m2
+.
+Calculate the radiance from the Sun on the two planets. Assume the Sun is in zenith and the distance from
+the Sun to the Earth and Mars is 1.5 · 1011 m and 2.28 · 1011 m, respectively.
+Find the solid angle the Sun is observed under at the Earth and Mars.
+How much energy is received on a 1 × 1 m2
+surface on the Earth and Mars, respectively?
+
+"""
+total_power = 3.91e26
+surface_area = 6.07e18
+dist_Earth_to_Sun = 1.5e11
+dist_Mars_to_Sun = 2.28e11
+
+solid_angle_Earth = (surface_area/4)/(dist_Earth_to_Sun**2)
+solid_angle_Mars = (surface_area/4)/(dist_Mars_to_Sun**2)
+print(f"Surface area refers to 3d, but we want it in 2d (as a disk), hence divide with 4")
+print(f"The solid angle is {solid_angle_Earth}")
+print(f"The solid angle is {solid_angle_Mars}")
+
+irradiance_Earth = (total_power)/(4*np.pi*(dist_Earth_to_Sun**2))
+irradiance_Mars = (total_power)/(4*np.pi*(dist_Mars_to_Sun**2))
+print(f"Since the area is 1m2, the energy received is simply the irradiance")
+print(f"The energy received on Earth is {irradiance_Earth} W/m2")
+print(f"The energy received on Mars is {irradiance_Mars} W/m2")
+print(f"In conclusion, Earth is warmer because it receives greater irradiance, and the sun appears larger in the sky due to the larger solid angle compared to Mars. As a result, Earth receives more energy than Mars, making it warmer")
+"""
+Part 9 (optional)
+A horizontal plate is illuminated on a cloudy day. The sky has a uniform radiance of 1000 W/(m2
+sr).
+Calculate the irradiance at the center of the plate.
+Find the result if the sky is blocked so only a conical section (half angle 30◦
+) of the sky can be seen from the
+center of the plate.
+"""

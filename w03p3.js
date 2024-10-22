@@ -1,3 +1,6 @@
+// p4:
+// Bilinear filtering will give a more smooth texture compared to nearest neighbor filtering
+// higher number of subdivisions will reduce aliasing as well
 "use strict"; 
 window.onload = function() { main(); } 
 async function main() 

@@ -408,7 +408,7 @@
         let planepos = vec3f(0.0, 0.0, 0.0);
         let planenormal = vec3f(0.0, 1.0, 0.0);
         const plane_onb = Onb(vec3f(-1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), vec3f(0.0, 1.0, 0.0));
-        const tex_scaling = 0.2;
+        const tex_scaling = 0.02;
         if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
           switch shader_uniforms.use_texturing

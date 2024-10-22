@@ -1,0 +1,522 @@
+<!doctype html>
+
+
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" src="w05p3.js"></script>
+    <script type="text/javascript" src="OBJParser.js"></script>
+    <title>WebGPU Life</title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="column">
+        <canvas id="webgpu-canvas" width="800" height="450"> 
+          Please use a browser that supports HTML5 canvas. 
+        </canvas>
+      </div>
+      <div class="column">
+      Shader options for the plane
+      <form>
+        <input type="radio" id="pshader1" name="plane" value="1" onclick="main()">
+        <label for="pshader1">Basic color shader</label><br>
+        <input type="radio" id="pshader2" name="plane" value="2" checked="checked" onclick="main()">
+        <label for="pshader2">Lambertian shader</label><br>
+        <input type="radio" id="pshader3" name="plane" value="3" onclick="main()">
+        <label for="pshader1">Mirror shader</label><br>
+        <input type="radio" id="pshader4" name="plane" value="4" onclick="main()">
+        <label for="pshader4">Refraction shader</label><br>
+        <input type="radio" id="pshader5" name="plane" value="5" onclick="main()">
+        <label for="pshader5">Phong shader</label><br>
+        <input type="radio" id="pshader6" name="plane" value="6" onclick="main()">
+        <label for="pshader5">Glossy shader</label><br>
+      </form>
+      Shader options for the triangle
+      <form>
+        <input type="radio" id="tshader1" name="triangle" value="1" onclick="main()">
+        <label for="tshader1">Basic color shader</label><br>
+        <input type="radio" id="tshader2" name="triangle" value="2" checked="checked" onclick="main()">
+        <label for="tshader2">Lambertian shader</label><br>
+        <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
+        <label for="tshader1">Mirror shader</label><br>
+        <input type="radio" id="tshader4" name="triangle" value="4" onclick="main()">
+        <label for="tshader4">Refraction shader</label><br>
+        <input type="radio" id="tshader5" name="triangle" value="5" onclick="main()">
+        <label for="tshader5">Phong shader</label><br>
+        <input type="radio" id="tshader6" name="triangle" value="6" onclick="main()">
+        <label for="tshader6">Glossy shader</label><br>
+      </form>
+      Texture look-up
+      <form>
+        <input type="radio" id="tex_lu_clamp" name="tex_lu" value="0" checked="checked" onclick="main()">
+        <label for="tex_lu_clamp">Clamp to edge</label><br>
+        <input type="radio" id="tex_lu_repeat" name="tex_lu" value="1" onclick="main()">
+        <label for="tex_lu_repeat">Repeat</label><br>
+      </form>
+      Texture filtering
+      <form>
+        <input type="radio" id="tex_filtering_nn" name="tex_filtering" value="0" checked="checked" onclick="main()">
+        <label for="tex_filtering_nn">Nearest Neighbor</label><br>
+        <input type="radio" id="tex_filtering_linear" name="tex_filtering" value="1" onclick="main()">
+        <label for="tex_filtering_linear">Bilinear</label><br>
+      </form>
+      Plane texturing
+      <form>
+        <input type="radio" id="ptex0" name="ptex" value="0" onclick="main()">
+        <label for="ptex0">Use basic colors</label><br>
+        <input type="radio" id="ptex1" name="ptex" value="1" checked="checked" onclick="main()">
+        <label for="ptex1">Use texture</label><br>
+      </form>
+      Pixel subdivisions
+      <form>
+        <input type="number" id="pxsubdivs" name="pxsubdivs" value="1" min="1" max="1000">
+        <input type="button" id="pxsubdivs_button" name="pxsubdivs_button" value="Submit" onclick="main()">
+      </form>
+      </div>
+    </div>
+    
+    <br>
+    
+    <script type="module">
+      const canvas = document.querySelector("canvas");
+    </script>
+    <script id="wgsl" type="x-shader"> 
+      struct Uniforms {
+        aspect: f32,
+        cam_const: f32,
+        };
+        @group(0) @binding(0) var<uniform> uniforms : Uniforms;
+
+      struct ShaderUniforms {
+        plane_shader: i32,
+        triangle_shader: i32,
+        clamp_or_repeat: i32,
+        nearest_or_linear: i32,
+        use_texturing: i32,
+        sub_divisions: i32,
+        };
+        @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
+        @group(0) @binding(2) var my_texture: texture_2d<f32>;
+        @group(0) @binding(3) var<storage> jitter: array<vec2f>;
+        @group(0) @binding(4) var<storage> vpositions: array<vec3f>;
+        @group(0) @binding(5) var<storage> mesh_faces: array<vec3u>;
+        @group(0) @binding(6) var<storage> triangle_normals: array<vec3f>;
+
+      const pi = radians(180);
+      
+
+      struct VSOut {
+        @builtin(position) position: vec4f,
+        @location(0) coords : vec2f,
+      };
+
+      struct HitInfo 
+      {
+        has_hit: bool,
+        dist: f32,
+        position: vec3f,
+        normal: vec3f,
+        ambient: vec3f,
+        diffuse: vec3f,
+        shader: i32,
+        IoR: f32,
+        specular: f32,
+        shininess: f32,
+        texcoords: vec2f,
+        trianglehit: i32,
+      }
+
+      struct Light {
+        L_i: vec3f,
+        w_i: vec3f,
+        dist: f32
+        };
+
+      fn intersect_plane(r: Ray, hit: ptr<function, HitInfo>, plane: Onb, position: vec3f, scaling: f32) -> bool 
+        {
+          let tm = dot((position-r.origin), plane.normal)/(dot(r.direction, plane.normal));
+          if (tm <= r.tmax && tm >= r.tmin)
+          {
+            (*hit).has_hit = true;
+            (*hit).dist = tm;
+            (*hit).position = r.origin + tm * r.direction;
+            var normal = plane.normal;
+            var dirdotnorm = dot(r.direction, normal);
+            if(dirdotnorm < 0)
+            {
+              normal = - normal;
+            }
+            (*hit).normal = normal;
+            let u = scaling*dot(((*hit).position - position), plane.tangent);
+            let v = scaling*dot(((*hit).position - position), plane.binormal);
+            (*hit).texcoords = vec2f(u, v);
+            return true;
+          }
+          return false;
+        }
+
+        fn intersect_triangle(r: Ray, hit: ptr<function, HitInfo>, f_index: u32) -> bool 
+          {
+            let v = array(vpositions[(mesh_faces[f_index][0])], vpositions[(mesh_faces[f_index][1])], vpositions[(mesh_faces[f_index][2])]);
+            let position = v[0];
+            let e0 = v[1] - v[0];
+            let e1 = v[2] - v[0];
+            let n = array(triangle_normals[(mesh_faces[f_index][0])], triangle_normals[(mesh_faces[f_index][1])], triangle_normals[(mesh_faces[f_index][2])]);
+            var normal = cross(e0, e1);
+            var dirdotnorm = dot(r.direction, normal);
+            /*if(dirdotnorm < 0)
+            {
+              normal = - normal;
+              dirdotnorm = dot(r.direction, normal);
+            }*/
+            let tm = dot((position-r.origin), normal)/dirdotnorm;
+            if (tm <= r.tmax && tm >= r.tmin)
+            {
+              let beta = (dot(cross((v[0] - r.origin), r.direction), e1))/dirdotnorm;
+              let gamma = -(dot(cross((v[0] - r.origin), r.direction), e0))/dirdotnorm;
+              if (beta + gamma <= 1 && (beta >= 0 && gamma >= 0))
+              {
+                (*hit).has_hit = true;
+                (*hit).dist = tm;
+                (*hit).position = r.origin + tm * r.direction;
+                let alpha = 1 - beta - gamma;
+                normal = normalize(alpha * n[0] + beta * n[1] + gamma * n[2]);
+                var dirdotnorm = dot(r.direction, normal);
+                if(dirdotnorm < 0)
+                {
+                  normal = - normal;
+                }
+                (*hit).normal = normal;
+                (*hit).trianglehit = i32(f_index);
+                return true;
+              }
+            }
+            return false;
+          }
+
+          fn intersect_sphere(r: Ray, hit: ptr<function, HitInfo>, center: vec3f, radius: f32) -> bool 
+            {
+              let bhalf = dot((r.origin - center), r.direction);
+              let c = dot((r.origin - center), (r.origin - center)) - radius*radius;
+              let d = bhalf*bhalf - c;
+              if (d >= 0)
+              {
+                let tm1 = -bhalf - sqrt(d);
+                let tm2 = -bhalf + sqrt(d);
+                if (tm1 <= r.tmax && tm1 >= r.tmin)
+                {
+                  (*hit).has_hit = true;
+                  (*hit).dist = tm1;
+                  (*hit).position = r.origin + tm1 * r.direction;
+                  (*hit).normal = normalize((*hit).position - center);
+                  return true;
+                }
+                else if (tm2 <= r.tmax && tm2 >= r.tmin)
+                {
+                  (*hit).has_hit = true;
+                  (*hit).dist = tm2;
+                  (*hit).position = r.origin + tm2 * r.direction;
+                  (*hit).normal = normalize((*hit).position - center);
+                  return true;
+                }
+              }
+              return false;
+            }
+
+          fn sample_point_light(pos: vec3f) -> Light
+            {
+              const lightp = vec3f(0.0, 1.0, 0.0);
+              const rgb = vec3f(pi, pi, pi);
+              let wi = normalize(lightp - pos);
+              let len = length(lightp - pos);
+              let li = vec3f(rgb[0]/(len*len), rgb[1]/(len*len), rgb[2]/(len*len));
+              var light: Light;
+              light.L_i = li;
+              light.w_i = wi;
+              light.dist = len;
+              return light;
+            }
+
+          fn sample_directional_light(pos: vec3f) -> Light
+            {
+              const rgb = vec3f(pi, pi, pi);
+              let wi = normalize(vec3f(-1.0));
+              let li = rgb;
+              var light: Light;
+              light.L_i = li;
+              light.w_i = wi;
+              light.dist = 10000;
+              return light;
+            }
+
+        fn lambertian(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
+          {
+            let lightdir = normalize(vec3f(-1));
+            if(dot(lightdir, (*hit).normal) < 0)
+              {
+                hit.diffuse = vec3f(0.0, 0.0, 0.0);
+              }
+            var shadowray = get_shadow_ray(hit, lightdir);
+            var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
+            if(intersect_scene(&shadowray, &shadowhit))
+              {
+                /*if(shadowhit.trianglehit != -1 && (shadowhit.trianglehit == (*hit).trianglehit))
+                {
+                  const reflight = vec3f(1.0, 1.0, 1.0);
+                  return reflight;
+                }*/
+                hit.diffuse = vec3f(0.0, 0.0, 0.0);
+              }
+            
+            let light = sample_directional_light((*hit).position);
+            if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
+            let reflight = ((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i);
+            return reflight;
+          }
+
+        fn phong(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
+          {
+            let light = sample_point_light((*hit).position);
+            var refray: Ray;
+            refray.origin = (*hit).position;
+            refray.direction = reflect(((*r).direction), (*hit).normal);
+            refray.tmin = 1e-4;
+            refray.tmax = 1000;
+            let reflight = ((1 - (*hit).specular)*(*hit).diffuse/pi + (*hit).specular*((*hit).shininess + 2)/(2*pi) * pow(dot(light.w_i, refray.direction), (*hit).shininess)) * light.L_i * dot((*hit).normal, light.w_i);
+            return reflight;
+          }
+
+        fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
+          {
+          switch (*hit).shader {
+          case 1 { return (*hit).ambient; }
+          case 2 { return lambertian(r, hit); }
+          case 5 { return phong(r, hit); }
+          case 6 { return phong(r, hit); }
+          case default { return (*hit).ambient; }
+          }
+          }
+
+      @vertex
+      fn main_vs(@builtin(vertex_index) VertexIndex : u32) -> VSOut
+      {
+        const pos = array<vec2f, 4>(vec2f(-1.0, 1.0), vec2f(-1.0, -1.0), vec2f(1.0, 1.0), vec2f(1.0, -1.0));
+        var vsOut: VSOut;
+        vsOut.position = vec4f(pos[VertexIndex], 0.0, 1.0);
+        vsOut.coords = pos[VertexIndex];
+        return vsOut;
+      }
+      // Define Ray struct
+      struct Ray {
+        origin: vec3f,
+        direction: vec3f,
+        tmin: f32,
+        tmax: f32,
+      }
+
+      struct Onb {
+        tangent: vec3f,
+        binormal: vec3f,
+        normal: vec3f,
+        }
+
+      fn get_shadow_ray(hit: ptr<function, HitInfo>, lightdir: vec3f) -> Ray
+      {
+        // Implement ray generation (WGSL has vector operations like normalize and cross)
+        const u = vec3f(0.0, 1.0, 0.0);
+        var ray: Ray;
+        ray.direction = -lightdir;
+        ray.origin = (*hit).position + 1e-0 * (-lightdir);
+        ray.tmin = 0;
+        ray.tmax = 1000;
+        return ray;
+      }
+
+      fn get_camera_ray(ipcoords: vec2f) -> Ray
+      {
+        // Implement ray generation (WGSL has vector operations like normalize and cross)
+        const e = vec3f(0.15, 1.5, 10.0);
+        const u = vec3f(0.0, 1.0, 0.0);
+        const l = vec3f(0.15, 1.5, 0.0);
+        let v = normalize(l - e);
+        let b1 = normalize(cross(v, u));
+        let b2 = cross(b1, v);
+        let q = b1*ipcoords.x + b2*ipcoords.y + v*uniforms.cam_const;
+        var ray: Ray;
+        ray.direction = normalize(q);
+        ray.origin = e;
+        ray.tmin = 0;
+        ray.tmax = 10000;
+        return ray;
+      }
+
+      fn texture_nearest(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
+        let res = textureDimensions(texture);
+        var st: vec2f;
+        switch repeat
+        {
+          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
+          case default {st = texcoords - floor(texcoords);}
+        }
+        let ab = st*vec2f(res);
+        let UV = vec2u(ab + 0.5) % res;
+        let texcolor = textureLoad(texture, UV, 0);
+        return texcolor.rgb;
+        }
+
+      fn texture_linear(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
+        let res = textureDimensions(texture);
+        var st: vec2f;
+        switch repeat
+        {
+          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
+          case default {st = texcoords - floor(texcoords);}
+        }
+        let ab = st*vec2f(res);
+        let UV = vec2u(floor(ab));
+        let factor = ab - vec2f(UV);
+        let v1 = textureLoad(texture, UV, 0);
+        let v2 = textureLoad(texture, (UV + vec2u(1, 0)) % res, 0);
+        let v3 = textureLoad(texture, (UV + vec2u(0, 1)) % res, 0);
+        let v4 = textureLoad(texture, (UV + vec2u(1, 1)) % res, 0);
+        let v12 = mix(v1, v2, factor.x);
+        let v34 = mix(v3, v4, factor.x);
+        let texcolor = mix(v12, v34, factor.y);
+        return texcolor.rgb;
+        }
+
+      @fragment
+      fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
+      {
+        let c = triangle_normals[0];
+        let res = textureDimensions(my_texture);
+        const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
+        const max_depth = 10;
+        var pxresult = vec3f(0.0);
+        for(var is = 0; is < shader_uniforms.sub_divisions; is++)
+        {
+          //if(is == 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
+          let jittervec = jitter[is];
+          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jittervec;
+          var r = get_camera_ray(uv);
+          var result = vec3f(0.0);
+          var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
+          for(var i = 0; i < max_depth; i++) 
+            {
+              if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
+              if(intersect_scene(&r, &hit)) 
+              { 
+                if(hit.shader == 6)
+                {
+                  result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
+                  //result += shade(&r, &hit); 
+                  hit.has_hit = false;
+                  continue;
+                }
+                if(hit.shader == 3 || hit.shader == 4)
+                {
+                  //return vec4f(r.direction, 1.0);
+                  hit.has_hit = false;
+                  continue;
+                }
+                //let light = sample_point_light(hit.position);
+                
+                result += shade(&r, &hit); 
+              }
+              if(hit.has_hit) { break; }
+              else { result += bgcolor.rgb; break; }
+            
+            }
+          pxresult += result;
+        }
+        pxresult = pxresult/f32(shader_uniforms.sub_divisions);
+        return vec4f(pow(pxresult, vec3f(1.0)), bgcolor.a);
+      }
+
+      fn intersect_scene(r: ptr<function, Ray>, hit : ptr<function, HitInfo>) -> bool
+      {
+      // Define scene data as constants.
+      // Call an intersection function for each object.
+      // For each intersection found, update (*r).tmax and store additional info about the hit.
+        let planepos = vec3f(0.0, 0.0, 0.0);
+        let planenormal = vec3f(0.0, -1.0, 0.0);
+        const plane_onb = Onb(vec3f(-1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), vec3f(0.0, 1.0, 0.0));
+        const tex_scaling = 0.2;
+        if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
+        {
+          switch shader_uniforms.use_texturing
+          {
+            case 0 
+            {
+              (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
+              (*hit).ambient = vec3f(0.1, 0.7, 0.0);
+            }
+            case default
+            {
+              let color = texture_linear(my_texture, (*hit).texcoords, 1);
+              (*hit).diffuse = color;
+              (*hit).ambient = color;
+            }
+          }
+          (*hit).shader = shader_uniforms.plane_shader;
+          //(*hit).shader = 1;
+        }
+        for(var i = u32(0); i < arrayLength( &mesh_faces ); i++)
+        {
+          if (intersect_triangle((*r), hit, i))
+          {
+            (*hit).diffuse = vec3f(0.9);
+            (*hit).ambient = vec3f(0.9);
+            (*hit).shader = shader_uniforms.triangle_shader;
+            //(*hit).shader = 1;
+            (*r).tmax = hit.dist - 1e-4;
+          }
+        }
+        
+        
+        (*r).tmax = hit.dist - 1e-4;
+        if((*hit).shader == 3)
+          {
+            var refray: Ray;
+            refray.origin = (*hit).position;
+            refray.direction = reflect(((*r).direction), (*hit).normal);
+            refray.tmin = 1e-4;
+            refray.tmax = 1000;
+            (*r) = refray;
+          }
+          if((*hit).shader == 4 || (*hit).shader == 6)
+          {
+            var flipped = false;
+            if(dot(-(*r).direction, (*hit).normal) >= 0)
+            {
+              (*hit).IoR = (*hit).IoR/1.5;
+            } else {
+              (*hit).IoR = 1.0/(*hit).IoR;
+              (*hit).normal = - (*hit).normal;
+              flipped = true;
+            }
+            let cosi = dot(-(*r).direction, (*hit).normal);
+            let sin2i = 1.0 - pow(cosi, 2.0);
+            let sint = (*hit).IoR * sqrt(sin2i);
+            let cos2t = 1.0 - pow(sint, 2.0);
+            let t = (cosi*(*hit).normal + (*r).direction)/sqrt(sin2i);
+            let tsint = t * sint;
+            let ncost = (*hit).normal * sqrt(cos2t);
+            var refractray: Ray;
+            refractray.origin = (*hit).position;
+            //let tsint = ((*hit).IoR)*(dot(-(*r).direction, (*hit).normal)*(*hit).normal + (*r).direction);
+            //let ncost = (*hit).normal * sqrt(1.0 - ((*hit).IoR * (*hit).IoR * (1.0 - dot(-(*r).direction, (*hit).normal)*dot(-(*r).direction, (*hit).normal))));
+            //refractray.direction = -ncost;
+            refractray.direction = tsint - ncost;
+            refractray.tmin = 1e-4;
+            refractray.tmax = 1000;
+            (*r) = refractray;
+            if((*hit).shader == 6 && flipped){(*hit).normal = - (*hit).normal;}
+          }
+        return (*hit).has_hit;
+      }
+    </script>
+  </body>
+</html>

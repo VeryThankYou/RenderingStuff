@@ -96,6 +96,19 @@ async function main()
             },
             });
         
+            let mats = new Float32Array(drawingInfo.materials.length * 2 * 4);
+            for(var i = 0; i < drawingInfo.materials.length; i++)
+            {
+                mats[i*8] = drawingInfo.materials[i].color.r;
+                mats[i*8+1] = drawingInfo.materials[i].color.g;
+                mats[i*8+2] = drawingInfo.materials[i].color.b;
+                mats[i*8+3] = drawingInfo.materials[i].color.a;
+                mats[i*8+4] = drawingInfo.materials[i].emission.r;
+                mats[i*8+5] = drawingInfo.materials[i].emission.g;
+                mats[i*8+6] = drawingInfo.materials[i].emission.b;
+                mats[i*8+7] = drawingInfo.materials[i].emission.a;
+
+            }
         pass.setPipeline(pipeline);
 
         const uniformBuffer = device.createBuffer({
@@ -130,7 +143,12 @@ async function main()
             });
 
         const materialsBuffer = device.createBuffer({
-            size: drawingInfo.colors.byteLength + drawingInfo.materials.emission.byteLength,
+            size: mats.byteLength,
+            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
+            });
+
+        const matIndicesBuffer = device.createBuffer({
+            size: drawingInfo.mat_indices.byteLength,
             usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
             });
 
@@ -161,6 +179,9 @@ async function main()
                 {binding: 7, 
                 resource: { buffer: materialsBuffer }
                 },
+                {binding: 8, 
+                resource: { buffer: matIndicesBuffer }
+                },
             ],
             });
         
@@ -174,9 +195,10 @@ async function main()
             device.queue.writeBuffer(positionsBuffer, 0, drawingInfo.vertices);
             device.queue.writeBuffer(indicesBuffer, 0, drawingInfo.indices);
             device.queue.writeBuffer(normalsBuffer, 0, drawingInfo.normals);
-            let mats = Float32Array(drawingInfo.colors.flat(), drawingInfo.material.emission.flat()).flat();
 
+            
             device.queue.writeBuffer(materialsBuffer, 0, mats);
+            device.queue.writeBuffer(matIndicesBuffer, 0, drawingInfo.mat_indices);
             pass.draw(4);
             pass.end(); 
             device.queue.submit([encoder.finish()]);

@@ -35,9 +35,9 @@
       </form>
       Shader options for the triangle
       <form>
-        <input type="radio" id="tshader1" name="triangle" value="1" onclick="main()">
+        <input type="radio" id="tshader1" name="triangle" value="1" checked="checked" onclick="main()">
         <label for="tshader1">Basic color shader</label><br>
-        <input type="radio" id="tshader2" name="triangle" value="2" checked="checked" onclick="main()">
+        <input type="radio" id="tshader2" name="triangle" value="2" onclick="main()">
         <label for="tshader2">Lambertian shader</label><br>
         <input type="radio" id="tshader3" name="triangle" value="3" onclick="main()">
         <label for="tshader1">Mirror shader</label><br>
@@ -98,8 +98,8 @@
         sub_divisions: i32,
         };
       struct MaterialUniforms {
-        color: array<vec4f>,
-        emissions: array<vec4f>,  
+        color: vec4f,
+        emission: vec4f,  
         };
         @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
         @group(0) @binding(2) var my_texture: texture_2d<f32>;
@@ -107,7 +107,8 @@
         @group(0) @binding(4) var<storage> vpositions: array<vec3f>;
         @group(0) @binding(5) var<storage> mesh_faces: array<vec3u>;
         @group(0) @binding(6) var<storage> triangle_normals: array<vec3f>;
-        @group(0) @binding(7) var<storage> mat_uniforms: MaterialUniforms;
+        @group(0) @binding(7) var<storage> mat_uniforms: array<MaterialUniforms>;
+        @group(0) @binding(8) var<storage> mat_indices: array<u32>;
 
       const pi = radians(180);
       
@@ -195,6 +196,8 @@
                 }
                 (*hit).normal = normal;
                 (*hit).trianglehit = i32(f_index);
+                (*hit).ambient = vec3f(mat_uniforms[mat_indices[f_index]].emission.r, mat_uniforms[mat_indices[f_index]].emission.g, mat_uniforms[mat_indices[f_index]].emission.b);
+                (*hit).diffuse = vec3f(mat_uniforms[mat_indices[f_index]].color.r, mat_uniforms[mat_indices[f_index]].color.g, mat_uniforms[mat_indices[f_index]].color.b);
                 return true;
               }
             }
@@ -261,7 +264,7 @@
             let lightdir = normalize(vec3f(-1));
             if(dot(lightdir, (*hit).normal) < 0)
               {
-                hit.diffuse = vec3f(0.0, 0.0, 0.0);
+                //hit.diffuse = vec3f(0.0, 0.0, 0.0);
               }
             var shadowray = get_shadow_ray(hit, lightdir);
             var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
@@ -272,7 +275,7 @@
                   const reflight = vec3f(1.0, 1.0, 1.0);
                   return reflight;
                 }*/
-                hit.diffuse = vec3f(0.0, 0.0, 0.0);
+                //hit.diffuse = vec3f(0.0, 0.0, 0.0);
               }
             
             let light = sample_directional_light((*hit).position);
@@ -296,7 +299,7 @@
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
           {
           switch (*hit).shader {
-          case 1 { return (*hit).ambient; }
+          case 1 { return (*hit).ambient + (*hit).diffuse; }
           case 2 { return lambertian(r, hit); }
           case 5 { return phong(r, hit); }
           case 6 { return phong(r, hit); }
@@ -395,7 +398,8 @@
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
       {
-        let c = triangle_normals[0];
+        let c = mat_uniforms[0];
+        let c2 = mat_indices[0];
         let res = textureDimensions(my_texture);
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
@@ -450,8 +454,6 @@
         {
           if (intersect_triangle((*r), hit, i))
           {
-            (*hit).diffuse = vec3f(0.9);
-            (*hit).ambient = vec3f(0.9);
             (*hit).shader = shader_uniforms.triangle_shader;
             //(*hit).shader = 1;
             (*r).tmax = hit.dist - 1e-4;

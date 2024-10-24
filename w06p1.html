@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="stylesheet.css">
     <script type="text/javascript" src="w06p1.js"></script>
     <script type="text/javascript" src="OBJParser.js"></script>
+    <script type="text/javascript" src="Aabb.js"></script> 
+    <script type="text/javascript" src="BspTree.js"></script> 
+    <script type="text/javascript" src="MV.js"></script> 
     <title>WebGPU Life</title>
   </head>
   <body>
     <div class="row">
       <div class="column">
-        <canvas id="webgpu-canvas" width="512" height="512"> 
+        <canvas id="webgpu-canvas" width="800" height="450"> 
           Please use a browser that supports HTML5 canvas. 
         </canvas>
       </div>
@@ -48,27 +51,6 @@
         <input type="radio" id="tshader6" name="triangle" value="6" onclick="main()">
         <label for="tshader6">Glossy shader</label><br>
       </form>
-      Texture look-up
-      <form>
-        <input type="radio" id="tex_lu_clamp" name="tex_lu" value="0" checked="checked" onclick="main()">
-        <label for="tex_lu_clamp">Clamp to edge</label><br>
-        <input type="radio" id="tex_lu_repeat" name="tex_lu" value="1" onclick="main()">
-        <label for="tex_lu_repeat">Repeat</label><br>
-      </form>
-      Texture filtering
-      <form>
-        <input type="radio" id="tex_filtering_nn" name="tex_filtering" value="0" checked="checked" onclick="main()">
-        <label for="tex_filtering_nn">Nearest Neighbor</label><br>
-        <input type="radio" id="tex_filtering_linear" name="tex_filtering" value="1" onclick="main()">
-        <label for="tex_filtering_linear">Bilinear</label><br>
-      </form>
-      Plane texturing
-      <form>
-        <input type="radio" id="ptex0" name="ptex" value="0" onclick="main()">
-        <label for="ptex0">Use basic colors</label><br>
-        <input type="radio" id="ptex1" name="ptex" value="1" checked="checked" onclick="main()">
-        <label for="ptex1">Use texture</label><br>
-      </form>
       Pixel subdivisions
       <form>
         <input type="number" id="pxsubdivs" name="pxsubdivs" value="1" min="1" max="1000">
@@ -92,24 +74,17 @@
       struct ShaderUniforms {
         plane_shader: i32,
         triangle_shader: i32,
-        clamp_or_repeat: i32,
-        nearest_or_linear: i32,
-        use_texturing: i32,
         sub_divisions: i32,
         };
-      struct MaterialUniforms {
-        color: vec4f,
-        emission: vec4f,  
-        };
         @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
-        @group(0) @binding(2) var my_texture: texture_2d<f32>;
-        @group(0) @binding(3) var<storage> jitter: array<vec2f>;
-        @group(0) @binding(4) var<storage> vpositions: array<vec3f>;
-        @group(0) @binding(5) var<storage> mesh_faces: array<vec3u>;
-        @group(0) @binding(6) var<storage> triangle_normals: array<vec3f>;
-        @group(0) @binding(7) var<storage> mat_uniforms: array<MaterialUniforms>;
-        @group(0) @binding(8) var<storage> mat_indices: array<u32>;
-        @group(0) @binding(9) var<storage> light_indices: array<u32>;
+        @group(0) @binding(2) var<storage> vpositions: array<vec3f>;
+        @group(0) @binding(3) var<storage> mesh_faces: array<vec3u>;
+        @group(0) @binding(4) var<storage> triangle_normals: array<vec3f>;
+        @group(0) @binding(5) var<storage> tree_ids: array<u32>;
+        @group(0) @binding(6) var<storage> bsp_tree: array<u32>;
+        @group(0) @binding(7) var<storage> bsp_planes: array<f32>;
+        @group(0) @binding(8) var<storage> aabb: array<vec3f>;
+        @group(0) @binding(9) var<storage> colors: array<vec4f>;
 
       const pi = radians(180);
       
@@ -198,14 +173,8 @@
                 (*hit).normal = normal;
                 (*hit).trianglehit = i32(f_index);
                 (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-                for(var i = 0; u32(i) < arrayLength(&light_indices); i++)
-                {
-                  if(light_indices[i] == f_index)
-                  {
-                    (*hit).ambient = vec3f(mat_uniforms[mat_indices[f_index]].emission.r, mat_uniforms[mat_indices[f_index]].emission.g, mat_uniforms[mat_indices[f_index]].emission.b);
-                  }
-                }
-                (*hit).diffuse = vec3f(mat_uniforms[mat_indices[f_index]].color.r, mat_uniforms[mat_indices[f_index]].color.g, mat_uniforms[mat_indices[f_index]].color.b);
+                
+                (*hit).diffuse = vec3f(1.0, 0.2, 0.97);
                 return true;
               }
             }
@@ -255,40 +224,7 @@
               return light;
             }
 
-          fn sample_area_light(pos: vec3f) -> Light
-            {
-              var L_r = vec3f(0.0, 0.0, 0.0);
-              var pos_l = vec3f(0.0, 0.0, 0.0);
-              var nor_l = vec3f(0.0, 0.0, 0.0);
-              for(var i = 0; u32(i) < arrayLength(&light_indices); i++)
-              {
-                nor_l += triangle_normals[light_indices[i]];
-                var pos_i = (vpositions[(mesh_faces[light_indices[i]][0])] + vpositions[(mesh_faces[light_indices[i]][1])] + vpositions[(mesh_faces[light_indices[i]][2])])/3;
-                pos_l += pos_i;
-              }
-              nor_l = normalize(nor_l);
-              pos_l = pos_l/f32(arrayLength(&light_indices));
-              let w_i = normalize(pos_l - pos);
-              let rsq = length(pos_l - pos) * length(pos_l - pos);
-              for(var i = 0; u32(i) < arrayLength(&light_indices); i++)
-              {
-                let nor_i = triangle_normals[light_indices[i]];
-                let v = array(vpositions[(mesh_faces[light_indices[i]][0])], vpositions[(mesh_faces[light_indices[i]][1])], vpositions[(mesh_faces[light_indices[i]][2])]);
-                let position = v[0];
-                let e0 = v[1] - v[0];
-                let e1 = v[2] - v[0];
-                var normal = cross(e0, e1);
-                let a_i = length(normal)/2.0;
-                let L_i = vec3f(mat_uniforms[mat_indices[light_indices[i]]].emission.r, mat_uniforms[mat_indices[light_indices[i]]].emission.g, mat_uniforms[mat_indices[light_indices[i]]].emission.b);
-                L_r += L_i * a_i * dot(nor_i, -w_i);
-              }
-              L_r = L_r * dot(w_i, nor_l) / rsq;
-              var light: Light;
-              light.L_i = L_r;
-              light.w_i = w_i;
-              light.dist = length(pos_l - pos);
-              return light;
-            }
+        
 
           fn sample_directional_light(pos: vec3f) -> Light
             {
@@ -304,7 +240,7 @@
 
             fn lambertian(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> vec3f
               {
-                let light = sample_area_light((*hit).position);
+                let light = sample_directional_light((*hit).position);
                 var shadowray = get_shadow_ray(hit, light);
                 var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
                 if(intersect_scene(&shadowray, &shadowhit))
@@ -367,7 +303,7 @@
         // Implement ray generation (WGSL has vector operations like normalize and cross)
         const u = vec3f(0.0, 1.0, 0.0);
         var ray: Ray;
-        ray.direction = light.w_i;
+        ray.direction = -light.w_i;
         ray.origin = (*hit).position;
         ray.tmin = 1e-2;
         ray.tmax = light.dist - 1e-2;
@@ -377,9 +313,9 @@
       fn get_camera_ray(ipcoords: vec2f) -> Ray
       {
         // Implement ray generation (WGSL has vector operations like normalize and cross)
-        const e = vec3f(277.0, 275.0, -570.0);
+        const e = vec3f(-0.02, 0.11, 0.6);
         const u = vec3f(0.0, 1.0, 0.0);
-        const l = vec3f(277.0, 275.0, 0.0);
+        const l = vec3f(-0.02, 0.11, 0.0);
         let v = normalize(l - e);
         let b1 = normalize(cross(v, u));
         let b2 = cross(b1, v);
@@ -392,55 +328,22 @@
         return ray;
       }
 
-      fn texture_nearest(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
-        let res = textureDimensions(texture);
-        var st: vec2f;
-        switch repeat
-        {
-          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
-          case default {st = texcoords - floor(texcoords);}
-        }
-        let ab = st*vec2f(res);
-        let UV = vec2u(ab + 0.5) % res;
-        let texcolor = textureLoad(texture, UV, 0);
-        return texcolor.rgb;
-        }
-
-      fn texture_linear(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
-        let res = textureDimensions(texture);
-        var st: vec2f;
-        switch repeat
-        {
-          case 0 {st = clamp(texcoords, vec2f(0), vec2f(1));}
-          case default {st = texcoords - floor(texcoords);}
-        }
-        let ab = st*vec2f(res);
-        let UV = vec2u(floor(ab));
-        let factor = ab - vec2f(UV);
-        let v1 = textureLoad(texture, UV, 0);
-        let v2 = textureLoad(texture, (UV + vec2u(1, 0)) % res, 0);
-        let v3 = textureLoad(texture, (UV + vec2u(0, 1)) % res, 0);
-        let v4 = textureLoad(texture, (UV + vec2u(1, 1)) % res, 0);
-        let v12 = mix(v1, v2, factor.x);
-        let v34 = mix(v3, v4, factor.x);
-        let texcolor = mix(v12, v34, factor.y);
-        return texcolor.rgb;
-        }
 
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
       {
-        let c = mat_uniforms[0];
-        let c2 = mat_indices[0];
-        let res = textureDimensions(my_texture);
+        let tid = tree_ids[0];
+        let bspt = bsp_tree[0];
+        let bspp = bsp_planes[0];
+        let aabbss = aabb[0];
+        let col = colors[0];
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
         var pxresult = vec3f(0.0);
         for(var is = 0; is < shader_uniforms.sub_divisions; is++)
         {
           //if(is == 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
-          let jittervec = jitter[is];
-          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jittervec;
+          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
           var r = get_camera_ray(uv);
           var result = vec3f(0.0);
           var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);

@@ -12,17 +12,14 @@ async function main()
     // Create a render pass in a command buffer and submit it
     
     const aspect = canvas.width/canvas.height;
-    var cam_const = 1.0;
+    var cam_const = 3.5;
     var uniforms = new Float32Array([aspect, cam_const]);
 
     let subdivs = document.querySelector('input[name="pxsubdivs"]').value**2;
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
-    var use_repeat = document.querySelector('input[name="tex_lu"]:checked').value;
-    var use_linear = document.querySelector('input[name="tex_filtering"]:checked').value;
-    var use_texture = document.querySelector('input[name="ptex"]:checked').value;
-    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, use_repeat, use_linear, use_texture, subdivs]);
-    const texture = await load_texture(device, "grass.jpg");
+    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, subdivs]);
+
     
 
     let pxsize = 1/canvas.height;
@@ -30,7 +27,7 @@ async function main()
     let jitter = new Float32Array((subdivs**2) * 2); // allowing subdivs from 1 to 10
     compute_jitters(jitter, pxsize, subdivs);
 
-    const obj_filename = 'objectData/CornellBoxWithBlocks.obj';
+    const obj_filename = 'objectData/bunny.obj';
     const drawingInfo = await readOBJFile(obj_filename, 1, true); // file name, scale, ccw vertices
 
     function render()
@@ -45,39 +42,7 @@ async function main()
             }]
         }); 
         // Insert render pass commands here 
-        const bindGroupLayout = device.createBindGroupLayout({
-            entries: [
-            {
-                binding: 0,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },
-            {
-                binding: 1,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },
-            {
-                binding: 2,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },
-            {
-                binding: 3,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },
-            {
-                binding: 4,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },
-            {
-                binding: 5,
-                visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-                buffer: {},
-            },],
-        });
+
 
         const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
         const pipeline = device.createRenderPipeline({
@@ -96,20 +61,12 @@ async function main()
             },
             });
         
-            let mats = new Float32Array(drawingInfo.materials.length * 2 * 4);
-            for(var i = 0; i < drawingInfo.materials.length; i++)
-            {
-                mats[i*8] = drawingInfo.materials[i].color.r;
-                mats[i*8+1] = drawingInfo.materials[i].color.g;
-                mats[i*8+2] = drawingInfo.materials[i].color.b;
-                mats[i*8+3] = drawingInfo.materials[i].color.a;
-                mats[i*8+4] = drawingInfo.materials[i].emission.r;
-                mats[i*8+5] = drawingInfo.materials[i].emission.g;
-                mats[i*8+6] = drawingInfo.materials[i].emission.b;
-                mats[i*8+7] = drawingInfo.materials[i].emission.a;
-
-            }
+            
         pass.setPipeline(pipeline);
+        
+        var objectBuffers = new Object();
+
+        objectBuffers = build_bsp_tree(drawingInfo, device, objectBuffers);
 
         const uniformBuffer = device.createBuffer({
             size: 32, // number of bytes
@@ -121,41 +78,7 @@ async function main()
             usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
             });
 
-        const jitterBuffer = device.createBuffer({
-            size: jitter.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
 
-        const positionsBuffer = device.createBuffer({
-            size: drawingInfo.vertices.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
-            
-
-        const indicesBuffer = device.createBuffer({
-            size: drawingInfo.indices.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
-            
-        const normalsBuffer = device.createBuffer({
-            size: drawingInfo.normals.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
-
-        const materialsBuffer = device.createBuffer({
-            size: mats.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
-
-        const matIndicesBuffer = device.createBuffer({
-            size: drawingInfo.mat_indices.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
-
-        const lightIndicesBuffer = device.createBuffer({
-            size: drawingInfo.light_indices.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
 
         const bindGroup = device.createBindGroup({
             layout: pipeline.getBindGroupLayout(0),
@@ -167,28 +90,28 @@ async function main()
                 resource: { buffer: shaderBuffer },
                 },
                 {binding: 2, 
-                resource: texture.createView() 
+                resource: { buffer: objectBuffers.positions }
                 },
                 {binding: 3, 
-                resource: { buffer: jitterBuffer }
+                resource: { buffer: objectBuffers.indices }
                 },
                 {binding: 4, 
-                resource: { buffer: positionsBuffer }
+                resource: { buffer: objectBuffers.normals }
                 },
                 {binding: 5, 
-                resource: { buffer: indicesBuffer }
+                resource: { buffer: objectBuffers.treeIds }
                 },
                 {binding: 6, 
-                resource: { buffer: normalsBuffer }
+                resource: { buffer: objectBuffers.bspTree }
                 },
                 {binding: 7, 
-                resource: { buffer: materialsBuffer }
+                resource: { buffer: objectBuffers.bspPlanes }
                 },
                 {binding: 8, 
-                resource: { buffer: matIndicesBuffer }
+                resource: { buffer: objectBuffers.aabb }
                 },
                 {binding: 9, 
-                resource: { buffer: lightIndicesBuffer }
+                resource: { buffer: objectBuffers.colors }
                 },
             ],
             });
@@ -199,15 +122,8 @@ async function main()
             
             device.queue.writeBuffer(uniformBuffer, 0, uniforms);
             device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
-            device.queue.writeBuffer(jitterBuffer, 0, jitter);
-            device.queue.writeBuffer(positionsBuffer, 0, drawingInfo.vertices);
-            device.queue.writeBuffer(indicesBuffer, 0, drawingInfo.indices);
-            device.queue.writeBuffer(normalsBuffer, 0, drawingInfo.normals);
 
-            
-            device.queue.writeBuffer(materialsBuffer, 0, mats);
-            device.queue.writeBuffer(matIndicesBuffer, 0, drawingInfo.mat_indices);
-            device.queue.writeBuffer(lightIndicesBuffer, 0, drawingInfo.light_indices);
+
             pass.draw(4);
             pass.end(); 
             device.queue.submit([encoder.finish()]);

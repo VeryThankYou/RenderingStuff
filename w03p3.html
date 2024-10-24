@@ -324,6 +324,7 @@
         let UV = vec2u(ab + 0.5) % res;
         let texcolor = textureLoad(texture, UV, 0);
         return texcolor.rgb;
+
         }
 
       fn texture_linear(texture: texture_2d<f32>, texcoords: vec2f, repeat: i32) -> vec3f {
@@ -408,15 +409,16 @@
         let planepos = vec3f(0.0, 0.0, 0.0);
         let planenormal = vec3f(0.0, 1.0, 0.0);
         const plane_onb = Onb(vec3f(-1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), vec3f(0.0, 1.0, 0.0));
-        const tex_scaling = 0.2;
+        const tex_scaling = 0.02;
         if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
-          switch shader_uniforms.use_texturing
+          switch shader_uniforms.nearest_or_linear
           {
             case 0 
             {
-              (*hit).diffuse = vec3f(0.1, 0.7, 0.0);
-              (*hit).ambient = vec3f(0.1, 0.7, 0.0);
+              let color = texture_nearest(my_texture, (*hit).texcoords, 1);
+              (*hit).diffuse = color;
+              (*hit).ambient = color;
             }
             case default
             {

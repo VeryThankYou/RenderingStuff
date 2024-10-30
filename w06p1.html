@@ -99,24 +99,24 @@
 
       fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>)
       {
-        var<private> branch_node = array<u32, max_level*2>;
-        var<private> branch_ray = array<f32, max_level*2>;
-        let branch_lvl = 0;
-        let near_node = 0;
-        let far_node = 0;
-        let t = 0.0;
-        let node = 0;
-        for(let i = 0; i <= max_level; i++)
+        var<function> branch_node = array<u32, max_level*2>();
+        var<function> branch_ray = array<f32, max_level*2>();
+        var branch_lvl = 0;
+        var near_node = 0;
+        var far_node = 0;
+        var t = 0.0;
+        var node = 0;
+        for(var i = 0; i <= max_level; i++)
         {
           let node_axis_leaf = bsp_tree[node*4]&3;
           if(node_axis_leaf == 3)
           {
-            const node_count = bsp_tree[node*4]>>2;
-            let found = false;
-            for(let j = 0; j < node_count; j++)
+            let node_count = bsp_tree[node*4]>>2;
+            var found = false;
+            for(var j = u32(0); j < node_count; j++)
             {
-              const node_id = bsp_tree[node*4 + 1];
-              const obj_idx = tree_ids[node_id + j];
+              let node_id = bsp_tree[node*4 + 1];
+              let obj_idx = tree_ids[node_id + j];
               if(intersect_triangle((*r), hit, obj_idx)) {
                 (*r).tmax = hit.dist;
                 found = true;
@@ -134,8 +134,8 @@
             }
           }
 
-          const axis_direction = (*r).direction[node_axis_leaf];
-          const axis_origin = (*r).origin[node_axis_leaf];
+          let axis_direction = (*r).direction[node_axis_leaf];
+          let axis_origin = (*r).origin[node_axis_leaf];
           if(axis_direction >= 0.0) {
             near_node = bsp_tree[node*4 + 2]; // left
             far_node = bsp_tree[node*4 + 3];  // right
@@ -145,7 +145,7 @@
             far_node = bsp_tree[node*4 + 2];  // left
           }
           
-          const node_plane = bspPlanes[node];
+          let node_plane = bspPlanes[node];
           var denom = 0;
           if(abs(axis_direction) < d_eps){denom = d_eps; }
           else {denom = axis_direction; }

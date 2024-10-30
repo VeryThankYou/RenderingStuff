@@ -83,7 +83,7 @@
         @group(0) @binding(5) var<storage> tree_ids: array<u32>;
         @group(0) @binding(6) var<storage> bsp_tree: array<u32>;
         @group(0) @binding(7) var<storage> bsp_planes: array<f32>;
-        @group(0) @binding(8) var<storage> aabb: array<vec3f>;
+        @group(0) @binding(8) var<uniform> aabb: array<vec4f, 2>;
         @group(0) @binding(9) var<storage> colors: array<vec4f>;
 
       const pi = radians(180);

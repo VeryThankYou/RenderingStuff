@@ -95,6 +95,7 @@
       };
 
       const max_level = 20;
+      const d_eps = 1.0e-12;
 
       fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>)
       {
@@ -145,7 +146,9 @@
           }
           
           const node_plane = bspPlanes[node];
-          const denom = Math.abs(axis_direction) < d_eps ? d_eps : axis_direction;
+          var denom = 0;
+          if(abs(axis_direction) < d_eps){denom = d_eps; }
+          else {denom = axis_direction; }
           t = (node_plane - axis_origin)/denom;
 
           if(t > ray.tmax) { node = near_node; }
@@ -396,12 +399,6 @@
         ray.tmax = 10000;
         return ray;
       }
-
-      fn in_bbox(pos: vec3f, bbox: array<vec3f, 2>)
-        {
-          let boolVec = pos > bbox[0] && pos < bbox[1]
-          return (boolVec[0] && boolVec[1]) && boolVec[2]
-        }
 
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f

@@ -166,6 +166,28 @@
         return false;
       }
 
+      fn intersect_min_max(r: ptr<function, Ray>) -> bool
+      {
+        var tmin = -1.0e32;
+        var tmax = 1.0e32;
+        for(var i = 0; i < 3; i++)
+        {
+          if(abs((*r).direction[i]) > 1.0e-8)
+          {
+            let p1 = (aabb[0][i] - (*r).origin[i])/(*r).direction[i];
+            let p2 = (aabb[1][i] - (*r).origin[i])/(*r).direction[i];
+            let pmin = min(p1, p2);
+            let pmax = max(p1, p2);
+            tmin = max(tmin, pmin);
+            tmax = min(tmax, pmax);
+          }
+        }
+        if(tmin > tmax || tmin > (*r).tmax || tmax < (*r).tmin) {return false;}
+        (*r).tmin = max(tmin - 1.0e-4, (*r).tmin);
+        (*r).tmax = min(tmax + 1.0e-4, (*r).tmax);
+        return true;
+      }
+
       struct HitInfo 
       {
         has_hit: bool,
@@ -246,7 +268,7 @@
                 (*hit).trianglehit = i32(f_index);
                 (*hit).ambient = vec3f(0.0, 0.0, 0.0);
                 (*hit).shader = shader_uniforms.triangle_shader;
-
+                
                 (*hit).diffuse = vec3f(1.0, 0.2, 0.97);
                 return true;
               }
@@ -459,9 +481,10 @@
         
 
 
-
-        let b = intersect_bsp_array(r, hit);
-        
+        if(intersect_min_max(r))
+        {
+          let b = intersect_bsp_array(r, hit);
+        }
         
         (*r).tmax = hit.dist - 1e-4;
         if((*hit).shader == 3)

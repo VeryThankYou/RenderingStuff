@@ -97,7 +97,7 @@
       const max_level = 20;
       const d_eps = 1.0e-12;
 
-      fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>)
+      fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>) -> bool     
       {
         var<function> branch_node = array<u32, max_level*2>();
         var<function> branch_ray = array<f32, max_level*2>();

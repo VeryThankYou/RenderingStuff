@@ -102,11 +102,11 @@
         var<function> branch_node = array<u32, max_level*2>();
         var<function> branch_ray = array<f32, max_level*2>();
         var branch_lvl = 0;
-        var near_node = 0;
-        var far_node = 0;
+        var near_node = u32(0);
+        var far_node = u32(0);
         var t = 0.0;
-        var node = 0;
-        for(var i = 0; i <= max_level; i++)
+        var node = u32(0);
+        for(var i = u32(0); i <= max_level; i++)
         {
           let node_axis_leaf = bsp_tree[node*4]&3;
           if(node_axis_leaf == 3)
@@ -145,21 +145,21 @@
             far_node = bsp_tree[node*4 + 2];  // left
           }
           
-          let node_plane = bspPlanes[node];
-          var denom = 0;
+          let node_plane = bsp_planes[node];
+          var denom = 0.0;
           if(abs(axis_direction) < d_eps){denom = d_eps; }
           else {denom = axis_direction; }
           t = (node_plane - axis_origin)/denom;
 
-          if(t > ray.tmax) { node = near_node; }
-          else if(t < ray.tmin) { node = far_node; }
+          if(t > (*r).tmax) { node = near_node; }
+          else if(t < (*r).tmin) { node = far_node; }
           else {
             branch_node[branch_lvl*2] = i;
             branch_node[branch_lvl*2 + 1] = far_node;
             branch_ray[branch_lvl*2] = t;
-            branch_ray[branch_lvl*2 + 1] = ray.tmax;
+            branch_ray[branch_lvl*2 + 1] = (*r).tmax;
             branch_lvl++;
-            ray.tmax = t;
+            (*r).tmax = t;
             node = near_node;
           }
         }

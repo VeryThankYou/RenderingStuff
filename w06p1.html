@@ -94,6 +94,75 @@
         @location(0) coords : vec2f,
       };
 
+      const max_level = 20;
+
+      fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>)
+      {
+        let branch_node = new Uint32Array(max_level*2);
+        let branch_ray = new Float32Array(max_level*2);
+        let branch_lvl = 0;
+        let near_node = 0;
+        let far_node = 0;
+        let t = 0.0;
+        let node = 0;
+        for(let i = 0; i <= max_level; ++i)
+        {
+          let node_axis_leaf = bsp_tree[node*4]&3;
+          if(node_axis_leaf == 3)
+          {
+            const node_count = bsp_tree[node*4]>>2;
+            let found = false;
+            for(let j = 0; j < node_count; ++j)
+            {
+              const node_id = bsp_tree[node*4 + 1];
+              const obj_idx = tree_ids[node_id + j];
+              if(intersect_triangle((*r), hit, obj_idx)) {
+                (*r).tmax = hit.dist;
+                found = true;
+              }
+            }
+            if(found) { return true; }
+            else if(branch_lvl === 0) { return false; }
+            else {
+              --branch_lvl;
+              i = branch_node[branch_lvl*2];
+              node = branch_node[branch_lvl*2 + 1];
+              (*r).tmin = branch_ray[branch_lvl*2];
+              (*r).tmax = branch_ray[branch_lvl*2 + 1];
+              continue;
+            }
+          }
+
+          const axis_direction = (*r).direction[node_axis_leaf];
+          const axis_origin = (*r).origin[node_axis_leaf];
+          if(axis_direction >= 0.0) {
+            near_node = bsp_tree[node*4 + 2]; // left
+            far_node = bsp_tree[node*4 + 3];  // right
+          }
+          else {
+            near_node = bsp_tree[node*4 + 3]; // right
+            far_node = bsp_tree[node*4 + 2];  // left
+          }
+          
+          const node_plane = bspPlanes[node];
+          const denom = Math.abs(axis_direction) < d_eps ? d_eps : axis_direction;
+          t = (node_plane - axis_origin)/denom;
+
+          if(t > ray.tmax) { node = near_node; }
+          else if(t < ray.tmin) { node = far_node; }
+          else {
+            branch_node[branch_lvl*2] = i;
+            branch_node[branch_lvl*2 + 1] = far_node;
+            branch_ray[branch_lvl*2] = t;
+            branch_ray[branch_lvl*2 + 1] = ray.tmax;
+            ++branch_lvl;
+            ray.tmax = t;
+            node = near_node;
+          }
+        }
+        return false;
+      }
+
       struct HitInfo 
       {
         has_hit: bool,
@@ -328,6 +397,11 @@
         return ray;
       }
 
+      fn in_bbox(pos: vec3f, bbox: array<vec3f, 2>)
+        {
+          let boolVec = pos > bbox[0] && pos < bbox[1]
+          return (boolVec[0] && boolVec[1]) && boolVec[2]
+        }
 
       @fragment
       fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
@@ -386,17 +460,9 @@
       // For each intersection found, update (*r).tmax and store additional info about the hit.
         
 
-        
 
-        for(var i = u32(0); i < arrayLength( &mesh_faces ); i++)
-        {
-          if (intersect_triangle((*r), hit, i))
-          {
-            (*hit).shader = shader_uniforms.triangle_shader;
-            //(*hit).shader = 1;
-            (*r).tmax = hit.dist - 1e-4;
-          }
-        }
+
+        intersect_bsp_array(r, hit);
         
         
         (*r).tmax = hit.dist - 1e-4;

@@ -245,7 +245,8 @@
                 (*hit).normal = normal;
                 (*hit).trianglehit = i32(f_index);
                 (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-                
+                (*hit).shader = shader_uniforms.triangle_shader;
+
                 (*hit).diffuse = vec3f(1.0, 0.2, 0.97);
                 return true;
               }

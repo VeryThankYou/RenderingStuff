@@ -98,8 +98,8 @@
 
       fn intersect_bsp_array(r: ptr<function, Ray>, hit: ptr<function, HitInfo>)
       {
-        let branch_node = new Uint32Array(max_level*2);
-        let branch_ray = new Float32Array(max_level*2);
+        let branch_node = new array<u32, max_level*2>;
+        let branch_ray = new array<f32, max_level*2>;
         let branch_lvl = 0;
         let near_node = 0;
         let far_node = 0;

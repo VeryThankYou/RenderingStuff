@@ -105,14 +105,14 @@
         let far_node = 0;
         let t = 0.0;
         let node = 0;
-        for(let i = 0; i <= max_level; ++i)
+        for(let i = 0; i <= max_level; i++)
         {
           let node_axis_leaf = bsp_tree[node*4]&3;
           if(node_axis_leaf == 3)
           {
             const node_count = bsp_tree[node*4]>>2;
             let found = false;
-            for(let j = 0; j < node_count; ++j)
+            for(let j = 0; j < node_count; j++)
             {
               const node_id = bsp_tree[node*4 + 1];
               const obj_idx = tree_ids[node_id + j];
@@ -122,9 +122,9 @@
               }
             }
             if(found) { return true; }
-            else if(branch_lvl === 0) { return false; }
+            else if(branch_lvl == 0) { return false; }
             else {
-              --branch_lvl;
+              branch_lvl--;
               i = branch_node[branch_lvl*2];
               node = branch_node[branch_lvl*2 + 1];
               (*r).tmin = branch_ray[branch_lvl*2];
@@ -155,7 +155,7 @@
             branch_node[branch_lvl*2 + 1] = far_node;
             branch_ray[branch_lvl*2] = t;
             branch_ray[branch_lvl*2 + 1] = ray.tmax;
-            ++branch_lvl;
+            branch_lvl++;
             ray.tmax = t;
             node = near_node;
           }

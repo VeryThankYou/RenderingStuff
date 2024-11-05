@@ -82,14 +82,21 @@
         v_normal: vec4f,
       }
 
+      struct MaterialUniforms {
+        color: vec4f,
+        emission: vec4f,  
+        };
+
         @group(0) @binding(1) var<uniform> shader_uniforms : ShaderUniforms;
         @group(0) @binding(2) var<storage> attribs: array<AttribStruct>;
-        @group(0) @binding(3) var<storage> mesh_faces: array<vec3u>;
+        @group(0) @binding(3) var<storage> mesh_faces: array<vec4u>;
         @group(0) @binding(4) var<storage> colors: array<vec4f>;
         @group(0) @binding(5) var<storage> tree_ids: array<u32>;
         @group(0) @binding(6) var<storage> bsp_tree: array<u32>;
         @group(0) @binding(7) var<storage> bsp_planes: array<f32>;
         @group(0) @binding(8) var<uniform> aabb: array<vec3f, 2>;
+        @group(0) @binding(9) var<storage> mat_uniforms: array<MaterialUniforms>;
+        @group(0) @binding(10) var<storage> light_indices: array<u32>;
         
 
       const pi = radians(180);
@@ -274,8 +281,14 @@
                 (*hit).trianglehit = i32(f_index);
                 (*hit).ambient = vec3f(0.0, 0.0, 0.0);
                 (*hit).shader = shader_uniforms.triangle_shader;
-                
-                (*hit).diffuse = vec3f(1.0, 0.2, 0.97);
+                for(var i = 0; u32(i) < arrayLength(&light_indices); i++)
+                {
+                  if(light_indices[i] == f_index)
+                  {
+                    (*hit).ambient = vec3f(mat_uniforms[mesh_faces[f_index].a].emission.r, mat_uniforms[mesh_faces[f_index].a].emission.g, mat_uniforms[mesh_faces[f_index].a].emission.b);
+                  }
+                }
+                (*hit).diffuse = vec3f(mat_uniforms[mesh_faces[f_index].a].color.r, mat_uniforms[mesh_faces[f_index].a].color.g, mat_uniforms[mesh_faces[f_index].a].color.b);
                 return true;
               }
             }

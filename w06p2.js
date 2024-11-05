@@ -29,6 +29,19 @@ async function main()
 
     const obj_filename = 'objectData/bunny.obj';
     const drawingInfo = await readOBJFile(obj_filename, 1, true); // file name, scale, ccw vertices
+    let mats = new Float32Array(drawingInfo.materials.length * 2 * 4);
+    for(var i = 0; i < drawingInfo.materials.length; i++)
+    {
+        mats[i*8] = drawingInfo.materials[i].color.r;
+        mats[i*8+1] = drawingInfo.materials[i].color.g;
+        mats[i*8+2] = drawingInfo.materials[i].color.b;
+        mats[i*8+3] = drawingInfo.materials[i].color.a;
+        mats[i*8+4] = drawingInfo.materials[i].emission.r;
+        mats[i*8+5] = drawingInfo.materials[i].emission.g;
+        mats[i*8+6] = drawingInfo.materials[i].emission.b;
+        mats[i*8+7] = drawingInfo.materials[i].emission.a;
+
+    }
 
     function render()
     {
@@ -78,6 +91,16 @@ async function main()
             usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
             });
 
+        const materialsBuffer = device.createBuffer({
+            size: mats.byteLength,
+            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
+            });
+
+        const lightIndicesBuffer = device.createBuffer({
+            size: drawingInfo.light_indices.byteLength,
+            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
+            });
+
         const bindGroup = device.createBindGroup({
             layout: pipeline.getBindGroupLayout(0),
             entries: [
@@ -108,6 +131,12 @@ async function main()
                 {binding: 8, 
                 resource: { buffer: objectBuffers.aabb }
                 },
+                {binding: 9, 
+                resource: { buffer: materialsBuffer }
+                },
+                {binding: 10, 
+                resource: { buffer: lightIndicesBuffer }
+                },
             ],
             });
         
@@ -117,6 +146,8 @@ async function main()
             
             device.queue.writeBuffer(uniformBuffer, 0, uniforms);
             device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
+            device.queue.writeBuffer(materialsBuffer, 0, mats);
+            device.queue.writeBuffer(lightIndicesBuffer, 0, drawingInfo.light_indices);
 
 
             pass.draw(4);

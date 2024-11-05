@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="w06p2.js"></script>
+    <script type="text/javascript" src="w06p3.js"></script>
     <script type="text/javascript" src="OBJParser_interleaved.js"></script>
     <script type="text/javascript" src="Aabb.js"></script> 
     <script type="text/javascript" src="BspTree_interleaved.js"></script> 
@@ -500,6 +500,7 @@
               { 
                 if(hit.shader == 6)
                 {
+                  //return vec4f(1.0);
                   result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
                   //result += shade(&r, &hit); 
                   hit.has_hit = false;
@@ -507,7 +508,7 @@
                 }
                 if(hit.shader == 3 || hit.shader == 4)
                 {
-                  //return vec4f(r.direction, 1.0);
+                  //return vec4f(1.0);
                   hit.has_hit = false;
                   continue;
                 }
@@ -538,14 +539,35 @@
           let b = intersect_bsp_array(r, hit);
         }
         
+        const center = vec3f(420.0, 90.0, 370.0);
+        const radius = 90.0;
+        if (intersect_sphere((*r), hit, center, radius))
+        {
+          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+          (*hit).shader = 3;
+        }
+
+        const center2 = vec3f(130.0, 90.0, 250.0);
+        const radius2 = 90.0;
+        if (intersect_sphere((*r), hit, center2, radius2))
+        {
+          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+          (*hit).shader = 6;
+          (*hit).shininess = 42.0;
+          (*hit).specular = 0.1;
+          //(*hit).shader = 2;
+        }
+
         (*r).tmax = hit.dist - 1e-2;
         if((*hit).shader == 3)
           {
             var refray: Ray;
             refray.origin = (*hit).position;
             refray.direction = reflect(((*r).direction), (*hit).normal);
-            refray.tmin = 1e-4;
-            refray.tmax = 1000;
+            refray.tmin = 1e-2;
+            refray.tmax = 10000;
             (*r) = refray;
           }
           if((*hit).shader == 4 || (*hit).shader == 6)

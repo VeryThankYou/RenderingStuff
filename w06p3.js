@@ -27,7 +27,7 @@ async function main()
     let jitter = new Float32Array((subdivs**2) * 2); // allowing subdivs from 1 to 10
     compute_jitters(jitter, pxsize, subdivs);
 
-    const obj_filename = 'objectData/CornellBoxWithBlocks.obj';
+    const obj_filename = 'objectData/CornellBox.obj';
     const drawingInfo = await readOBJFile(obj_filename, 1, true); // file name, scale, ccw vertices
     let mats = new Float32Array(drawingInfo.materials.length * 2 * 4);
     for(var i = 0; i < drawingInfo.materials.length; i++)

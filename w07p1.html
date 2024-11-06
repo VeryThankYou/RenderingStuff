@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="w06p3.js"></script>
+    <script type="text/javascript" src="w07p1.js"></script>
     <script type="text/javascript" src="OBJParser_interleaved.js"></script>
     <script type="text/javascript" src="Aabb.js"></script> 
     <script type="text/javascript" src="BspTree_interleaved.js"></script> 
@@ -74,13 +74,18 @@
       struct ShaderUniforms {
         plane_shader: i32,
         triangle_shader: i32,
-        sub_divisions: i32,
+        frame: i32,
         };
 
       struct AttribStruct {
         v_position: vec4f,
         v_normal: vec4f,
       }
+
+      struct FSOut {
+        @location(0) frame: vec4f,
+        @location(1) accum: vec4f,
+        };
 
       struct MaterialUniforms {
         color: vec4f,
@@ -97,6 +102,7 @@
         @group(0) @binding(8) var<uniform> aabb: array<vec3f, 2>;
         @group(0) @binding(9) var<storage> mat_uniforms: array<MaterialUniforms>;
         @group(0) @binding(10) var<storage> light_indices: array<u32>;
+        @group(0) @binding(11) var renderTexture: texture_2d<f32>;
         
 
       const pi = radians(180);
@@ -196,8 +202,8 @@
           }
         }
         if(tmin > tmax || tmin > (*r).tmax || tmax < (*r).tmin) {return false;}
-        (*r).tmin = max(tmin - 1.0e-3, (*r).tmin);
-        (*r).tmax = min(tmax + 1.0e-3, (*r).tmax);
+        (*r).tmin = max(tmin - 1.0e-4, (*r).tmin);
+        (*r).tmax = min(tmax + 1.0e-4, (*r).tmax);
         return true;
       }
 
@@ -476,8 +482,14 @@
       }
 
       @fragment
-      fn main_fs(@location(0) coords: vec2f) -> @location(0) vec4f
+      fn main_fs(@builtin(position) fragcoord: vec4f, @location(0) coords: vec2f) -> FSOut
       {
+        let launch_idx = u32(fragcoord.y)*uniforms_ui.width + u32(fragcoord.x);
+        var t = tea(launch_idx, uniforms_ui.frame);
+        let jitter = vec2f(rnd(&t), rnd(&t))/f32(uniforms_ui.height);
+
+        
+
         let tid = tree_ids[0];
         let bspt = bsp_tree[0];
         let bspp = bsp_planes[0];
@@ -486,44 +498,44 @@
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
         var pxresult = vec3f(0.0);
-        for(var is = 0; is < shader_uniforms.sub_divisions; is++)
-        {
-          //if(is == 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
-          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
-          var r = get_camera_ray(uv);
-          var result = vec3f(0.0);
-          var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
-          for(var i = 0; i < max_depth; i++) 
-            {
-              if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
-              if(intersect_scene(&r, &hit)) 
-              { 
-                if(hit.shader == 6)
-                {
-                  //return vec4f(1.0);
-                  result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
-                  //result += shade(&r, &hit); 
-                  hit.has_hit = false;
-                  continue;
-                }
-                if(hit.shader == 3 || hit.shader == 4)
-                {
-                  //return vec4f(1.0);
-                  hit.has_hit = false;
-                  continue;
-                }
-                //let light = sample_point_light(hit.position);
-                
-                result += shade(&r, &hit); 
+        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
+        var r = get_camera_ray(uv);
+        var result = vec3f(0.0);
+        var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
+        for(var i = 0; i < max_depth; i++) 
+          {
+            if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
+            if(intersect_scene(&r, &hit)) 
+            { 
+              if(hit.shader == 6)
+              {
+                //return vec4f(1.0);
+                result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit)); 
+                //result += shade(&r, &hit); 
+                hit.has_hit = false;
+                continue;
               }
-              if(hit.has_hit) { break; }
-              else { result += bgcolor.rgb; break; }
-            
+              if(hit.shader == 3 || hit.shader == 4)
+              {
+                //return vec4f(1.0);
+                hit.has_hit = false;
+                continue;
+              }
+              //let light = sample_point_light(hit.position);
+              
+              result += shade(&r, &hit); 
             }
-          pxresult += result;
-        }
-        pxresult = pxresult/f32(shader_uniforms.sub_divisions);
-        return vec4f(pow(pxresult, vec3f(1.0)), bgcolor.a);
+            if(hit.has_hit) { break; }
+            else { result += bgcolor.rgb; break; }
+          
+          }
+
+        let curr_sum = textureLoad(renderTexture, vec2u(fragcoord.xy), 0).rgb*f32(uniforms_ui.frame);
+        let accum_color = (result + curr_sum)/f32(uniforms_ui.frame + 1u);
+        var fsOut: FSOut;
+        fsOut.frame = vec4f(pow(accum_color, vec3f(1.0/uniforms_f.gamma)), 1.0);
+        fsOut.accum = vec4f(accum_color, 1.0);
+        return fsOut;
       }
 
       fn intersect_scene(r: ptr<function, Ray>, hit : ptr<function, HitInfo>) -> bool
@@ -536,32 +548,29 @@
 
         if(intersect_min_max(r))
         {
-          const center = vec3f(420.0, 90.0, 370.0);
-          const radius = 90.0;
-          if (intersect_sphere((*r), hit, center, radius))
-          {
-            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-            (*hit).shader = 3;
-            (*r).tmax = hit.dist - 1e-2;
-          }
-
-          const center2 = vec3f(130.0, 90.0, 250.0);
-          const radius2 = 90.0;
-          if (intersect_sphere((*r), hit, center2, radius2))
-          {
-            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-            (*hit).shader = 6;
-            (*hit).shininess = 42.0;
-            (*hit).specular = 0.1;
-            //(*hit).shader = 2;
-            (*r).tmax = hit.dist - 1e-2;
-          }
           let b = intersect_bsp_array(r, hit);
         }
         
-        
+        const center = vec3f(420.0, 90.0, 370.0);
+        const radius = 90.0;
+        if (intersect_sphere((*r), hit, center, radius))
+        {
+          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+          (*hit).shader = 3;
+        }
+
+        const center2 = vec3f(130.0, 90.0, 250.0);
+        const radius2 = 90.0;
+        if (intersect_sphere((*r), hit, center2, radius2))
+        {
+          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+          (*hit).shader = 6;
+          (*hit).shininess = 42.0;
+          (*hit).specular = 0.1;
+          //(*hit).shader = 2;
+        }
 
         (*r).tmax = hit.dist - 1e-2;
         if((*hit).shader == 3)
@@ -597,7 +606,7 @@
             //let ncost = (*hit).normal * sqrt(1.0 - ((*hit).IoR * (*hit).IoR * (1.0 - dot(-(*r).direction, (*hit).normal)*dot(-(*r).direction, (*hit).normal))));
             //refractray.direction = -ncost;
             refractray.direction = tsint - ncost;
-            refractray.tmin = 1e-2;
+            refractray.tmin = 1e-4;
             refractray.tmax = 1000;
             (*r) = refractray;
             if((*hit).shader == 6 && flipped){(*hit).normal = - (*hit).normal;}

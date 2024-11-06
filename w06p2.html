@@ -196,8 +196,8 @@
           }
         }
         if(tmin > tmax || tmin > (*r).tmax || tmax < (*r).tmin) {return false;}
-        (*r).tmin = max(tmin - 1.0e-4, (*r).tmin);
-        (*r).tmax = min(tmax + 1.0e-4, (*r).tmax);
+        (*r).tmin = max(tmin - 1.0e-3, (*r).tmin);
+        (*r).tmax = min(tmax + 1.0e-3, (*r).tmax);
         return true;
       }
 

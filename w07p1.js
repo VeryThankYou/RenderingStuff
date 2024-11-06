@@ -13,19 +13,17 @@ async function main()
     
     const aspect = canvas.width/canvas.height;
     var cam_const = 1.0;
-    var uniforms = new Float32Array([aspect, cam_const]);
+    var gamma = 1.0;
+    var uniforms = new Float32Array([aspect, cam_const, gamma]);
 
     let frame = 0
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
-    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame]);
+    var shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
 
     
 
     let pxsize = 1/canvas.height;
-    
-    let jitter = new Float32Array((subdivs**2) * 2); // allowing subdivs from 1 to 10
-    compute_jitters(jitter, pxsize, subdivs);
 
     const obj_filename = 'objectData/CornellBox.obj';
     const drawingInfo = await readOBJFile(obj_filename, 1, true); // file name, scale, ccw vertices
@@ -154,8 +152,8 @@ async function main()
                 {binding: 10, 
                 resource: { buffer: lightIndicesBuffer }
                 },
-                {binding: 10, 
-                resource: { buffer: textures.renderSrc }
+                {binding: 11, 
+                resource: { buffer: textures.renderSrc.createView() }
                 },
             ],
             });
@@ -191,22 +189,3 @@ async function main()
     
 }
 
-function compute_jitters(jitter, pixelsize, subdivs)
-{
-    const step = pixelsize/subdivs;
-    if(subdivs < 2) 
-        {
-            jitter[0] = 0.0;
-            jitter[1] = 0.0;
-        }
-    else 
-        {
-            for(var i = 0; i < subdivs; ++i)
-            for(var j = 0; j < subdivs; ++j) 
-        {
-            const idx = (i*subdivs + j)*2;
-            jitter[idx] = (Math.random() + j)*step - pixelsize*0.5;
-            jitter[idx + 1] = (Math.random() + i)*step - pixelsize*0.5;
-        }
-    }
-}

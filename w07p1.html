@@ -68,6 +68,7 @@
       struct Uniforms {
         aspect: f32,
         cam_const: f32,
+        gamma: f32,
         };
         @group(0) @binding(0) var<uniform> uniforms : Uniforms;
 
@@ -75,6 +76,8 @@
         plane_shader: i32,
         triangle_shader: i32,
         frame: i32,
+        width: i32,
+        height: i32,
         };
 
       struct AttribStruct {
@@ -481,14 +484,38 @@
         return ray;
       }
 
+      fn tea(val0: u32, val1: u32) -> u32
+      {
+        const N = 16u; // User specified number of iterations
+        var v0 = val0; var v1 = val1; var s0 = 0u;
+        for(var n = 0u; n < N; n++) {
+        s0 += 0x9e3779b9;
+        v0 += ((v1<<4)+0xa341316c)^(v1+s0)^((v1>>5)+0xc8013ea4);
+        v1 += ((v0<<4)+0xad90777d)^(v0+s0)^((v0>>5)+0x7e95761e);
+      }
+      return v0;
+      }
+
+      fn mcg31(prev: ptr<function, u32>) -> u32
+      {
+        const LCG_A = 1977654935u; // Multiplier from Hui-Ching Tang [EJOR 2007]
+        *prev = (LCG_A * (*prev)) & 0x7FFFFFFF;
+        return *prev;
+      }
+      // (Generate random float in [0, 1)
+      fn rnd(prev: ptr<function, u32>) -> f32
+      {
+        return f32(mcg31(prev)) / f32(0x80000000);  
+      }
+
       @fragment
       fn main_fs(@builtin(position) fragcoord: vec4f, @location(0) coords: vec2f) -> FSOut
       {
-        let launch_idx = u32(fragcoord.y)*uniforms_ui.width + u32(fragcoord.x);
-        var t = tea(launch_idx, uniforms_ui.frame);
-        let jitter = vec2f(rnd(&t), rnd(&t))/f32(uniforms_ui.height);
+        let launch_idx = u32(fragcoord.y)*u32(shader_uniforms.width) + u32(fragcoord.x);
+        var t = tea(launch_idx, u32(shader_uniforms.frame));
+        let jitter = vec2f(rnd(&t), rnd(&t))/f32(shader_uniforms.height);
 
-        
+        let res = textureDimensions(renderTexture);
 
         let tid = tree_ids[0];
         let bspt = bsp_tree[0];
@@ -504,7 +531,7 @@
         var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
         for(var i = 0; i < max_depth; i++) 
           {
-            if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
+            //if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
             if(intersect_scene(&r, &hit)) 
             { 
               if(hit.shader == 6)
@@ -530,10 +557,10 @@
           
           }
 
-        let curr_sum = textureLoad(renderTexture, vec2u(fragcoord.xy), 0).rgb*f32(uniforms_ui.frame);
-        let accum_color = (result + curr_sum)/f32(uniforms_ui.frame + 1u);
+        let curr_sum = textureLoad(renderTexture, vec2u(fragcoord.xy), 0).rgb*f32(shader_uniforms.frame);
+        let accum_color = (result + curr_sum)/f32(shader_uniforms.frame + 1);
         var fsOut: FSOut;
-        fsOut.frame = vec4f(pow(accum_color, vec3f(1.0/uniforms_f.gamma)), 1.0);
+        fsOut.frame = vec4f(pow(accum_color, vec3f(1.0/uniforms.gamma)), 1.0);
         fsOut.accum = vec4f(accum_color, 1.0);
         return fsOut;
       }

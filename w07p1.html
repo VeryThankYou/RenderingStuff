@@ -57,7 +57,7 @@
         <input type="button" id="pxsubdivs_button" name="pxsubdivs_button" value="Submit" onclick="main()">
       </form>
       <form>
-        <input type="checkbox" id="progUpdate" name="progUpdate" value="1" onclick="main()">
+        <input type="checkbox" id="progUpdate" name="progUpdate" value="1" checked="checked" onclick="main()">
         <label for="progUpdate"> Enable progressive updates</label><br>
       </form>
       </div>
@@ -529,7 +529,7 @@
         const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
         const max_depth = 10;
         var pxresult = vec3f(0.0);
-        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
+        let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jitter;
         var r = get_camera_ray(uv);
         var result = vec3f(0.0);
         var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);

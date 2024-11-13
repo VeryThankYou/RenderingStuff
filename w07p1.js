@@ -193,7 +193,7 @@ async function main()
     if(document.querySelector('input[name="progUpdate"]:checked') != null)
         {
             progressive_updates = true;
-            for(var i = 0; i < 10; i++)
+            for(var i = 0; i < 100; i++)
                 {
                     await render();
                     console.log(frame);

@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="w07p1.js"></script>
+    <script type="text/javascript" src="w07p2.js"></script>
     <script type="text/javascript" src="OBJParser_interleaved.js"></script>
     <script type="text/javascript" src="Aabb.js"></script> 
     <script type="text/javascript" src="BspTree_interleaved.js"></script> 
@@ -351,7 +351,7 @@
               return light;
             }
 
-            fn sample_area_light(pos: vec3f) -> Light
+            fn sample_area_light(pos: vec3f, prev: ptr<function, u32>) -> Light
             {
               var L_r = vec3f(0.0, 0.0, 0.0);
               var pos_l = vec3f(0.0, 0.0, 0.0);

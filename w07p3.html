@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="w07p2.js"></script>
+    <script type="text/javascript" src="w07p3.js"></script>
     <script type="text/javascript" src="OBJParser_interleaved.js"></script>
     <script type="text/javascript" src="Aabb.js"></script> 
     <script type="text/javascript" src="BspTree_interleaved.js"></script> 
@@ -228,6 +228,8 @@
         shininess: f32,
         texcoords: vec2f,
         trianglehit: i32,
+        emit: bool,
+        factor: vec3f
       }
 
       struct Light {
@@ -401,14 +403,30 @@
             fn lambertian(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
               {
                 let light = sample_area_light((*hit).position, prev);
+                var v = 1.0;
                 var shadowray = get_shadow_ray(hit, light);
-                var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
+                var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0));
                 if(intersect_scene(&shadowray, &shadowhit))
                   {
-                    (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+                    v = 0.0;
                   }
+                if((*hit).emit)
+                {
+                  
+                }else{(*hit).ambient = vec3f(0.0);}
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = ((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
+                let reflight = (*hit).factor*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
+
+                var theta = acos(sqrt(rnd(prev)));
+                var phi = 2*pi*rnd(prev);
+                var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
+                var w_correct = rotate_to_normal((*hit).normal, w_sphere);
+                (*r).origin = (*hit).position;
+                (*r).direction = w_correct;
+                (*r).tmin = 1e-2;
+                (*r).tmax = 1000;
+                (*hit).factor = (*hit).factor*(*hit).diffuse;
+                
                 return reflight;
               }
 
@@ -431,6 +449,7 @@
           case 2 { return lambertian(r, hit, prev); }
           case 5 { return phong(r, hit); }
           case 6 { return phong(r, hit); }
+          case 7 { return lambertian(r, hit, prev); }
           case default { return (*hit).ambient; }
           }
           }
@@ -512,6 +531,19 @@
         return f32(mcg31(prev)) / f32(0x80000000);  
       }
 
+      fn spherical_direction(sin_theta: f32, cos_theta: f32, phi: f32) -> vec3f
+      {
+      return vec3f(sin_theta*cos(phi), sin_theta*sin(phi), cos_theta);
+      }
+
+      fn rotate_to_normal(n: vec3f, v: vec3f) -> vec3f
+      {
+      let s = sign(n.z + 1.0e-16f);
+      let a = -1.0f/(1.0f + abs(n.z));
+      let b = n.x*n.y*a;
+      return vec3f(1.0f + n.x*n.x*a, b, -s*n.x)*v.x + vec3f(s*b, s*(1.0f + n.y*n.y*a), -n.y)*v.y + n*v.z;
+      }
+
       @fragment
       fn main_fs(@builtin(position) fragcoord: vec4f, @location(0) coords: vec2f) -> FSOut
       {
@@ -526,18 +558,33 @@
         let bspp = bsp_planes[0];
         let aabbss = aabb[0];
         let col = colors[0];
-        const bgcolor = vec4f(0.1, 0.3, 0.6, 1.0);
+        const bgcolor = vec4f(0.0, 0.0, 0.0, 0.0);
         const max_depth = 10;
         var pxresult = vec3f(0.0);
         let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jitter;
         var r = get_camera_ray(uv);
         var result = vec3f(0.0);
-        var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
+        var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, true, vec3f(1.0));
         for(var i = 0; i < max_depth; i++) 
           {
             //if(i==max_depth - 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
             if(intersect_scene(&r, &hit)) 
             { 
+              if(hit.shader == 7)
+              {
+                //return vec4f(1.0);
+                result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit, &t)); 
+                //result += shade(&r, &hit); 
+                let P_i = (hit.factor.r + hit.factor.g + hit.factor.b)/3.0;
+                let xi = rnd(&t);
+                if(xi < P_i)
+                {
+                  hit.emit = false;
+                  hit.has_hit = false;
+                  hit.factor = hit.factor/P_i;
+                }
+                continue;
+              }
               if(hit.shader == 6)
               {
                 //return vec4f(1.0);
@@ -552,6 +599,7 @@
                 hit.has_hit = false;
                 continue;
               }
+
               //let light = sample_point_light(hit.position);
               
               result += shade(&r, &hit, &t); 
@@ -583,8 +631,10 @@
 
         if(intersect_min_max(r))
         {
-          
-          let b = intersect_bsp_array(r, hit);
+          if(intersect_bsp_array(r, hit))
+          {
+            (*hit).shader = 7;
+          };
         }
 
         (*r).tmax = hit.dist - 1e-2;

@@ -57,7 +57,7 @@ async function main()
         format: 'rgba32float',
     });
     
-    async function render()
+    function render()
     {
         
         const encoder = device.createCommandEncoder(); 
@@ -189,28 +189,37 @@ async function main()
         //device.queue.writeBuffer(uniformBuffer, 0, uniforms);
         
         }
-    var progressive_updates = false;
+    /*
     if(document.querySelector('input[name="progUpdate"]:checked') != null)
         {
             progressive_updates = true;
             for(var i = 0; i < 20; i++)
                 {
-                    await render();
+                    render();
+                    await new Promise(r => setTimeout(r, 1))
                     console.log(frame);
-                }  
-        }
+        }  
+        }*/
     
-      
-    /*    
-    while(progressive_updates)
+    async function startUpdates()
     {
+        var progressive_updates = false;
         if(document.querySelector('input[name="progUpdate"]:checked') != null)
+            {
+                progressive_updates = true;
+            }
+        while(progressive_updates)
         {
-            progressive_updates = true;
-        }else{progressive_updates = false;}
-        await render();
-        //document.write("hej");
-    }*/
+            if(document.querySelector('input[name="progUpdate"]:checked') != null)
+            {
+                progressive_updates = true;
+            }else{progressive_updates = false;}
+            render();
+            await new Promise(r => setTimeout(r, 1))
+            //document.write("hej");
+        }
+    }
+    startUpdates();
     render();
 }
 

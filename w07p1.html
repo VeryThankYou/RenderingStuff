@@ -56,6 +56,10 @@
         <input type="number" id="pxsubdivs" name="pxsubdivs" value="1" min="1" max="1000">
         <input type="button" id="pxsubdivs_button" name="pxsubdivs_button" value="Submit" onclick="main()">
       </form>
+      <form>
+        <input type="checkbox" id="progUpdate" name="progUpdate" value="1" onclick="main()">
+        <label for="progUpdate"> Enable progressive updates</label><br>
+      </form>
       </div>
     </div>
     
@@ -205,8 +209,8 @@
           }
         }
         if(tmin > tmax || tmin > (*r).tmax || tmax < (*r).tmin) {return false;}
-        (*r).tmin = max(tmin - 1.0e-4, (*r).tmin);
-        (*r).tmax = min(tmax + 1.0e-4, (*r).tmax);
+        (*r).tmin = max(tmin - 1.0e-3, (*r).tmin);
+        (*r).tmax = min(tmax + 1.0e-3, (*r).tmax);
         return true;
       }
 
@@ -573,33 +577,39 @@
         
 
 
+        
+        
+        
+
         if(intersect_min_max(r))
         {
-          let b = intersect_bsp_array(r, hit);
-        }
-        
-        const center = vec3f(420.0, 90.0, 370.0);
-        const radius = 90.0;
-        if (intersect_sphere((*r), hit, center, radius))
-        {
-          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-          (*hit).shader = 3;
-        }
+          const center = vec3f(420.0, 90.0, 370.0);
+          const radius = 90.0;
+          if (intersect_sphere((*r), hit, center, radius))
+          {
+            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+            (*hit).shader = 3;
+            (*r).tmax = hit.dist - 1e-2;
+          }
 
-        const center2 = vec3f(130.0, 90.0, 250.0);
-        const radius2 = 90.0;
-        if (intersect_sphere((*r), hit, center2, radius2))
-        {
-          (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-          (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-          (*hit).shader = 6;
-          (*hit).shininess = 42.0;
-          (*hit).specular = 0.1;
-          //(*hit).shader = 2;
+          const center2 = vec3f(130.0, 90.0, 250.0);
+          const radius2 = 90.0;
+          if (intersect_sphere((*r), hit, center2, radius2))
+          {
+            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
+            (*hit).shader = 6;
+            (*hit).shininess = 42.0;
+            (*hit).specular = 0.1;
+            //(*hit).shader = 2;
+            (*r).tmax = hit.dist - 1e-2;
+          }
+          let b = intersect_bsp_array(r, hit);
         }
 
         (*r).tmax = hit.dist - 1e-2;
+        
         if((*hit).shader == 3)
           {
             var refray: Ray;
@@ -633,7 +643,7 @@
             //let ncost = (*hit).normal * sqrt(1.0 - ((*hit).IoR * (*hit).IoR * (1.0 - dot(-(*r).direction, (*hit).normal)*dot(-(*r).direction, (*hit).normal))));
             //refractray.direction = -ncost;
             refractray.direction = tsint - ncost;
-            refractray.tmin = 1e-4;
+            refractray.tmin = 1e-2;
             refractray.tmax = 1000;
             (*r) = refractray;
             if((*hit).shader == 6 && flipped){(*hit).normal = - (*hit).normal;}

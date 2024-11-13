@@ -20,6 +20,7 @@ async function main()
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
     var shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
+    
 
     
 
@@ -55,9 +56,10 @@ async function main()
         usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
         format: 'rgba32float',
     });
-
-    function render()
+    
+    async function render()
     {
+        
         const encoder = device.createCommandEncoder(); 
         const pass = encoder.beginRenderPass(
         { 
@@ -153,7 +155,7 @@ async function main()
                 resource: { buffer: lightIndicesBuffer }
                 },
                 {binding: 11, 
-                resource: { buffer: textures.renderSrc.createView() }
+                resource: textures.renderDst.createView() 
                 },
             ],
             });
@@ -173,6 +175,8 @@ async function main()
             encoder.copyTextureToTexture({ texture: textures.renderSrc }, { texture: textures.renderDst },
                 [textures.width, textures.height]);
             device.queue.submit([encoder.finish()]);
+            frame += 1;
+            shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
     }
         
     addEventListener("wheel", (event) => {
@@ -183,9 +187,30 @@ async function main()
         {
         uniforms[1] = cam_const;
         //device.queue.writeBuffer(uniformBuffer, 0, uniforms);
-        render();
+        
         }
-    render();
+    var progressive_updates = false;
+    if(document.querySelector('input[name="progUpdate"]:checked') != null)
+        {
+            progressive_updates = true;
+            for(var i = 0; i < 10; i++)
+                {
+                    await render();
+                    console.log(frame);
+                }  
+        }
     
+      
+    /*    
+    while(progressive_updates)
+    {
+        if(document.querySelector('input[name="progUpdate"]:checked') != null)
+        {
+            progressive_updates = true;
+        }else{progressive_updates = false;}
+        await render();
+        //document.write("hej");
+    }*/
+    render();
 }
 

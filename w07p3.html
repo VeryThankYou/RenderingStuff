@@ -410,10 +410,10 @@
                   {
                     v = 0.0;
                   }
-                if((*hit).emit)
+                if((*hit).emit == false)
                 {
-                  
-                }else{(*hit).ambient = vec3f(0.0);}
+                  (*hit).ambient = vec3f(0.0);
+                }
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
                 let reflight = (*hit).factor*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
 
@@ -582,8 +582,8 @@
                   hit.emit = false;
                   hit.has_hit = false;
                   hit.factor = hit.factor/P_i;
+                  continue;
                 }
-                continue;
               }
               if(hit.shader == 6)
               {

@@ -415,7 +415,7 @@
                   (*hit).ambient = vec3f(0.0);
                 }
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = (*hit).factor*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
+                let reflight = v*(*hit).factor*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
 
                 var theta = acos(sqrt(rnd(prev)));
                 var phi = 2*pi*rnd(prev);

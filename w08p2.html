@@ -424,7 +424,7 @@
                   (*hit).ambient = vec3f(0.0);
                 }
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = v*(*hit).factor*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient;
+                let reflight = (*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
 
                 var theta = acos(sqrt(rnd(prev)));
                 var phi = 2*pi*rnd(prev);
@@ -645,14 +645,15 @@
               }
               if(hit.shader == 7)
               {
+                
                 //return vec4f(1.0);
                 result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit, &t)); 
                 //result += shade(&r, &hit); 
                 let P_i = (hit.factor.r + hit.factor.g + hit.factor.b)/3.0;
                 let xi = rnd(&t);
+                hit.emit = false;
                 if(xi < P_i)
                 {
-                  hit.emit = false;
                   hit.has_hit = false;
                   hit.factor = hit.factor/P_i;
                   continue;

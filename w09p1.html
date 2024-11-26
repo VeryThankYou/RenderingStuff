@@ -107,6 +107,7 @@
         @group(0) @binding(6) var<storage> bsp_planes: array<f32>;
         @group(0) @binding(7) var<uniform> aabb: array<vec3f, 2>;
         @group(0) @binding(8) var<storage> mat_uniforms: array<MaterialUniforms>;
+        @group(0) @binding(9) var bg_texture: texture_2d<f32>;
         @group(0) @binding(10) var renderTexture: texture_2d<f32>;
         
 
@@ -295,13 +296,7 @@
                 (*hit).trianglehit = i32(f_index);
                 (*hit).ambient = vec3f(0.0, 0.0, 0.0);
                 (*hit).shader = shader_uniforms.triangle_shader;
-                for(var i = 0; u32(i) < arrayLength(&light_indices); i++)
-                {
-                  if(light_indices[i] == f_index)
-                  {
-                    (*hit).ambient = vec3f(mat_uniforms[mesh_faces[f_index].a].emission.r, mat_uniforms[mesh_faces[f_index].a].emission.g, mat_uniforms[mesh_faces[f_index].a].emission.b);
-                  }
-                }
+                
                 //(*hit).ambient = vec3f(0.0, 0.0, 0.0);
                 (*hit).diffuse = vec3f(mat_uniforms[mesh_faces[f_index].a].color.r, mat_uniforms[mesh_faces[f_index].a].color.g, mat_uniforms[mesh_faces[f_index].a].color.b);
                 return true;
@@ -353,43 +348,7 @@
               return light;
             }
 
-            fn sample_area_light(pos: vec3f, prev: ptr<function, u32>) -> Light
-            {
-              let light_index = u32(floor(rnd(prev) * f32(arrayLength(&light_indices))));
-              var r_beta = rnd(prev);
-              var r_gamma = rnd(prev);
-              if(r_beta + r_gamma > 1)
-              {
-                r_beta = 1 - r_beta;
-                r_gamma = 1 - r_gamma;
-              }
-              let alpha = 1 - r_beta - r_gamma;
-              let v = array(attribs[(mesh_faces[light_indices[light_index]][0])].v_position.rgb, attribs[(mesh_faces[light_indices[light_index]][1])].v_position.rgb, attribs[(mesh_faces[light_indices[light_index]][2])].v_position.rgb);
-              let nor = array(attribs[(mesh_faces[light_indices[light_index]][0])].v_normal.rgb, attribs[(mesh_faces[light_indices[light_index]][1])].v_normal.rgb, attribs[(mesh_faces[light_indices[light_index]][2])].v_normal.rgb);
-              let position = alpha*v[0] + r_beta*v[1] + r_gamma*v[2];
-              var r_normal = normalize(alpha*nor[0] + r_beta*nor[1] + r_gamma*nor[2]);
-              let e0 = v[1] - v[0];
-              let e1 = v[2] - v[0];
-              var normal = cross(e0, e1);
-              let a_i = length(normal)/2.0;
-
-              var L_r = vec3f(0.0, 0.0, 0.0);
-              let w_i = normalize(position - pos);
-              let rsq = length(position - pos) * length(position - pos);
-
-              let L_i = vec3f(mat_uniforms[mesh_faces[light_indices[light_index]].a].emission.r, mat_uniforms[mesh_faces[light_indices[light_index]].a].emission.g, mat_uniforms[mesh_faces[light_indices[light_index]].a].emission.b);
-              L_r += L_i * a_i;
-              if(dot(w_i, r_normal) < 0)
-              {
-                r_normal = - r_normal;
-              }
-              L_r = L_r * dot(w_i, r_normal) / rsq;
-              var light: Light;
-              light.L_i = L_r;
-              light.w_i = w_i;
-              light.dist = length(position - pos);
-              return light;
-            }
+            
 
           fn sample_directional_light(pos: vec3f) -> Light
             {
@@ -405,12 +364,8 @@
 
             fn lambertian(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
               {
-                let light = sample_area_light((*hit).position, prev);
-                let vecbool = light.L_i < vec3f(0.0);
-                if(vecbool.x && vecbool.y && vecbool.z)
-                {
-                  return vec3f(1.0);
-                }
+                let light = sample_directional_light((*hit).position);
+                
                 var v = 1.0;
                 var shadowray = get_shadow_ray(hit, light);
                 var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(0.0));
@@ -440,7 +395,7 @@
 
         fn phong(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
           {
-            let light = sample_area_light((*hit).position, prev);
+            let light = sample_directional_light((*hit).position);
             var refray: Ray;
             refray.origin = (*hit).position;
             refray.direction = reflect(((*r).direction), (*hit).normal);
@@ -503,9 +458,9 @@
       fn get_camera_ray(ipcoords: vec2f) -> Ray
       {
         // Implement ray generation (WGSL has vector operations like normalize and cross)
-        const e = vec3f(277.0, 275.0, -570.0);
+        const e = vec3f(-0.02, 0.11, 0.6);
         const u = vec3f(0.0, 1.0, 0.0);
-        const l = vec3f(277.0, 275.0, 0.0);
+        const l = vec3f(-0.02, 0.11, 0.0);
         let v = normalize(l - e);
         let b1 = normalize(cross(v, u));
         let b2 = cross(b1, v);
@@ -570,6 +525,16 @@
         }
       }
 
+      fn bg_lookup(dir: vec3f) -> vec3f
+      {
+        let res = textureDimensions(bg_texture);
+        let u = 0.5 + 1.0/(2.0*pi) * atan(dir.x/(-dir.z));
+        let v = 1.0/pi * acos(-dir.y);
+        let int_u = u32(floor(f32(res.x) * u));
+        let int_v = u32(floor(f32(res.y) * v));
+        return textureLoad(bg_texture, vec2u(int_u, int_v), 0).rgb;
+      }
+
       @fragment
       fn main_fs(@builtin(position) fragcoord: vec4f, @location(0) coords: vec2f) -> FSOut
       {
@@ -578,7 +543,7 @@
         let jitter = vec2f(rnd(&t), rnd(&t))/f32(shader_uniforms.height);
 
         let res = textureDimensions(renderTexture);
-
+        let res2 = textureDimensions(bg_texture);
         let tid = tree_ids[0];
         let bspt = bsp_tree[0];
         let bspp = bsp_planes[0];
@@ -728,7 +693,7 @@
               result += shade(&r, &hit, &t); 
             }
             if(hit.has_hit) { break; }
-            else { result += bgcolor.rgb; break; }
+            else { result += bg_lookup(r.direction); break; }
           
           }
 
@@ -748,32 +713,8 @@
         
         if(intersect_min_max(r))
         {
-          const center = vec3f(420.0, 90.0, 370.0);
-          const radius = 90.0;
-          if (intersect_sphere((*r), hit, center, radius))
-          {
-            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-            (*hit).shader = 3;
-            (*r).tmax = hit.dist - 1e-2;
-          }
-
-          const center2 = vec3f(130.0, 90.0, 250.0);
-          const radius2 = 90.0;
-          if (intersect_sphere((*r), hit, center2, radius2))
-          {
-            (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
-            (*hit).ambient = vec3f(0.0, 0.0, 0.0);
-            (*hit).shader = 8;
-            (*hit).shininess = 42.0;
-            (*hit).specular = 0.1;
-            (*hit).extinction = vec3f(1e-7, 1e-1, 1e-7);
-            //(*hit).shader = 2;
-            (*r).tmax = hit.dist - 1e-2;
-          }
           if(intersect_bsp_array(r, hit))
           {
-            (*hit).shader = 7;
             (*r).tmax = hit.dist - 1e-2;
           };
         }

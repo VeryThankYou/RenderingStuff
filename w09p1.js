@@ -11,7 +11,7 @@ async function main()
     // Create a render pass in a command buffer and submit it
     
     const aspect = canvas.width/canvas.height;
-    var cam_const = 1.0;
+    var cam_const = 3.5;
     var gamma = 2.5;
     var uniforms = new Float32Array([aspect, cam_const, gamma]);
     let frame = 0;
@@ -21,7 +21,7 @@ async function main()
     var plane_shader = document.querySelector('input[name="plane"]:checked').value;
     var triangle_shader = document.querySelector('input[name="triangle"]:checked').value;
     var shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
-    
+    const texture = await load_texture(device, "luxo_pxr_campus.jpg");
 
     
 
@@ -149,6 +149,9 @@ async function main()
                 {binding: 8, 
                 resource: { buffer: materialsBuffer }
                 },
+                {binding: 9, 
+                resource: texture.createView()
+                },
                 {binding: 10, 
                 resource: textures.renderDst.createView() 
                 },
@@ -206,3 +209,20 @@ async function main()
     render();
 }
 
+async function load_texture(device, filename)
+{
+const response = await fetch(filename);
+const blob = await response.blob();
+const img = await createImageBitmap(blob, { colorSpaceConversion: 'none' });
+const texture = device.createTexture({
+size: [img.width, img.height, 1],
+format: "rgba8unorm",
+usage: GPUTextureUsage.COPY_DST | GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.RENDER_ATTACHMENT
+});
+device.queue.copyExternalImageToTexture(
+{ source: img, flipY: true },
+{ texture: texture },
+{ width: img.width, height: img.height },
+);
+return texture;
+}

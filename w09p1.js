@@ -11,7 +11,7 @@ async function main()
     // Create a render pass in a command buffer and submit it
     
     const aspect = canvas.width/canvas.height;
-    var cam_const = 3.5;
+    var cam_const = 2.5;
     var gamma = 2.5;
     var uniforms = new Float32Array([aspect, cam_const, gamma]);
     let frame = 0;
@@ -27,7 +27,7 @@ async function main()
 
     let pxsize = 1/canvas.height;
 
-    const obj_filename = 'objectData/bunny.obj';
+    const obj_filename = 'objectData/teapot.obj';
     const drawingInfo = await readOBJFile(obj_filename, 1, true); // file name, scale, ccw vertices
     let mats = new Float32Array(drawingInfo.materials.length * 2 * 4);
     for(var i = 0; i < drawingInfo.materials.length; i++)

@@ -11,7 +11,7 @@ async function main()
     // Create a render pass in a command buffer and submit it
     
     const aspect = canvas.width/canvas.height;
-    var cam_const = 2.5;
+    var cam_const = 1.5;
     var gamma = 2.5;
     var uniforms = new Float32Array([aspect, cam_const, gamma]);
     let frame = 0;
@@ -70,44 +70,23 @@ async function main()
         usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
         format: 'rgba32float',
     });
-    
-    async function render()
-    {
-        
-        const encoder = device.createCommandEncoder(); 
-        const pass = encoder.beginRenderPass(
-        { 
-            colorAttachments: [{ 
-            view: context.getCurrentTexture().createView(), 
-            loadOp: "clear", 
-            storeOp:"store",
-            },
-            { view: textures.renderSrc.createView(), loadOp: "load", storeOp: "store" },]
-        }); 
-        // Insert render pass commands here 
-
-
-        const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
-        const pipeline = device.createRenderPipeline({
-            layout: 'auto',
-            vertex: {
-            module: wgsl,
-            entryPoint: "main_vs",
-            },
-            fragment: {
-            module: wgsl,
-            entryPoint: "main_fs",
-            targets: [{ format: canvasFormat },
-                        { format: "rgba32float"},]
-            },
-            primitive: {
-            topology: "triangle-strip",
-            },
-            });
-        
-            
-        pass.setPipeline(pipeline);
-        
+    const wgsl = device.createShaderModule({code: document.getElementById("wgsl").text});
+    const pipeline = device.createRenderPipeline({
+        layout: 'auto',
+        vertex: {
+        module: wgsl,
+        entryPoint: "main_vs",
+        },
+        fragment: {
+        module: wgsl,
+        entryPoint: "main_fs",
+        targets: [{ format: canvasFormat },
+                    { format: "rgba32float"},]
+        },
+        primitive: {
+        topology: "triangle-strip",
+        },
+        });
         var objectBuffers = new Object();
 
         objectBuffers = build_bsp_tree(drawingInfo, device, objectBuffers);
@@ -127,10 +106,6 @@ async function main()
             usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
             });
 
-        const lightIndicesBuffer = device.createBuffer({
-            size: drawingInfo.light_indices.byteLength,
-            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
-            });
 
         const bindGroup = device.createBindGroup({
             layout: pipeline.getBindGroupLayout(0),
@@ -170,25 +145,37 @@ async function main()
                 },
             ],
             });
+
         
+        device.queue.writeBuffer(materialsBuffer, 0, mats);
+    async function render()
+    {
         
+        const encoder = device.createCommandEncoder(); 
+        const pass = encoder.beginRenderPass(
+        { 
+            colorAttachments: [{ 
+            view: context.getCurrentTexture().createView(), 
+            loadOp: "clear", 
+            storeOp:"store",
+            },
+            { view: textures.renderSrc.createView(), loadOp: "load", storeOp: "store" },]
+        }); 
+        // Insert render pass commands here 
 
-            pass.setBindGroup(0, bindGroup);
-            
-            device.queue.writeBuffer(uniformBuffer, 0, uniforms);
-            device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
-            device.queue.writeBuffer(materialsBuffer, 0, mats);
-            device.queue.writeBuffer(lightIndicesBuffer, 0, drawingInfo.light_indices);
-
-
-            pass.draw(4);
-            pass.end(); 
-            encoder.copyTextureToTexture({ texture: textures.renderSrc }, { texture: textures.renderDst },
-                [textures.width, textures.height]);
-            device.queue.submit([encoder.finish()]);
-            frame += 1;
-            shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
-    }
+        pass.setPipeline(pipeline);
+        pass.setBindGroup(0, bindGroup);
+        
+        device.queue.writeBuffer(uniformBuffer, 0, uniforms);
+        device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
+        pass.draw(4);
+        pass.end(); 
+        encoder.copyTextureToTexture({ texture: textures.renderSrc }, { texture: textures.renderDst },
+            [textures.width, textures.height]);
+        device.queue.submit([encoder.finish()]);
+        frame += 1;
+        shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
+}
         
     addEventListener("wheel", (event) => {
         cam_const *= 1.0 + 2.5e-4*event.deltaY;
@@ -200,24 +187,24 @@ async function main()
         //device.queue.writeBuffer(uniformBuffer, 0, uniforms);
         
         }
-        async function startUpdates()
-        {
-            var progressive_updates = false;
-            if(document.querySelector('input[name="progUpdate"]:checked') != null)
-                {
-                    progressive_updates = true;
-                }
-            while(progressive_updates)
+    async function startUpdates()
+    {
+        var progressive_updates = false;
+        if(document.querySelector('input[name="progUpdate"]:checked') != null)
             {
-                if(document.querySelector('input[name="progUpdate"]:checked') != null)
-                {
-                    progressive_updates = true;
-                }else{progressive_updates = false;}
-                render();
-                await new Promise(r => setTimeout(r, 1))
-                //document.write("hej");
+                progressive_updates = true;
             }
+        while(progressive_updates)
+        {
+            if(document.querySelector('input[name="progUpdate"]:checked') != null)
+            {
+                progressive_updates = true;
+            }else{progressive_updates = false;}
+            render();
+            await new Promise(r => setTimeout(r, 2))
+            //document.write("hej");
         }
+    }
         startUpdates();
     render();
 }

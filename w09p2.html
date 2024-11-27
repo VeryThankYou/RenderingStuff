@@ -368,18 +368,9 @@
                 let light = sample_directional_light((*hit).position);
                 
                 var v = 1.0;
-                var shadowray = get_shadow_ray(hit, light);
-                var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(0.0));
-                if(intersect_scene(&shadowray, &shadowhit))
-                  {
-                    v = 0.0;
-                  }
-                if((*hit).emit == false)
-                {
-                  (*hit).ambient = vec3f(0.0);
-                }
+                
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = (*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
+                let reflight = 0.0*(*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
 
                 var theta = acos(sqrt(rnd(prev)));
                 var phi = 2*pi*rnd(prev);
@@ -417,7 +408,7 @@
           case 5 { return phong(r, hit, prev); }
           case 6 { return phong(r, hit, prev); }
           case 7 { return lambertian(r, hit, prev); }
-          case 9 { return bg_lookup((*r).direction); }
+          case 9 { return lambertian(r, hit, prev); }
           case default { return (*hit).ambient; }
           }
           }
@@ -636,7 +627,9 @@
               {
                 
                 //return vec4f(1.0);
+                
                 result += max(vec3f(0.0, 0.0, 0.0), shade(&r, &hit, &t)); 
+
                 //result += shade(&r, &hit); 
                 let P_i = (hit.factor.r + hit.factor.g + hit.factor.b)/3.0;
                 let xi = rnd(&t);
@@ -716,14 +709,6 @@
       // Define scene data as constants.
       // Call an intersection function for each object.
       // For each intersection found, update (*r).tmax and store additional info about the hit.
-        
-        if(intersect_min_max(r))
-        {
-          if(intersect_bsp_array(r, hit))
-          {
-            (*r).tmax = hit.dist - 1e-2;
-          };
-        }
         let planepos = vec3f(0.0, 0.0, 0.0);
         let planenormal = vec3f(0.0, 1.0, 0.0);
         const plane_onb = Onb(vec3f(-1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), vec3f(0.0, 1.0, 0.0));
@@ -731,7 +716,17 @@
         if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
           (*hit).shader = 9;
+          (*hit).diffuse = bg_lookup((*r).direction);
+          (*r).tmax = hit.dist - 1e-2;
         }
+        if(intersect_min_max(r))
+        {
+          if(intersect_bsp_array(r, hit))
+          {
+            (*r).tmax = hit.dist - 1e-2;
+          };
+        }
+        
         return (*hit).has_hit;
       }
     </script>

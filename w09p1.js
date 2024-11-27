@@ -11,7 +11,7 @@ async function main()
     // Create a render pass in a command buffer and submit it
     
     const aspect = canvas.width/canvas.height;
-    var cam_const = 2.5;
+    var cam_const = 1.5;
     var gamma = 2.5;
     var uniforms = new Float32Array([aspect, cam_const, gamma]);
     let frame = 0;

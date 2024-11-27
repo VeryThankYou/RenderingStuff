@@ -367,18 +367,9 @@
                 let light = sample_directional_light((*hit).position);
                 
                 var v = 1.0;
-                var shadowray = get_shadow_ray(hit, light);
-                var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(0.0));
-                if(intersect_scene(&shadowray, &shadowhit))
-                  {
-                    v = 0.0;
-                  }
-                if((*hit).emit == false)
-                {
-                  (*hit).ambient = vec3f(0.0);
-                }
+                
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = (*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
+                let reflight = 0.0*(*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
 
                 var theta = acos(sqrt(rnd(prev)));
                 var phi = 2*pi*rnd(prev);

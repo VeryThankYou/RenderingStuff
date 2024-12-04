@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixOpacityMicromap\optixOpacityMicromap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixOpacityMicromap\optixOpacityMicromap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixOpacityMicromap\optixOpacityMicromap.cu">
+      <Filter>CUDA Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixOpacityMicromap\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixOpacityMicromap_generated_optixOpacityMicromap.cu.optixir">
+      <Filter>OptixIR Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CUDA Files">
+      <UniqueIdentifier>{1D88D653-6C53-3BFC-AC79-950FF6EAB4C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{58511645-08C0-3C3D-884F-7919248FAEA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OptixIR Files">
+      <UniqueIdentifier>{5E3A5325-F208-3931-8E8C-4A8D6972DE3F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{826C83F6-DBE6-38DA-9147-40929C73022D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

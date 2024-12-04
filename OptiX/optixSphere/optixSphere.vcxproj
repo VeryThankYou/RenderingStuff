@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0D7C6D13-2255-33E8-9DBE-58A5BD9EFD52}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>optixSphere</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">optixSphere.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">optixSphere</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">optixSphere.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">optixSphere</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">optixSphere.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">optixSphere</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">optixSphere.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">optixSphere</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4355;4996;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\Debug\imgui.lib;..\lib\Debug\sutil_7_sdk.lib;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64\cudart_static.lib;..\lib\Debug\glfw3dll.lib;..\lib\Debug\glad.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/Debug/optixSphere.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/bin/Debug/optixSphere.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4355;4996;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\Release\imgui.lib;..\lib\Release\sutil_7_sdk.lib;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64\cudart_static.lib;..\lib\Release\glfw3dll.lib;..\lib\Release\glad.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/Release/optixSphere.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/bin/Release/optixSphere.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4355;4996;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\MinSizeRel\imgui.lib;..\lib\MinSizeRel\sutil_7_sdk.lib;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64\cudart_static.lib;..\lib\MinSizeRel\glfw3dll.lib;..\lib\MinSizeRel\glad.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/MinSizeRel/optixSphere.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/bin/MinSizeRel/optixSphere.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4355;4996;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPTIX_SAMPLE_NAME_DEFINE=optixSphere;OPTIX_SAMPLE_DIR_DEFINE=optixSphere;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\cuda;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\include;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\imgui\..;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\GLFW\include;C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\RelWithDebInfo\imgui.lib;..\lib\RelWithDebInfo\sutil_7_sdk.lib;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64\cudart_static.lib;..\lib\RelWithDebInfo\glfw3dll.lib;..\lib\RelWithDebInfo\glad.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/RelWithDebInfo/optixSphere.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/bin/RelWithDebInfo/optixSphere.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixSphere\optixSphere.cu">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building NVCC optixir file lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=$(VCInstallDir)Tools/MSVC/$(VCToolsVersion)/bin/Host$(PreferredToolArchitecture)/$(PlatformTarget)" -D build_configuration:STRING=$(ConfigurationName) -D generated_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir -D generated_cubin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.fatbin.txt -P C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/optixSphere.dir//optixSphere_generated_optixSphere.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixSphere_generated_optixSphere.cu.optixir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building NVCC optixir file lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=$(VCInstallDir)Tools/MSVC/$(VCToolsVersion)/bin/Host$(PreferredToolArchitecture)/$(PlatformTarget)" -D build_configuration:STRING=$(ConfigurationName) -D generated_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir -D generated_cubin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.fatbin.txt -P C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/optixSphere.dir//optixSphere_generated_optixSphere.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixSphere_generated_optixSphere.cu.optixir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building NVCC optixir file lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=$(VCInstallDir)Tools/MSVC/$(VCToolsVersion)/bin/Host$(PreferredToolArchitecture)/$(PlatformTarget)" -D build_configuration:STRING=$(ConfigurationName) -D generated_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir -D generated_cubin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.fatbin.txt -P C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/optixSphere.dir//optixSphere_generated_optixSphere.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixSphere_generated_optixSphere.cu.optixir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building NVCC optixir file lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=$(VCInstallDir)Tools/MSVC/$(VCToolsVersion)/bin/Host$(PreferredToolArchitecture)/$(PlatformTarget)" -D build_configuration:STRING=$(ConfigurationName) -D generated_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir -D generated_cubin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/lib/ptx/$(Configuration)/optixSphere_generated_optixSphere.cu.optixir.fatbin.txt -P C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/optixSphere.dir//optixSphere_generated_optixSphere.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixSphere_generated_optixSphere.cu.optixir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixSphere\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/optixSphere/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK" -BC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX --check-stamp-file C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\CMake\FindCUDA\run_nvcc.cmake;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/optixSphere/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK" -BC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX --check-stamp-file C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\CMake\FindCUDA\run_nvcc.cmake;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/optixSphere/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK" -BC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX --check-stamp-file C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\CMake\FindCUDA\run_nvcc.cmake;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/optixSphere/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK" -BC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX --check-stamp-file C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixSphere/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\CMake\FindCUDA\run_nvcc.cmake;C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\optixSphere.dir\optixSphere_generated_optixSphere.cu.optixir.depend;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\optixSphere\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixSphere\optixSphere.cpp" />
+    <ClInclude Include="C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\SDK\optixSphere\optixSphere.h" />
+    <None Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\lib\ptx\$(Configuration)\optixSphere_generated_optixSphere.cu.optixir">
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\ZERO_CHECK.vcxproj">
+      <Project>{97660DB5-C0AC-3777-B300-10438A22DE56}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\support\glad.vcxproj">
+      <Project>{9D1F5EC3-D0EE-3DC9-915C-217B02F9550D}</Project>
+      <Name>glad</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\support\GLFW\src\glfw.vcxproj">
+      <Project>{052D32E4-F79C-33DE-AEDE-F557024B9F10}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\support\imgui\imgui.vcxproj">
+      <Project>{006DC0B9-DD0E-3CCF-A26F-69B8C47006FB}</Project>
+      <Name>imgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX\sutil\sutil_7_sdk.vcxproj">
+      <Project>{A52A3667-1DD1-3870-84AB-704A2FB183A5}</Project>
+      <Name>sutil_7_sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

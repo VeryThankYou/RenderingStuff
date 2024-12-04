@@ -385,6 +385,27 @@
                 return reflight;
               }
 
+        fn occlusion(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
+          {
+            var theta = acos(sqrt(rnd(prev)));
+            if(dot((*r).direction, (*hit).normal)>0){(*hit).normal = - (*hit).normal;}
+            var phi = 2*pi*rnd(prev);
+            var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
+            var w_correct = rotate_to_normal((*hit).normal, w_sphere);
+            var shadow_ray: Ray;
+            shadow_ray.direction = w_correct;
+            shadow_ray.origin = (*hit).position;
+            shadow_ray.tmin = 1e-2;
+            shadow_ray.tmax = 1000;
+            var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(1.0));
+                
+            if(intersect_scene(&shadow_ray, &shadowhit))
+            {
+              return vec3f(0.0);
+            }
+            return (*hit).diffuse;
+          }
+
         fn phong(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
           {
             let light = sample_directional_light((*hit).position);
@@ -408,7 +429,7 @@
           case 5 { return phong(r, hit, prev); }
           case 6 { return phong(r, hit, prev); }
           case 7 { return lambertian(r, hit, prev); }
-          case 9 { return lambertian(r, hit, prev); }
+          case 9 { return occlusion(r, hit, prev); }
           case default { return (*hit).ambient; }
           }
           }
@@ -623,7 +644,7 @@
                 hit.has_hit = false;
                 continue;
               }
-              if(hit.shader == 7 || hit.shader == 9)
+              if(hit.shader == 7)
               {
                 
                 //return vec4f(1.0);

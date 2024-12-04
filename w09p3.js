@@ -23,18 +23,18 @@ async function main()
     var shaderuniforms = new Int32Array([plane_shader, triangle_shader, frame, canvas.width, canvas.height]);
     const texture = await load_texture(device, "luxo_pxr_campus.RGBE.PNG");
     
-    
+    /*
     var myHDR = new HDRImage();
-    myHDR.src = 'cannon.hdr';
+    myHDR.src = 'luxo_pxr_campus.hdr';
   myHDR.onload = function() {
     myHDR.toHDRBlob(function(blob){
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'cannon.RGBE.PNG';
+      a.download = 'luxo_pxr_campus.RGBE.PNG';
       a.innerHTML = 'click to save';
       document.body.appendChild(a); // or a.click()
     }  )
-  }
+  }*/
     
     
 

@@ -421,24 +421,20 @@
 
           fn occlusion(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
             {
-              let light = sample_environmental_light((*hit).position, (*hit).position, prev);
-              /*var theta = acos(sqrt(rnd(prev)));
-              if(dot((*r).direction, (*hit).normal)>0){(*hit).normal = - (*hit).normal;}
-              var phi = 2*pi*rnd(prev);
-              var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
-              var w_correct = rotate_to_normal((*hit).normal, w_sphere);
-              var shadow_ray: Ray;
-              shadow_ray.direction = w_correct;
-              shadow_ray.origin = (*hit).position;
-              shadow_ray.tmin = 1e-2;
-              shadow_ray.tmax = 1000;
-              var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(1.0));
-                  
-              if(intersect_scene(&shadow_ray, &shadowhit))
+              if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
+              let light = sample_environmental_light((*hit).position, (*hit).normal, prev);
+              var sum_light = vec3f(0.0);
+              let samples = 10;
+              for(var i = 0; i < samples; i++)
               {
-                return vec3f(0.0);
-              }*/
-              return (*hit).diffuse*light.L_i;
+                var theta = acos(sqrt(rnd(prev)));
+                var phi = 2*pi*rnd(prev);
+                var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
+                var w_correct = rotate_to_normal((*hit).normal, w_sphere);
+                sum_light += bg_lookup(w_correct);
+              }
+              sum_light /= f32(samples);
+              return (*hit).diffuse*light.L_i/sum_light;
             }
 
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f

@@ -60,16 +60,7 @@
   "true", \
   "-D__x86_64",
 #else
-#define CUDA_NVRTC_OPTIONS  \
-  "-std=c++11", \
-  "-arch", \
-  "compute_50", \
-  "-G", \
-  "-use_fast_math", \
-  "-default-device", \
-  "-rdc", \
-  "true", \
-  "-D__x86_64",
+#define CUDA_NVRTC_OPTIONS 
 #endif
 
 // Indicate what input we are generating

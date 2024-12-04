@@ -24,7 +24,7 @@ events:
       The output was:
       0
       MSBuild version 17.6.3+07e294721 for .NET Framework
-      Build started 04-12-2024 16:20:09.
+      Build started 04-12-2024 16:34:15.
       
       Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\3.31.1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -51,7 +51,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.50
+      Time Elapsed 00:00:00.34
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -77,7 +77,7 @@ events:
       The output was:
       0
       MSBuild version 17.6.3+07e294721 for .NET Framework
-      Build started 04-12-2024 16:20:10.
+      Build started 04-12-2024 16:34:16.
       
       Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\3.31.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -104,7 +104,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.30
+      Time Elapsed 00:00:00.25
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -123,46 +123,46 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-tnb3g9"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-tnb3g9"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-68goy9"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-68goy9"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-tnb3g9'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-68goy9'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9c632.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8e75c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:10.
+        Build started 04-12-2024 16:34:16.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-tnb3g9\\cmTC_9c632.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-68goy9\\cmTC_8e75c.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_9c632.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-tnb3g9\\Debug\\".
-          Creating directory "cmTC_9c632.dir\\Debug\\cmTC_9c632.tlog\\".
+          Creating directory "cmTC_8e75c.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-68goy9\\Debug\\".
+          Creating directory "cmTC_8e75c.dir\\Debug\\cmTC_8e75c.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_9c632.dir\\Debug\\cmTC_9c632.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_8e75c.dir\\Debug\\cmTC_8e75c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9c632.dir\\Debug\\\\" /Fd"cmTC_9c632.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_8e75c.dir\\Debug\\\\" /Fd"cmTC_8e75c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
-          Copyright (C) Microsoft Corporation.  All rights reserved.
           CMakeCCompilerABI.c
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9c632.dir\\Debug\\\\" /Fd"cmTC_9c632.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_8e75c.dir\\Debug\\\\" /Fd"cmTC_8e75c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-tnb3g9\\Debug\\cmTC_9c632.exe" /INCREMENTAL /ILK:"cmTC_9c632.dir\\Debug\\cmTC_9c632.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-tnb3g9/Debug/cmTC_9c632.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-tnb3g9/Debug/cmTC_9c632.lib" /MACHINE:X64  /machine:x64 cmTC_9c632.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_9c632.vcxproj -> C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-tnb3g9\\Debug\\cmTC_9c632.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-68goy9\\Debug\\cmTC_8e75c.exe" /INCREMENTAL /ILK:"cmTC_8e75c.dir\\Debug\\cmTC_8e75c.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-68goy9/Debug/cmTC_8e75c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-68goy9/Debug/cmTC_8e75c.lib" /MACHINE:X64  /machine:x64 cmTC_8e75c.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_8e75c.vcxproj -> C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-68goy9\\Debug\\cmTC_8e75c.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_9c632.dir\\Debug\\cmTC_9c632.tlog\\unsuccessfulbuild".
-          Touching "cmTC_9c632.dir\\Debug\\cmTC_9c632.tlog\\cmTC_9c632.lastbuildstate".
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-tnb3g9\\cmTC_9c632.vcxproj" (default targets).
+          Deleting file "cmTC_8e75c.dir\\Debug\\cmTC_8e75c.tlog\\unsuccessfulbuild".
+          Touching "cmTC_8e75c.dir\\Debug\\cmTC_8e75c.tlog\\cmTC_8e75c.lastbuildstate".
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-68goy9\\cmTC_8e75c.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.27
+        Time Elapsed 00:00:00.25
         
       exitCode: 0
   -
@@ -202,8 +202,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-gjnkr1"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-gjnkr1"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3d4zu2"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3d4zu2"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
@@ -211,38 +211,38 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-gjnkr1'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3d4zu2'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_79018.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_165c1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:11.
+        Build started 04-12-2024 16:34:17.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-gjnkr1\\cmTC_79018.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3d4zu2\\cmTC_165c1.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_79018.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-gjnkr1\\Debug\\".
-          Creating directory "cmTC_79018.dir\\Debug\\cmTC_79018.tlog\\".
+          Creating directory "cmTC_165c1.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3d4zu2\\Debug\\".
+          Creating directory "cmTC_165c1.dir\\Debug\\cmTC_165c1.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_79018.dir\\Debug\\cmTC_79018.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_165c1.dir\\Debug\\cmTC_165c1.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_79018.dir\\Debug\\\\" /Fd"cmTC_79018.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_165c1.dir\\Debug\\\\" /Fd"cmTC_165c1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
           CMakeCXXCompilerABI.cpp
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_79018.dir\\Debug\\\\" /Fd"cmTC_79018.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_165c1.dir\\Debug\\\\" /Fd"cmTC_165c1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-gjnkr1\\Debug\\cmTC_79018.exe" /INCREMENTAL /ILK:"cmTC_79018.dir\\Debug\\cmTC_79018.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-gjnkr1/Debug/cmTC_79018.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-gjnkr1/Debug/cmTC_79018.lib" /MACHINE:X64  /machine:x64 cmTC_79018.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_79018.vcxproj -> C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-gjnkr1\\Debug\\cmTC_79018.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3d4zu2\\Debug\\cmTC_165c1.exe" /INCREMENTAL /ILK:"cmTC_165c1.dir\\Debug\\cmTC_165c1.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3d4zu2/Debug/cmTC_165c1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3d4zu2/Debug/cmTC_165c1.lib" /MACHINE:X64  /machine:x64 cmTC_165c1.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_165c1.vcxproj -> C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3d4zu2\\Debug\\cmTC_165c1.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_79018.dir\\Debug\\cmTC_79018.tlog\\unsuccessfulbuild".
-          Touching "cmTC_79018.dir\\Debug\\cmTC_79018.tlog\\cmTC_79018.lastbuildstate".
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-gjnkr1\\cmTC_79018.vcxproj" (default targets).
+          Deleting file "cmTC_165c1.dir\\Debug\\cmTC_165c1.tlog\\unsuccessfulbuild".
+          Touching "cmTC_165c1.dir\\Debug\\cmTC_165c1.tlog\\cmTC_165c1.lastbuildstate".
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3d4zu2\\cmTC_165c1.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.26
+        Time Elapsed 00:00:00.25
         
       exitCode: 0
   -
@@ -284,8 +284,8 @@ events:
     checks:
       - "Performing Test OPTIX_CXX_ACCEPTS_NO_CPP"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-iyfsj0"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-iyfsj0"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9c2ey6"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9c2ey6"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_MODULE_PATH: "C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/../SDK/CMake"
@@ -293,37 +293,37 @@ events:
       variable: "OPTIX_CXX_ACCEPTS_NO_CPP"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-iyfsj0'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9c2ey6'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6b04e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_19da5.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:11.
+        Build started 04-12-2024 16:34:17.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\cmTC_6b04e.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\cmTC_19da5.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_6b04e.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\Debug\\".
-          Creating directory "cmTC_6b04e.dir\\Debug\\cmTC_6b04e.tlog\\".
+          Creating directory "cmTC_19da5.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\Debug\\".
+          Creating directory "cmTC_19da5.dir\\Debug\\cmTC_19da5.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_6b04e.dir\\Debug\\cmTC_6b04e.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_19da5.dir\\Debug\\cmTC_19da5.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D OPTIX_CXX_ACCEPTS_NO_CPP /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_6b04e.dir\\Debug\\\\" /Fd"cmTC_6b04e.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue  -Wno-cpp "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\src.cxx"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D OPTIX_CXX_ACCEPTS_NO_CPP /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_19da5.dir\\Debug\\\\" /Fd"cmTC_19da5.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue  -Wno-cpp "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\src.cxx"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D OPTIX_CXX_ACCEPTS_NO_CPP /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_6b04e.dir\\Debug\\\\" /Fd"cmTC_6b04e.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue  -Wno-cpp "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\src.cxx"
-        cl : command line  error D8021: invalid numeric argument '/Wno-cpp' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\cmTC_6b04e.vcxproj]
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\cmTC_6b04e.vcxproj" (default targets) -- FAILED.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D OPTIX_CXX_ACCEPTS_NO_CPP /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_19da5.dir\\Debug\\\\" /Fd"cmTC_19da5.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue  -Wno-cpp "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\src.cxx"
+        cl : command line  error D8021: invalid numeric argument '/Wno-cpp' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\cmTC_19da5.vcxproj]
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\cmTC_19da5.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\cmTC_6b04e.vcxproj" (default target) (1) ->
+        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\cmTC_19da5.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          cl : command line  error D8021: invalid numeric argument '/Wno-cpp' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-iyfsj0\\cmTC_6b04e.vcxproj]
+          cl : command line  error D8021: invalid numeric argument '/Wno-cpp' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9c2ey6\\cmTC_19da5.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.16
+        Time Elapsed 00:00:00.15
         
       exitCode: 1
   -
@@ -337,8 +337,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-kgsezd"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-kgsezd"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-p0gnkq"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-p0gnkq"
     cmakeVariables:
       CMAKE_C_FLAGS: "  /DWIN32 /D_WINDOWS /W3 /MP /W3 /wd4355 /wd4996 /wd4800 /w34101 /w34189 /w34018 /w34389"
       CMAKE_MODULE_PATH: "C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/../SDK/CMake;C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/support/GLFW/CMake/modules"
@@ -346,38 +346,38 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-kgsezd'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-p0gnkq'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a998c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_bd22d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:12.
+        Build started 04-12-2024 16:34:18.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\cmTC_a998c.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\cmTC_bd22d.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_a998c.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\Debug\\".
-          Creating directory "cmTC_a998c.dir\\Debug\\cmTC_a998c.tlog\\".
+          Creating directory "cmTC_bd22d.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\Debug\\".
+          Creating directory "cmTC_bd22d.dir\\Debug\\cmTC_bd22d.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_a998c.dir\\Debug\\cmTC_a998c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_bd22d.dir\\Debug\\cmTC_bd22d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a998c.dir\\Debug\\\\" /Fd"cmTC_a998c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\src.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bd22d.dir\\Debug\\\\" /Fd"cmTC_bd22d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\src.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
           src.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a998c.dir\\Debug\\\\" /Fd"cmTC_a998c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\src.c"
-        C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\cmTC_a998c.vcxproj]
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\cmTC_a998c.vcxproj" (default targets) -- FAILED.
+          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bd22d.dir\\Debug\\\\" /Fd"cmTC_bd22d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\src.c"
+        C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\cmTC_bd22d.vcxproj]
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\cmTC_bd22d.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\cmTC_a998c.vcxproj" (default target) (1) ->
+        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\cmTC_bd22d.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-kgsezd\\cmTC_a998c.vcxproj]
+          C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-p0gnkq\\cmTC_bd22d.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.22
+        Time Elapsed 00:00:00.17
         
       exitCode: 1
   -
@@ -390,8 +390,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9ql4fc"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9ql4fc"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3mmwl6"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3mmwl6"
     cmakeVariables:
       CMAKE_C_FLAGS: "  /DWIN32 /D_WINDOWS /W3 /MP /W3 /wd4355 /wd4996 /wd4800 /w34101 /w34189 /w34018 /w34389"
       CMAKE_MODULE_PATH: "C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/../SDK/CMake;C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/support/GLFW/CMake/modules"
@@ -399,40 +399,40 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9ql4fc'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3mmwl6'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a6534.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1a197.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:12.
+        Build started 04-12-2024 16:34:18.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\cmTC_a6534.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\cmTC_1a197.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_a6534.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\Debug\\".
-          Creating directory "cmTC_a6534.dir\\Debug\\cmTC_a6534.tlog\\".
+          Creating directory "cmTC_1a197.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\Debug\\".
+          Creating directory "cmTC_1a197.dir\\Debug\\cmTC_1a197.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_a6534.dir\\Debug\\cmTC_a6534.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_1a197.dir\\Debug\\cmTC_1a197.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a6534.dir\\Debug\\\\" /Fd"cmTC_a6534.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\CheckFunctionExists.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1a197.dir\\Debug\\\\" /Fd"cmTC_1a197.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
           CheckFunctionExists.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a6534.dir\\Debug\\\\" /Fd"cmTC_a6534.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\CheckFunctionExists.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1a197.dir\\Debug\\\\" /Fd"cmTC_1a197.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\CheckFunctionExists.c"
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\Debug\\cmTC_a6534.exe" /INCREMENTAL /ILK:"cmTC_a6534.dir\\Debug\\cmTC_a6534.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9ql4fc/Debug/cmTC_a6534.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-9ql4fc/Debug/cmTC_a6534.lib" /MACHINE:X64  /machine:x64 cmTC_a6534.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\cmTC_a6534.vcxproj]
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\cmTC_a6534.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\Debug\\cmTC_1a197.exe" /INCREMENTAL /ILK:"cmTC_1a197.dir\\Debug\\cmTC_1a197.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3mmwl6/Debug/cmTC_1a197.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-3mmwl6/Debug/cmTC_1a197.lib" /MACHINE:X64  /machine:x64 cmTC_1a197.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\cmTC_1a197.vcxproj]
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\cmTC_1a197.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\cmTC_a6534.vcxproj" (default target) (1) ->
+        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\cmTC_1a197.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-9ql4fc\\cmTC_a6534.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-3mmwl6\\cmTC_1a197.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.21
+        Time Elapsed 00:00:00.20
         
       exitCode: 1
   -
@@ -445,8 +445,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-c1evg2"
-      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-c1evg2"
+      source: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-8wmqnp"
+      binary: "C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-8wmqnp"
     cmakeVariables:
       CMAKE_C_FLAGS: "  /DWIN32 /D_WINDOWS /W3 /MP /W3 /wd4355 /wd4996 /wd4800 /w34101 /w34189 /w34018 /w34389"
       CMAKE_MODULE_PATH: "C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/../SDK/CMake;C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/support/GLFW/CMake/modules"
@@ -454,35 +454,35 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-c1evg2'
+        Change Dir: 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-8wmqnp'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9800b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2ef32.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.6.3+07e294721 for .NET Framework
-        Build started 04-12-2024 16:20:13.
+        Build started 04-12-2024 16:34:18.
         
-        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\cmTC_9800b.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\cmTC_2ef32.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_9800b.dir\\Debug\\".
-          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\Debug\\".
-          Creating directory "cmTC_9800b.dir\\Debug\\cmTC_9800b.tlog\\".
+          Creating directory "cmTC_2ef32.dir\\Debug\\".
+          Creating directory "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\Debug\\".
+          Creating directory "cmTC_2ef32.dir\\Debug\\cmTC_2ef32.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_9800b.dir\\Debug\\cmTC_9800b.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_2ef32.dir\\Debug\\cmTC_2ef32.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9800b.dir\\Debug\\\\" /Fd"cmTC_9800b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\CheckFunctionExists.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2ef32.dir\\Debug\\\\" /Fd"cmTC_2ef32.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
           CheckFunctionExists.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9800b.dir\\Debug\\\\" /Fd"cmTC_9800b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\CheckFunctionExists.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /MP /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2ef32.dir\\Debug\\\\" /Fd"cmTC_2ef32.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /wd4355 /wd4996 /wd4800 /errorReport:queue  /w34101 /w34189 /w34018 /w34389 "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\CheckFunctionExists.c"
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\Debug\\cmTC_9800b.exe" /INCREMENTAL /ILK:"cmTC_9800b.dir\\Debug\\cmTC_9800b.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-c1evg2/Debug/cmTC_9800b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-c1evg2/Debug/cmTC_9800b.lib" /MACHINE:X64  /machine:x64 cmTC_9800b.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\cmTC_9800b.vcxproj]
-        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\cmTC_9800b.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\Debug\\cmTC_2ef32.exe" /INCREMENTAL /ILK:"cmTC_2ef32.dir\\Debug\\cmTC_2ef32.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-8wmqnp/Debug/cmTC_2ef32.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/CMakeScratch/TryCompile-8wmqnp/Debug/cmTC_2ef32.lib" /MACHINE:X64  /machine:x64 cmTC_2ef32.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\cmTC_2ef32.vcxproj]
+        Done Building Project "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\cmTC_2ef32.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\cmTC_9800b.vcxproj" (default target) (1) ->
+        "C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\cmTC_2ef32.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-c1evg2\\cmTC_9800b.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\frede\\Documents\\GitHub\\RenderingStuff\\OptiX\\CMakeFiles\\CMakeScratch\\TryCompile-8wmqnp\\cmTC_2ef32.vcxproj]
         
             0 Warning(s)
             1 Error(s)

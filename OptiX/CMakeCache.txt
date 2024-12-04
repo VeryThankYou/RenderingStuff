@@ -84,7 +84,7 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/CMakeFiles/pkgRedirects
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/OptiX-Samples
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files/OptiX-Samples
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.36.32532/bin/Hostx64/x64/link.exe
@@ -269,9 +269,6 @@ CUDA_NVRTC_ENABLED:BOOL=OFF
 //List of NVRTC options just for the samples
 CUDA_NVRTC_FLAGS:STRING=-std=c++11;-arch;compute_50;-lineinfo;-use_fast_math;-default-device;-rdc;true;-D__x86_64
 
-//List of NVRTC options just for the samples
-CUDA_NVRTC_FLAGS_DEBUG:STRING=-std=c++11;-arch;compute_50;-G;-use_fast_math;-default-device;-rdc;true;-D__x86_64
-
 //Propage C/CXX_FLAGS and friends to the host compiler via -Xcompiler
 CUDA_PROPAGATE_HOST_FLAGS:BOOL=ON
 
@@ -353,6 +350,9 @@ CUDA_nvcuvid_LIBRARY:FILEPATH=CUDA_nvcuvid_LIBRARY-NOTFOUND
 //"nvrtc" library
 CUDA_nvrtc_LIBRARY:FILEPATH=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/lib/x64/nvrtc.lib
 
+//Doxygen documentation generation tool (https://www.doxygen.nl)
+DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
+
 //Value Computed by CMake
 GLFW_BINARY_DIR:STATIC=C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/support/GLFW
 
@@ -410,6 +410,9 @@ OptiX_INCLUDE:PATH=C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/include
 
 //Path to OptiX installed location.
 OptiX_INSTALL_DIR:PATH=C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/..
+
+//Path to a program.
+PYTHON_EXECUTABLE:FILEPATH=C:/Users/frede/AppData/Local/Programs/Python/Python310/python.exe
 
 //Build using the static CRT library
 RELEASE_USE_STATIC_CRT:BOOL=ON
@@ -677,10 +680,14 @@ CUDA_nvrtc_LIBRARY-ADVANCED:INTERNAL=1
 CUDA_parse_cubin:INTERNAL=C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/CMake/FindCUDA/parse_cubin.cmake
 //Location of run_nvcc.cmake
 CUDA_run_nvcc:INTERNAL=C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/CMake/FindCUDA/run_nvcc.cmake
+//ADVANCED property for variable: DOXYGEN_EXECUTABLE
+DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
 //Details about finding CUDA
 FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/bin/nvcc.exe][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/include][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/lib/x64/cudart_static.lib][v12.6(5.0)]
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[opengl32][c ][v()]
+//Details about finding PythonInterp
+FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[C:/Users/frede/AppData/Local/Programs/Python/Python310/python.exe][v3.10()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: OPENGL_gl_LIBRARY
@@ -691,6 +698,8 @@ OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 OPTIX_CXX_ACCEPTS_NO_CPP:INTERNAL=
 //Already Configured once?
 PASSED_FIRST_CONFIGURE:INTERNAL=ON
+//ADVANCED property for variable: PYTHON_EXECUTABLE
+PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 //Previous configured value (OPTIXIR)
 SAMPLES_INPUT_ENABLE_OPTIXIR_SUPPORT_INTERNAL:INTERNAL=ON
 //ADVANCED property for variable: VULKAN_INCLUDE_DIR

@@ -360,19 +360,36 @@
               return light;
             }
 
+            fn sample_environmental_light(pos: vec3f, nor: vec3f, prev: ptr<function, u32>) -> Light
+            {
+              var theta = acos(sqrt(rnd(prev)));
+              var phi = 2*pi*rnd(prev);
+              var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
+              var w_correct = rotate_to_normal(nor, w_sphere);
+              var shadow_ray: Ray;
+              shadow_ray.direction = w_correct;
+              shadow_ray.origin = pos;
+              shadow_ray.tmin = 1e-2;
+              shadow_ray.tmax = 1000;
+              var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(1.0));
+              var light: Light;
+              light.L_i = bg_lookup(w_correct);
+              light.w_i = w_correct;
+              light.dist = 1000;
+              if(intersect_scene(&shadow_ray, &shadowhit))
+              {
+                light.L_i = vec3f(0.0);
+              }
+              return light;
+            }
+
             fn lambertian(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
               {
-                let light = sample_directional_light((*hit).position);
+                let light = sample_environmental_light((*hit).position, (*hit).position, prev);
                 
-                var v = 1.0;
-                var shadowray = get_shadow_ray(hit, light);
-                var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(1.0));
-                if(intersect_scene(&shadowray, &shadowhit))
-                  {
-                    v = 0.0;
-                  }
+                
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = (*hit).factor*((v*(*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
+                let reflight = (*hit).factor*(((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient);
 
                 var theta = acos(sqrt(rnd(prev)));
                 var phi = 2*pi*rnd(prev);
@@ -402,6 +419,28 @@
             return reflight;
           }
 
+          fn occlusion(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
+            {
+              let light = sample_environmental_light((*hit).position, (*hit).position, prev);
+              /*var theta = acos(sqrt(rnd(prev)));
+              if(dot((*r).direction, (*hit).normal)>0){(*hit).normal = - (*hit).normal;}
+              var phi = 2*pi*rnd(prev);
+              var w_sphere = spherical_direction(sin(theta), cos(theta), phi);
+              var w_correct = rotate_to_normal((*hit).normal, w_sphere);
+              var shadow_ray: Ray;
+              shadow_ray.direction = w_correct;
+              shadow_ray.origin = (*hit).position;
+              shadow_ray.tmin = 1e-2;
+              shadow_ray.tmax = 1000;
+              var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1, false, vec3f(0.0), vec3f(1.0));
+                  
+              if(intersect_scene(&shadow_ray, &shadowhit))
+              {
+                return vec3f(0.0);
+              }*/
+              return (*hit).diffuse*light.L_i;
+            }
+
         fn shade(r: ptr<function, Ray>, hit: ptr<function, HitInfo>, prev: ptr<function, u32>) -> vec3f
           {
           switch (*hit).shader {
@@ -410,7 +449,7 @@
           case 5 { return phong(r, hit, prev); }
           case 6 { return phong(r, hit, prev); }
           case 7 { return lambertian(r, hit, prev); }
-          case 9 { return lambertian(r, hit, prev); }
+          case 9 { return occlusion(r, hit, prev); }
           case default { return (*hit).ambient; }
           }
           }
@@ -717,7 +756,7 @@
         const tex_scaling = 1.0;
         if (intersect_plane((*r), hit, plane_onb, planepos, tex_scaling))
         {
-          (*hit).shader = 7;
+          (*hit).shader = 9;
           (*hit).diffuse = bg_lookup((*r).direction);
           (*r).tmax = hit.dist - 1e-2;
         }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\CMakeFiles\65c0911bf0128ec99845d349f8a10292\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6992C94F-9CEC-386F-9EA6-4D73BDC4F28D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

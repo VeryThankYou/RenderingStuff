@@ -1,4 +1,0 @@
-# CMake generation dependency list for this directory.
-C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/CMake/FindCUDA/run_nvcc.cmake
-C:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/SDK/optixCutouts/CMakeLists.txt
-C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX/optixCutouts/CMakeFiles/optixCutouts.dir/optixCutouts_generated_optixCutouts.cu.optixir.depend

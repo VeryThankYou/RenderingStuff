@@ -1,0 +1,11 @@
+newmtl light
+Ka 250.0 250.0 250.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+illum 0
+
+newmtl bunny_arealight
+Ka 1.0 1.0 1.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+illum 0

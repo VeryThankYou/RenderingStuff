@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA/run_nvcc.cmake
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render/CMakeFiles/render.dir/render_generated_shaders.cu.optixir.depend
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/CMakeLists.txt

@@ -1,0 +1,26 @@
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\RENDER\SHADERS.CU
+setlocal
+cd C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\render\CMakeFiles\render.dir
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/render_generated_shaders.cu.optixir -D generated_cubin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/render_generated_shaders.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/render_generated_shaders.cu.optixir.fatbin.txt -P C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render/CMakeFiles/render.dir//render_generated_shaders.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\RENDER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

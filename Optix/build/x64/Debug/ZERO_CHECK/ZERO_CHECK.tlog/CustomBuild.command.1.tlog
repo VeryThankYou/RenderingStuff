@@ -1,0 +1,10 @@
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\BUILD\CMAKEFILES\65C0911BF0128EC99845D349F8A10292\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render_OptiX.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

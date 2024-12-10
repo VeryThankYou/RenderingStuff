@@ -1,0 +1,42 @@
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\CUDA\SPHERE.CU
+setlocal
+cd C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\sutil\CMakeFiles\sutil.dir\__\cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_sphere.cu.optixir -D generated_cubin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_sphere.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_sphere.cu.optixir.fatbin.txt -P C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_sphere.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\CUDA\WHITTED.CU
+setlocal
+cd C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\sutil\CMakeFiles\sutil.dir\__\cuda
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D check_dependencies:BOOL=ON -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_whitted.cu.optixir -D generated_cubin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_whitted.cu.optixir.cubin.txt -D generated_fatbin_file:STRING=C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/Debug/sutil_generated_whitted.cu.optixir.fatbin.txt -P C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\SUTIL\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

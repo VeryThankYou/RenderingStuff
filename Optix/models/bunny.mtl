@@ -1,0 +1,64 @@
+newmtl white
+Ka 0.0 0.0 0.0
+Kd 0.9 0.9 0.9
+Ks 0.0 0.0 0.0
+illum 0
+
+newmtl silver
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.96 0.98 0.96
+Ni 0.177
+illum 11
+
+newmtl copper
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.95 0.63 0.54
+Ni 0.7
+illum 11
+
+newmtl gold
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.96 0.81 0.38
+Ni 0.95
+illum 11
+
+newmtl marble
+Ka 0.0 0.0 0.0
+Kd 0.83 0.79 0.75
+Ks 0.0 0.0 0.0
+Ni 1.5
+illum 14
+
+newmtl LowFatChocolateMilk
+Ns 1000.0
+Ka 0.0 0.0 0.0
+Kd 0.56 0.42 0.26
+Ks 0.0 0.0 0.0
+Ni 1.34
+illum 14
+
+newmtl GrapeFruit
+Ka 0.0 0.0 0.0
+Kd 0.9 0.9 0.9
+Ks 0.0 0.0 0.0
+Ni 1.3
+Ns 9
+illum 13
+
+newmtl glass
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 1.0 1.0 1.0
+Ni 1.5
+Ns 9
+illum 5
+
+newmtl potato
+Ka 0.000000 0.000000 0.000000
+Kd 0.770000 0.620000 0.210000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+illum 13

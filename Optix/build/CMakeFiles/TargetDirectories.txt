@@ -1,0 +1,9 @@
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render/CMakeFiles/render.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/optprops/CMakeFiles/optprops.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil_7_sdk.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/CMakeFiles/glad.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/GLFW/CMakeFiles/ALL_BUILD.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/GLFW/src/CMakeFiles/glfw.dir
+C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/imgui/CMakeFiles/imgui.dir

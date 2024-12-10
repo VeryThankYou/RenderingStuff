@@ -1,0 +1,12 @@
+-sh directional ../../models/bunny.obj
+-bgc 0 0 0 -sh arealight ../../models/CornellBox.obj ../../models/CornellBlocks.obj
+-sh directional ../../models/plane.obj ../../models/bunny.obj -sky 55.78 2.4 0
+-env ../../models/luxo_pxr_campus.png -sh directional ../../models/plane.obj ../../models/bunny.obj -sky 37.8324 2.4 0 -r 130 0 1 0 -t 320 14
+-bgc 0 0 0 -sh arealight ../../models/CornellBox.obj ../../models/CornellLeftSphere.obj ../../models/CornellRightSphere.obj
+-bgc 0 0 0 -sh arealight ../../models/CornellBox.obj ../../models/bunny.obj
+-env ../../models/luxo_pxr_campus.png ../../models/glass_wine.obj
+-bgc 0.8 0.9 1.0 ../../models/glass_wine.obj --dim=512x512
+-sh arealight ../../models/CornellBox.obj ../../models/bunny.obj ../../models/justElephant.obj --dim=512x512
+-rad 0 0 0 -sh envlight -srgb -env ../../models/luxo_pxr_campus.hdr ../../models/plane.obj ../../models/metal_ring.obj
+-sc 1.0e-3 -bgc 0 0 0 -sh arealight ../../models/disklight.obj ../../models/t_closed_bunny_vn.obj --dim=512x512
+-srgb -sc 1.0e-2 -bgc 0 0 0 -sh arealight ../../models/closed_bunny_arealight.obj ../../models/closed_bunny.obj --dim=640x640

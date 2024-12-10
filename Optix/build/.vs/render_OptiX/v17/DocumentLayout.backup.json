@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\build\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{35124CF2-5981-3A9C-8BF7-25DCF109ED71}|render\\render.vcxproj|C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35124CF2-5981-3A9C-8BF7-25DCF109ED71}|render\\render.vcxproj|C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\ObjScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "render.cpp",
+              "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp",
+              "RelativeDocumentMoniker": "..\\render\\render.cpp",
+              "ToolTip": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp",
+              "RelativeToolTip": "..\\render\\render.cpp",
+              "ViewState": "AgIAAEsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-10T13:11:30.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ObjScene.cpp",
+              "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\ObjScene.cpp",
+              "RelativeDocumentMoniker": "..\\render\\ObjScene.cpp",
+              "ToolTip": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\ObjScene.cpp",
+              "RelativeToolTip": "..\\render\\ObjScene.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-10T13:09:59.587Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

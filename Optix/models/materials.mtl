@@ -1,0 +1,36 @@
+newmtl marble
+Ka 0.0 0.0 0.0
+Kd 0.83 0.79 0.75
+Ks 0.0 0.0 0.0
+Ni 1.5
+illum 14
+
+newmtl LowFatChocolateMilk
+Ns 1000.0
+Ka 0.0 0.0 0.0
+Kd 0.56 0.42 0.26
+Ks 0.0 0.0 0.0
+Ni 1.34
+illum 14
+
+newmtl GrapeFruit
+Ka 0.0 0.0 0.0
+Kd 0.9 0.9 0.9
+Ks 0.0 0.0 0.0
+Ni 1.3
+Ns 9
+illum 13
+
+newmtl potato
+Ka 0.000000 0.000000 0.000000
+Kd 0.770000 0.620000 0.210000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+illum 13
+
+newmtl ketchup
+Ka 0.000000 0.000000 0.000000
+Kd 0.770000 0.620000 0.210000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+illum 13

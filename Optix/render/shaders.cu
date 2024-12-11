@@ -4,7 +4,7 @@
 #include <cuda/helpers.h>
 #include <cuda/random.h>
 #include <sutil/vec_math.h>
-
+#include "env_cameras.cu"
 #include "structs.h"
 #include "trace.h"
 #include "cdf_bsearch.h"
@@ -58,8 +58,8 @@ extern "C" __global__ void __raygen__pinhole()
   float3 accum_color = (payload.result + curr_sum)/static_cast<float>(frame + 1);
 
   lp.accum_buffer[image_idx] = make_float4(accum_color, 1.0f);
-  //lp.frame_buffer[image_idx] = make_color(accum_color);  // use to output sRGB images
-  lp.frame_buffer[image_idx] = make_rgba(accum_color);  // use to output RGB images (no gamma)
+  lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(accum_color)  // use to output sRGB images
+      : make_rgba(accum_color);  // use to output RGB images (no gamma)
 }
 
 

@@ -4,7 +4,6 @@
 #include <cuda/helpers.h>
 #include <cuda/random.h>
 #include <sutil/vec_math.h>
-#include "env_cameras.cu"
 #include "structs.h"
 #include "trace.h"
 #include "cdf_bsearch.h"
@@ -18,6 +17,7 @@ extern "C" {
 
 #include "envmap.h"
 #include "AreaLight.h"
+#include "env_cameras.cu"
 
 #define DIRECT
 #define INDIRECT

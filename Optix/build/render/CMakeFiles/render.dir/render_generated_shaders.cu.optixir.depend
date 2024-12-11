@@ -122,6 +122,7 @@ SET(CUDA_NVCC_DEPEND
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/cdf_bsearch.h"
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/complex.h"
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/drand48.h"
+ "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/env_cameras.cu"
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/envmap.h"
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/fresnel.h"
  "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/microfacet.h"

@@ -136,4 +136,5 @@ shaders.obj : C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/shader
     C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/fresnel.h \
     C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/microfacet.h \
     C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/envmap.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/AreaLight.h
+    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/AreaLight.h \
+    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/env_cameras.cu

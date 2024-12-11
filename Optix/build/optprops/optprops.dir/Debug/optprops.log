@@ -7,8 +7,8 @@
   LorenzMie.cpp
   apple_juice.cpp
   glass.cpp
-  incandescent.cpp
 C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\optprops\apple_juice.cpp(172,16): warning C4189: 'juice_density': local variable is initialized but not referenced
+  incandescent.cpp
   milk.cpp
   orange_juice.cpp
   sun.cpp

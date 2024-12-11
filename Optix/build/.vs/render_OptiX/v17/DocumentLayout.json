@@ -3,6 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\build\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{35124CF2-5981-3A9C-8BF7-25DCF109ED71}|render\\render.vcxproj|C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\shaders.cu||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35124CF2-5981-3A9C-8BF7-25DCF109ED71}|render\\render.vcxproj|C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\envmap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{35124CF2-5981-3A9C-8BF7-25DCF109ED71}|render\\render.vcxproj|C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -16,24 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "envmap.h",
+              "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\envmap.h",
+              "RelativeDocumentMoniker": "..\\render\\envmap.h",
+              "ToolTip": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\envmap.h",
+              "RelativeToolTip": "..\\render\\envmap.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T15:00:47.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "shaders.cu",
+              "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\shaders.cu",
+              "RelativeDocumentMoniker": "..\\render\\shaders.cu",
+              "ToolTip": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\shaders.cu",
+              "RelativeToolTip": "..\\render\\shaders.cu",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-11T14:58:22.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "render.cpp",
               "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp",
               "RelativeDocumentMoniker": "..\\render\\render.cpp",
               "ToolTip": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\render.cpp",
               "RelativeToolTip": "..\\render\\render.cpp",
-              "ViewState": "AgIAAJ8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-10T13:11:30.732Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T13:11:30.732Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ObjScene.cpp",
               "DocumentMoniker": "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\render\\ObjScene.cpp",
               "RelativeDocumentMoniker": "..\\render\\ObjScene.cpp",

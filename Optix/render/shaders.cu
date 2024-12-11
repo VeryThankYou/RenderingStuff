@@ -174,7 +174,7 @@ extern "C" __global__ void __closesthit__directional()
   float3 result = emission;
   const float tmin = 1.0e-4f;
   const float tmax = 1.0e16f; 
-
+  
 #ifdef DIRECT
   // Lambertian reflection
   for(unsigned int i = 0; i < lp.lights.count; ++i)

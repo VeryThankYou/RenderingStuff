@@ -150,8 +150,8 @@ dist_Mars_to_Sun = 2.28e11
 solid_angle_Earth = (surface_area/4)/(dist_Earth_to_Sun**2)
 solid_angle_Mars = (surface_area/4)/(dist_Mars_to_Sun**2)
 print(f"Surface area refers to 3d, but we want it in 2d (as a disk), hence divide with 4")
-print(f"The solid angle is {solid_angle_Earth}")
-print(f"The solid angle is {solid_angle_Mars}")
+print(f"The solid angle the sun is observed under from earth is {solid_angle_Earth}")
+print(f"The solid angle the sun is observed under from earth is {solid_angle_Mars}")
 
 irradiance_Earth = (total_power)/(4*np.pi*(dist_Earth_to_Sun**2))
 irradiance_Mars = (total_power)/(4*np.pi*(dist_Mars_to_Sun**2))

@@ -405,9 +405,21 @@
             }
             case default
             {
-              let color = texture_linear(my_texture, (*hit).texcoords, 1);
-              (*hit).diffuse = color;
-              (*hit).ambient = color;
+              switch shader_uniforms.nearest_or_linear
+              {
+                case 0 
+                {
+                  let color = texture_nearest(my_texture, (*hit).texcoords, 1);
+                  (*hit).diffuse = color;
+                  (*hit).ambient = color;
+                }
+                case default
+                {
+                  let color = texture_linear(my_texture, (*hit).texcoords, 1);
+                  (*hit).diffuse = color;
+                  (*hit).ambient = color;
+                }
+              }
             }
           }
           (*hit).shader = shader_uniforms.plane_shader;

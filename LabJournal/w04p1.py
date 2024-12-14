@@ -1,5 +1,6 @@
 import numpy as np
 
+
 """
 Part 1
 A small 25Wlight bulb has an efficiency of 20%. How many photons are approximately emitted per second?

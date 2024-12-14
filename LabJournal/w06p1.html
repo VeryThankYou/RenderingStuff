@@ -85,7 +85,7 @@
         @group(0) @binding(7) var<storage> bsp_planes: array<f32>;
         @group(0) @binding(8) var<uniform> aabb: array<vec3f, 2>;
         @group(0) @binding(9) var<storage> colors: array<vec4f>;
-
+        @group(0) @binding(10) var<storage> jitter: array<vec2f>;
       const pi = radians(180);
       
 
@@ -437,7 +437,8 @@
         for(var is = 0; is < shader_uniforms.sub_divisions; is++)
         {
           //if(is == 1){return vec4f(1.0, 1.0, 1.0, 1.0);}
-          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f);
+          let jittervec = jitter[is];
+          let uv = vec2f(coords.x*uniforms.aspect*0.5f, coords.y*0.5f) + jittervec;
           var r = get_camera_ray(uv);
           var result = vec3f(0.0);
           var hit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);

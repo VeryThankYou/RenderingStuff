@@ -108,7 +108,8 @@
         @group(0) @binding(7) var<storage> bsp_planes: array<f32>;
         @group(0) @binding(8) var<uniform> aabb: array<vec3f, 2>;
         @group(0) @binding(9) var<storage> mat_uniforms: array<MaterialUniforms>;
-        @group(0) @binding(10) var renderTexture: texture_2d<f32>;
+        @group(0) @binding(10) var<storage> light_indices: array<u32>;
+        @group(0) @binding(11) var renderTexture: texture_2d<f32>;
         
 
       const pi = radians(180);

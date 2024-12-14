@@ -77,6 +77,11 @@ async function main()
             size: 32, // number of bytes
             usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
             });
+            
+        const jitterBuffer = device.createBuffer({
+            size: jitter.byteLength,
+            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE
+            });
 
 
 
@@ -113,13 +118,16 @@ async function main()
                 {binding: 9, 
                 resource: { buffer: objectBuffers.colors }
                 },
+                {binding: 10, 
+                resource: { buffer: jitterBuffer }
+                },
             ],
             });
         
         
 
             pass.setBindGroup(0, bindGroup);
-            
+            device.queue.writeBuffer(jitterBuffer, 0, jitter);
             device.queue.writeBuffer(uniformBuffer, 0, uniforms);
             device.queue.writeBuffer(shaderBuffer, 0, shaderuniforms);
 

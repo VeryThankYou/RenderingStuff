@@ -365,6 +365,10 @@
                 let L_i = vec3f(mat_uniforms[mesh_faces[light_indices[i]].a].emission.r, mat_uniforms[mesh_faces[light_indices[i]].a].emission.g, mat_uniforms[mesh_faces[light_indices[i]].a].emission.b);
                 L_r += L_i * a_i * dot(nor_i, -w_i);
               }
+              if(dot(w_i, nor_l) < 0)
+              {
+                nor_l = - nor_l;
+              }
               L_r = L_r * dot(w_i, nor_l) / rsq;
               var light: Light;
               light.L_i = L_r;
@@ -389,13 +393,14 @@
               {
                 let light = sample_area_light((*hit).position);
                 var shadowray = get_shadow_ray(hit, light);
+                var v = 1.0;
                 var shadowhit = HitInfo(false, 0.0, vec3f(0.0), vec3f(0.0), vec3f(0.0), vec3f(0.0), 1, 1.0, 0.0, 0.0, vec2f(0.0, 0.0), -1);
                 if(intersect_scene(&shadowray, &shadowhit))
                   {
-                    (*hit).diffuse = vec3f(0.0, 0.0, 0.0);
+                    v = 0.0;
                   }
                 if(dot((*hit).normal, -(*r).direction) < 0){(*hit).normal = -(*hit).normal;}
-                let reflight = ((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, -light.w_i) + (*hit).ambient;
+                let reflight = v*((*hit).diffuse/pi) * light.L_i * dot((*hit).normal, light.w_i) + (*hit).ambient;
                 return reflight;
               }
 

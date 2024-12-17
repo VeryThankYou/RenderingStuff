@@ -81,6 +81,16 @@ extern "C" __global__ void __miss__envmap_radiance()
   PayloadRadiance* prd = getPayload();
   prd->result = env_lookup(ray_dir);
 #else
+  /*
+  float theta = acosf(ray_dir.y);
+  float phi = atan2f(ray_dir.x, -ray_dir.z);
+  float u = (phi + M_PIf) * 0.5f * M_1_PIf;
+  float v = theta * M_1_PIf;
+  int width = launch_params.env_width;
+  int height = launch_params.env_height;
+  int ui = int(floor(u * width));
+  int vi = int(floor(v * height));
+  setPayloadResult(launch_params.conditional_cdf[ui + vi*height] * env_lookup(ray_dir));*/
   setPayloadResult(env_lookup(ray_dir));
 #endif
 }
@@ -322,28 +332,78 @@ extern "C" __global__ void __closesthit__holdout()
   float3 result = emission;
   const float tmin = 1.0e-4f;
   const float tmax = 1.0e16f;
-#ifdef DIRECT
-  // Lambertian reflection
-  for(unsigned int i = 0; i < lp.lights.count; ++i)
-  {
-    const Directional& light = lp.lights[i];
-    const float3 wi = -light.direction;
-    const float cos_theta_i = dot(wi, n);
-    if(cos_theta_i > 0.0f)
-    {
-      const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
-      result += V*rho_d;
-    }
-  }
-#endif
-#ifdef INDIRECT
+
+
   // Indirect illumination
-  const bool V = !traceOcclusion(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax);
-  result += V*rho_d;
-#endif
-#if defined(DIRECT) && defined(INDIRECT)
-  result *= 0.5f;
-#endif
+  
+  float xi = rnd(t);
+  int ui = 0;
+  int vi = 0;
+  for (int v = 0; v < lp.env_height; v++)
+  {
+      for (int u = 0; u < lp.env_width; u++)
+      {
+          if (lp.conditional_cdf[u + v * lp.env_width] < xi)
+          {
+              ui = max(0, (u - 1));
+              vi = max(0, (v - 1));
+              break;
+          }
+      }
+      if (ui > 0) { break; }
+  }
+  float u = ((float)ui) / ((float)lp.env_width);
+  float v = ((float)vi) / ((float)lp.env_height);
+  float dy = -cos(v * (float)M_PI);
+  float dz = sqrt(((float)1.0 - dy * dy) / (tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) * tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) + (float)1.0));
+  float dx = -tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) * dz;
+  float unew = (float)((float)1.0 / (float)2.0) + ((float)1.0) / ((float)2.0 * (float)M_PI) * atan(dx / (-dz));
+  if (ui != int(floor(unew * (float)lp.env_width)))
+  {
+      dz = -dz;
+      dx = -dx;
+  }
+  float3 new_dir = make_float3(dx, dy, dz) / length(make_float3(dx, dy, dz));
+  /*
+  while (dot(n, new_dir) < 0)
+  {
+      xi = rnd(t);
+      ui = 0;
+      vi = 0;
+      for (int v = 0; v < lp.env_height; v++)
+      {
+          for (int u = 0; u < lp.env_width; u++)
+          {
+              if (lp.conditional_cdf[u + v * lp.env_width] < xi)
+              {
+                  ui = max(0, (u - 1));
+                  vi = max(0, (v - 1));
+                  break;
+              }
+          }
+          if (ui > 0) { break; }
+      }
+      u = ((float)ui) / ((float)lp.env_width);
+      v = ((float)vi) / ((float)lp.env_height);
+      dy = -cos(v * (float)M_PI);
+      dz = sqrt(((float)1.0 - dy * dy) / (tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) * tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) + (float)1.0));
+      dx = -tan((u - (float)((float)1.0 / (float)2.0)) * (float)2.0 * (float)M_PI) * dz;
+      unew = (float)((float)1.0 / (float)2.0) + ((float)1.0) / ((float)2.0 * (float)M_PI) * atan(dx / (-dz));
+      if (ui != int(floor(unew * (float)lp.env_width)))
+      {
+          dz = -dz;
+          dx = -dx;
+      }
+      new_dir = make_float3(dx, dy, dz) / length(make_float3(dx, dy, dz));
+  }
+  */
+  const float3 Lenv = env_lookup(new_dir);
+  PayloadRadiance payload;
+  payload.depth = depth + 1;
+  payload.seed = t;
+  payload.emit = 0;
+  traceRadiance(lp.handle, x, new_dir, tmin, tmax, &payload);
+  result += payload.result*rho_d/Lenv;
 #ifdef PASS_PAYLOAD_POINTER
 #ifndef INDIRECT
   PayloadRadiance* prd = getPayload();

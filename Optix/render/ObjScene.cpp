@@ -90,6 +90,39 @@ void ObjScene::initScene(bool bsdf)
       scene.addImage(hdr.width(), hdr.height(), 32, 4, hdr.raster());
       launch_params.env_width = hdr.width();
       launch_params.env_height = hdr.height();
+
+      vector<float> d = {};
+      vector<float> c = {};
+      float sumd = 0.0;
+
+      for (int i = 0; i < hdr.width() * hdr.height(); i++)
+      {
+          float light = hdr.raster()[4 * i] + hdr.raster()[4 * i + 1] + hdr.raster()[4 * i + 2];
+          d.push_back(light);
+          sumd += light;
+      }
+      float avg = sumd / (hdr.width() * hdr.height());
+      sumd = 0.0;
+      for (int i = 0; i < hdr.width() * hdr.height(); i++)
+      {
+          float light = (float)max((float)0.0, (float)(d.at(i) - avg));
+          d[i] = light;
+          sumd += light;
+      }
+      for (int i = 0; i < hdr.width() * hdr.height(); i++)
+      {
+          d[i] = d[i] / sumd;
+          if (i == 0)
+          {
+              c.push_back(d[i]);
+          }
+          else
+          {
+              c.push_back(d[i] + c[i-1]);
+          }
+      }
+      float* cdf = &c[0];
+      launch_params.conditional_cdf = cdf;
     }
     else
     {
@@ -162,6 +195,7 @@ void ObjScene::initLaunchParams(const Scene& scene)
   if(use_envmap)
   {
     lp.envmap = scene.getSampler(0);
+    
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.env_luminance), lp.env_width*lp.env_height*sizeof(float)));
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.marginal_f), lp.env_height*sizeof(float)));
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.marginal_pdf), lp.env_height*sizeof(float)));

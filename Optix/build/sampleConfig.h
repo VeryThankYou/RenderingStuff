@@ -28,9 +28,9 @@
 
 #pragma once
 
-#define SAMPLES_DIR "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix"
-#define SAMPLES_PTX_DIR "C:\\Users\\erikb\\Documents\\GitHub\\RenderingStuff\\Optix\\build\\lib\\ptx"
-#define SAMPLES_CUDA_DIR "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda"
+#define SAMPLES_DIR "D:/Github2/RenderingStuff/Optix"
+#define SAMPLES_PTX_DIR "D:\\Github2\\RenderingStuff\\Optix\\build\\lib\\ptx"
+#define SAMPLES_CUDA_DIR "D:/Github2/RenderingStuff/Optix/cuda"
 
 // Include directories
 #define SAMPLES_RELATIVE_INCLUDE_DIRS \

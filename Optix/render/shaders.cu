@@ -4,6 +4,7 @@
 #include <cuda/helpers.h>
 #include <cuda/random.h>
 #include <sutil/vec_math.h>
+
 #include "structs.h"
 #include "trace.h"
 #include "cdf_bsearch.h"
@@ -18,7 +19,6 @@ extern "C" {
 #include "envmap.h"
 #include "AreaLight.h"
 #include "env_cameras.cu"
-
 #define DIRECT
 #define INDIRECT
 
@@ -57,7 +57,6 @@ extern "C" __global__ void __raygen__pinhole()
   float3 curr_sum = make_float3(lp.accum_buffer[image_idx])*static_cast<float>(frame);
   float3 accum_color = (payload.result + curr_sum)/static_cast<float>(frame + 1);
 
-  lp.accum_buffer[image_idx] = make_float4(accum_color, 1.0f);
   lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(accum_color)  // use to output sRGB images
       : make_rgba(accum_color);  // use to output RGB images (no gamma)
 }
@@ -174,7 +173,7 @@ extern "C" __global__ void __closesthit__directional()
   float3 result = emission;
   const float tmin = 1.0e-4f;
   const float tmax = 1.0e16f; 
-  
+
 #ifdef DIRECT
   // Lambertian reflection
   for(unsigned int i = 0; i < lp.lights.count; ++i)
@@ -323,7 +322,6 @@ extern "C" __global__ void __closesthit__holdout()
   float3 result = emission;
   const float tmin = 1.0e-4f;
   const float tmax = 1.0e16f;
-
 #ifdef DIRECT
   // Lambertian reflection
   for(unsigned int i = 0; i < lp.lights.count; ++i)

@@ -1,8 +1,8 @@
-﻿  Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/imgui/CMakeLists.txt
+﻿  Building Custom Rule D:/Github2/RenderingStuff/Optix/support/imgui/CMakeLists.txt
   imgui.cpp
   imgui_demo.cpp
   imgui_draw.cpp
   imgui_impl_glfw.cpp
   imgui_impl_opengl3.cpp
   imgui_widgets.cpp
-  imgui.vcxproj -> C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\lib\Debug\imgui.lib
+  imgui.vcxproj -> D:\Github2\RenderingStuff\Optix\build\lib\Debug\imgui.lib

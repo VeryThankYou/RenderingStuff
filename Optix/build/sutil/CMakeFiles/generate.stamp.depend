@@ -1,5 +1,5 @@
 # CMake generation dependency list for this directory.
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA/run_nvcc.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_sphere.cu.optixir.depend
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.depend
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/CMakeLists.txt
+D:/Github2/RenderingStuff/Optix/CMake/FindCUDA/run_nvcc.cmake
+D:/Github2/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_sphere.cu.optixir.depend
+D:/Github2/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.depend
+D:/Github2/RenderingStuff/Optix/sutil/CMakeLists.txt

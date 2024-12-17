@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix
+# Install script for directory: D:/Github2/RenderingStuff/Optix
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,17 +34,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render/cmake_install.cmake")
-  include("C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/optprops/cmake_install.cmake")
-  include("C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/cmake_install.cmake")
-  include("C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/cmake_install.cmake")
+  include("D:/Github2/RenderingStuff/Optix/build/render/cmake_install.cmake")
+  include("D:/Github2/RenderingStuff/Optix/build/optprops/cmake_install.cmake")
+  include("D:/Github2/RenderingStuff/Optix/build/sutil/cmake_install.cmake")
+  include("D:/Github2/RenderingStuff/Optix/build/support/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/install_local_manifest.txt"
+  file(WRITE "D:/Github2/RenderingStuff/Optix/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -60,6 +60,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "D:/Github2/RenderingStuff/Optix/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

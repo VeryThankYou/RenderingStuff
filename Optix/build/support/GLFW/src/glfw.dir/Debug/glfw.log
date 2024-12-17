@@ -1,4 +1,4 @@
-﻿  Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/GLFW/src/CMakeLists.txt
+﻿  Building Custom Rule D:/Github2/RenderingStuff/Optix/support/GLFW/src/CMakeLists.txt
   context.c
   init.c
   input.c
@@ -13,5 +13,5 @@
   win32_window.c
   wgl_context.c
   egl_context.c
-     Creating library C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Debug/glfw3dll.lib and object C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Debug/glfw3dll.exp
-  glfw.vcxproj -> C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\Debug\glfw3.dll
+     Creating library D:/Github2/RenderingStuff/Optix/build/lib/Debug/glfw3dll.lib and object D:/Github2/RenderingStuff/Optix/build/lib/Debug/glfw3dll.exp
+  glfw.vcxproj -> D:\Github2\RenderingStuff\Optix\build\bin\Debug\glfw3.dll

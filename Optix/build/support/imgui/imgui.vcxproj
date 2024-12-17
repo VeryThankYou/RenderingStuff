@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{89D2A113-9632-3CE6-9DE0-B98F0B76A5BB}</ProjectGuid>
+    <ProjectGuid>{AAFAB53A-EB8C-39B3-8B68-BD523640A07F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -59,26 +59,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\lib\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github2\RenderingStuff\Optix\build\lib\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">imgui.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">imgui</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\lib\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github2\RenderingStuff\Optix\build\lib\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">imgui.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">imgui</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\lib\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github2\RenderingStuff\Optix\build\lib\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">imgui.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">imgui</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\lib\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github2\RenderingStuff\Optix\build\lib\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">imgui.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">imgui</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -101,10 +101,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;IMGUI_IMPL_OPENGL_LOADER_GLAD;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -143,10 +143,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;IMGUI_IMPL_OPENGL_LOADER_GLAD;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -159,7 +159,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -183,10 +183,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;IMGUI_IMPL_OPENGL_LOADER_GLAD;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -199,7 +199,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -222,10 +222,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;IMGUI_IMPL_OPENGL_LOADER_GLAD;_USE_MATH_DEFINES;NOMINMAX;GLFW_DLL;GLAD_GLAPI_EXPORT;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\.;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\imgui\.;D:\Github2\RenderingStuff\Optix\support\GLFW\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -237,11 +237,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\CMakeLists.txt">
+    <CustomBuild Include="D:\Github2\RenderingStuff\Optix\support\imgui\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -250,11 +250,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github2\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -263,11 +263,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github2\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -276,11 +276,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github2\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/imgui/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/imgui/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -289,40 +289,40 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github2\RenderingStuff\Optix\build\support\imgui\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imconfig.h" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui.cpp" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_demo.cpp" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_draw.cpp" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui.h" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_impl_glfw.cpp" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_impl_glfw.h" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_impl_opengl3.cpp" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_internal.h" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imgui_widgets.cpp" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imstb_rectpack.h" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imstb_textedit.h" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\imgui\imstb_truetype.h" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imconfig.h" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui.cpp" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_demo.cpp" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_draw.cpp" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui.h" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_impl_glfw.cpp" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_impl_glfw.h" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_impl_opengl3.cpp" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_internal.h" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\imgui\imgui_widgets.cpp" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imstb_rectpack.h" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imstb_textedit.h" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\ZERO_CHECK.vcxproj">
-      <Project>{523306B4-4CB7-3CE1-9894-E877F1C96300}</Project>
+    <ProjectReference Include="D:\Github2\RenderingStuff\Optix\build\ZERO_CHECK.vcxproj">
+      <Project>{C4D2A5ED-9CA9-37AB-8C46-D52A56D1E561}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\glad.vcxproj">
-      <Project>{FC6F0E15-42C3-3658-8F28-A541CCA058C2}</Project>
+    <ProjectReference Include="D:\Github2\RenderingStuff\Optix\build\support\glad.vcxproj">
+      <Project>{9A820387-5FB8-3F16-8974-FD1244C9EC57}</Project>
       <Name>glad</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\GLFW\src\glfw.vcxproj">
-      <Project>{9AF70A94-8F78-3F69-A2D1-3DB026D1C73E}</Project>
+    <ProjectReference Include="D:\Github2\RenderingStuff\Optix\build\support\GLFW\src\glfw.vcxproj">
+      <Project>{9A66D60F-34F7-3A0C-BFBB-CAA5677A8F08}</Project>
       <Name>glfw</Name>
     </ProjectReference>
   </ItemGroup>

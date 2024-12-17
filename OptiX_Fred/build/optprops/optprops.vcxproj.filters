@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\Medium.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\load_mpml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\Parse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\XmlParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\string_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\LorenzMie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\apple_juice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\glass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\incandescent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\milk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\orange_juice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\sun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\water.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\Medium.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\load_mpml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\Parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\XmlParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\string_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\spectrum2rgb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\spectrum2xyz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\cdf_bsearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\LorenzMie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\apple_juice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\glass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\incandescent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\milk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\orange_juice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\sun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\water.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{074A4737-A068-374A-9087-4A5ED0D24D0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1D4685E2-1D60-3E7B-8E6C-FA8D71EAB603}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

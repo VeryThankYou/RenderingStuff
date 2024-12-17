@@ -1,0 +1,10 @@
+﻿  Building NVCC optixir file lib/ptx/Debug/render_generated_shaders.cu.optixir
+  shaders.cu
+C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\shaders.cu(507): warning #177-D: variable "s" was declared but never referenced
+      const float s = 1.0f/hit_group_data->mtl_inside.shininess;
+                  ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+  shaders.cu
+  render.vcxproj -> C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\bin\Debug\render.exe

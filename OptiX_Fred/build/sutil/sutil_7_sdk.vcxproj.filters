@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\GLDisplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\PPMLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\sutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Trackball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\sampleConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\BufferView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\GeometryData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\LocalGeometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\MaterialData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Aabb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\CuBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\CUDAOutputBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\GLDisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\PPMLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Preprocessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Record.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\sutilapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\sutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\Trackball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\vec_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\sphere.cu">
+      <Filter>CUDA Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\cuda\whitted.cu">
+      <Filter>CUDA Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\sutil\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\lib\ptx\$(Configuration)\sutil_generated_sphere.cu.optixir" />
+    <None Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\lib\ptx\$(Configuration)\sutil_generated_whitted.cu.optixir" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CUDA Files">
+      <UniqueIdentifier>{E8221B77-DB17-33A2-B0C5-5AF8C1B662E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{074A4737-A068-374A-9087-4A5ED0D24D0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1D4685E2-1D60-3E7B-8E6C-FA8D71EAB603}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

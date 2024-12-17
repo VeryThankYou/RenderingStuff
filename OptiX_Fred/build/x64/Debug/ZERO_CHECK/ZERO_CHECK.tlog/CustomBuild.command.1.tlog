@@ -1,0 +1,10 @@
+^C:\USERS\FREDE\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX_FRED\BUILD\CMAKEFILES\30F99E12955CE38ACD4BD26A016EA818\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred -BC:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/render_OptiX.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,17 @@
+﻿  Building Custom Rule C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/optprops/CMakeLists.txt
+  Medium.cpp
+  load_mpml.cpp
+  Parse.cpp
+  XmlParser.cpp
+  string_utils.cpp
+  LorenzMie.cpp
+  apple_juice.cpp
+  glass.cpp
+  incandescent.cpp
+  milk.cpp
+  orange_juice.cpp
+  sun.cpp
+  water.cpp
+C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\optprops\apple_juice.cpp(172,16): warning C4189: 'juice_density': local variable is initialized but not referenced
+     Creating library C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/lib/Debug/optprops.lib and object C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/lib/Debug/optprops.exp
+  optprops.vcxproj -> C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\bin\Debug\optprops.dll

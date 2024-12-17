@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\ObjScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\HDRLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\QuatTrackBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\SunSky.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\ObjScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\HDRLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\QuatTrackBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\SunSky.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\rand31.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\sampler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\cdf_bsearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\fresnel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\microfacet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\phasefunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\envmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\directional_dipole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\Directional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\AreaLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\sdf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\shaders.cu">
+      <Filter>CUDA Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\build\lib\ptx\$(Configuration)\render_generated_shaders.cu.optixir" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CUDA Files">
+      <UniqueIdentifier>{E8221B77-DB17-33A2-B0C5-5AF8C1B662E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{074A4737-A068-374A-9087-4A5ED0D24D0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1D4685E2-1D60-3E7B-8E6C-FA8D71EAB603}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

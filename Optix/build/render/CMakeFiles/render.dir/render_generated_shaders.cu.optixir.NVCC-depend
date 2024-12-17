@@ -1,5 +1,5 @@
-shaders.obj : C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/shaders.cu \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/shaders.cu \
+shaders.obj : D:/Github2/RenderingStuff/Optix/render/shaders.cu \
+    D:/Github2/RenderingStuff/Optix/render/shaders.cu \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/cuda_runtime.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/crt/host_config.h \
     C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.42.34433/include/crtdefs.h \
@@ -110,31 +110,31 @@ shaders.obj : C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/shader
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/optix_types.h \
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/internal/optix_device_impl.h \
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/internal/optix_device_impl_transformations.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/LocalGeometry.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/Matrix.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/sutilapi.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/Preprocessor.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/vec_math.h \
+    D:/Github2/RenderingStuff/Optix/cuda/LocalGeometry.h \
+    D:/Github2/RenderingStuff/Optix/sutil/Matrix.h \
+    D:/Github2/RenderingStuff/Optix/sutil/sutilapi.h \
+    D:/Github2/RenderingStuff/Optix/sutil/Preprocessor.h \
+    D:/Github2/RenderingStuff/Optix/sutil/vec_math.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/vector_functions.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/vector_types.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/BufferView.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/GeometryData.h \
+    D:/Github2/RenderingStuff/Optix/cuda/BufferView.h \
+    D:/Github2/RenderingStuff/Optix/cuda/GeometryData.h \
     C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.42.34433/include/cassert \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/util.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/helpers.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/random.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/structs.h \
+    D:/Github2/RenderingStuff/Optix/cuda/util.h \
+    D:/Github2/RenderingStuff/Optix/cuda/helpers.h \
+    D:/Github2/RenderingStuff/Optix/cuda/random.h \
+    D:/Github2/RenderingStuff/Optix/render/structs.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/texture_types.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/Directional.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/complex.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/SunSky.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/trace.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/cdf_bsearch.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/sampler.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/rand31.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/drand48.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/fresnel.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/microfacet.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/envmap.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/AreaLight.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/render/env_cameras.cu
+    D:/Github2/RenderingStuff/Optix/render/Directional.h \
+    D:/Github2/RenderingStuff/Optix/render/complex.h \
+    D:/Github2/RenderingStuff/Optix/render/SunSky.h \
+    D:/Github2/RenderingStuff/Optix/render/trace.h \
+    D:/Github2/RenderingStuff/Optix/render/cdf_bsearch.h \
+    D:/Github2/RenderingStuff/Optix/render/sampler.h \
+    D:/Github2/RenderingStuff/Optix/render/rand31.h \
+    D:/Github2/RenderingStuff/Optix/render/drand48.h \
+    D:/Github2/RenderingStuff/Optix/render/fresnel.h \
+    D:/Github2/RenderingStuff/Optix/render/microfacet.h \
+    D:/Github2/RenderingStuff/Optix/render/envmap.h \
+    D:/Github2/RenderingStuff/Optix/render/AreaLight.h \
+    D:/Github2/RenderingStuff/Optix/render/env_cameras.cu

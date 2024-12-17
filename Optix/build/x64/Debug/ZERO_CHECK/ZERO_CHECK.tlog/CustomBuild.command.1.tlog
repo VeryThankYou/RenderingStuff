@@ -1,6 +1,6 @@
-^C:\USERS\ERIKB\DOCUMENTS\GITHUB\RENDERINGSTUFF\OPTIX\BUILD\CMAKEFILES\65C0911BF0128EC99845D349F8A10292\GENERATE.STAMP.RULE
+^D:\GITHUB2\RENDERINGSTUFF\OPTIX\BUILD\CMAKEFILES\EC6FCC046A9BA7D48CAC9561F6347D33\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/render_OptiX.sln
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Github2/RenderingStuff/Optix/build/render_OptiX.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

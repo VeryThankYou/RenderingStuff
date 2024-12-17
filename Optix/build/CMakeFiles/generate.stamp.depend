@@ -32,16 +32,16 @@ C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC-CXX.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/CompilerInfo.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/ConfigCompilerFlags.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA/select_compute_arch.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindOptiX.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/Macros.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/sse_support.h.in
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMakeLists.txt
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/3.31.1/CMakeCCompiler.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/3.31.1/CMakeCXXCompiler.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/3.31.1/CMakeRCCompiler.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/CMakeFiles/3.31.1/CMakeSystem.cmake
-C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sampleConfig.h.in
+D:/Github2/RenderingStuff/Optix/CMake/CompilerInfo.cmake
+D:/Github2/RenderingStuff/Optix/CMake/ConfigCompilerFlags.cmake
+D:/Github2/RenderingStuff/Optix/CMake/FindCUDA.cmake
+D:/Github2/RenderingStuff/Optix/CMake/FindCUDA/select_compute_arch.cmake
+D:/Github2/RenderingStuff/Optix/CMake/FindOptiX.cmake
+D:/Github2/RenderingStuff/Optix/CMake/Macros.cmake
+D:/Github2/RenderingStuff/Optix/CMake/sse_support.h.in
+D:/Github2/RenderingStuff/Optix/CMakeLists.txt
+D:/Github2/RenderingStuff/Optix/build/CMakeFiles/3.31.2/CMakeCCompiler.cmake
+D:/Github2/RenderingStuff/Optix/build/CMakeFiles/3.31.2/CMakeCXXCompiler.cmake
+D:/Github2/RenderingStuff/Optix/build/CMakeFiles/3.31.2/CMakeRCCompiler.cmake
+D:/Github2/RenderingStuff/Optix/build/CMakeFiles/3.31.2/CMakeSystem.cmake
+D:/Github2/RenderingStuff/Optix/sampleConfig.h.in

@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FC6F0E15-42C3-3658-8F28-A541CCA058C2}</ProjectGuid>
+    <ProjectGuid>{9A820387-5FB8-3F16-8974-FD1244C9EC57}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github2\RenderingStuff\Optix\build\bin\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glad.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glad</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github2\RenderingStuff\Optix\build\bin\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glad.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glad</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github2\RenderingStuff\Optix\build\bin\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">glad.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">glad</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github2\RenderingStuff\Optix\build\bin\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">glad.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">glad</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
@@ -87,7 +87,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -110,10 +110,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GLAD_GLAPI_EXPORT_BUILD;GLAD_GLAPI_EXPORT;_USE_MATH_DEFINES;NOMINMAX;CMAKE_INTDIR=\"Debug\";glad_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -126,8 +126,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Debug/glad.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/bin/Debug/glad.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Github2/RenderingStuff/Optix/build/lib/Debug/glad.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github2/RenderingStuff/Optix/build/bin/Debug/glad.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -136,7 +136,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -162,10 +162,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLAD_GLAPI_EXPORT_BUILD;GLAD_GLAPI_EXPORT;_USE_MATH_DEFINES;NOMINMAX;CMAKE_INTDIR=\"Release\";glad_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -178,8 +178,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Release/glad.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/bin/Release/glad.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Github2/RenderingStuff/Optix/build/lib/Release/glad.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github2/RenderingStuff/Optix/build/bin/Release/glad.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -188,7 +188,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -212,10 +212,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLAD_GLAPI_EXPORT_BUILD;GLAD_GLAPI_EXPORT;_USE_MATH_DEFINES;NOMINMAX;CMAKE_INTDIR=\"MinSizeRel\";glad_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -228,8 +228,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/MinSizeRel/glad.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/bin/MinSizeRel/glad.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Github2/RenderingStuff/Optix/build/lib/MinSizeRel/glad.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github2/RenderingStuff/Optix/build/bin/MinSizeRel/glad.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -238,7 +238,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w34101 /w34189 /w34018 /w34389</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -261,10 +261,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLAD_GLAPI_EXPORT_BUILD;GLAD_GLAPI_EXPORT;_USE_MATH_DEFINES;NOMINMAX;CMAKE_INTDIR=\"RelWithDebInfo\";glad_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\cuda;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\NVIDIA Corporation\OptiX SDK 8.1.0\include;D:\Github2\RenderingStuff\Optix\cuda;D:\Github2\RenderingStuff\Optix;D:\Github2\RenderingStuff\Optix\build\include;D:\Github2\RenderingStuff\Optix\build;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\include;D:\Github2\RenderingStuff\Optix\support\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -277,8 +277,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/RelWithDebInfo/glad.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/bin/RelWithDebInfo/glad.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Github2/RenderingStuff/Optix/build/lib/RelWithDebInfo/glad.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github2/RenderingStuff/Optix/build/bin/RelWithDebInfo/glad.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -286,11 +286,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\CMakeLists.txt">
+    <CustomBuild Include="D:\Github2\RenderingStuff\Optix\support\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -299,11 +299,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github2\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -312,11 +312,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github2\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -325,11 +325,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github2\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/support/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Github2/RenderingStuff/Optix/support/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix -BC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build --check-stamp-file C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github2/RenderingStuff/Optix -BD:/Github2/RenderingStuff/Optix/build --check-stamp-file D:/Github2/RenderingStuff/Optix/build/support/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -338,19 +338,19 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github2\RenderingStuff\Optix\build\support\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\KHR\khrplatform.h" />
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\glad\glad.c" />
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\glad\glad.h" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\KHR\khrplatform.h" />
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\glad\glad.c" />
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\glad\glad.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\ZERO_CHECK.vcxproj">
-      <Project>{523306B4-4CB7-3CE1-9894-E877F1C96300}</Project>
+    <ProjectReference Include="D:\Github2\RenderingStuff\Optix\build\ZERO_CHECK.vcxproj">
+      <Project>{C4D2A5ED-9CA9-37AB-8C46-D52A56D1E561}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

@@ -64,18 +64,18 @@ endif()
 
 # Set these up as variables to make reading the generated file easier
 set(CMAKE_COMMAND "C:/Program Files/CMake/bin/cmake.exe") # path
-set(source_file "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/whitted.cu") # path
-set(NVCC_generated_dependency_file "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.NVCC-depend") # path
-set(cmake_dependency_file "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.depend") # path
-set(CUDA_make2cmake "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA/make2cmake.cmake") # path
-set(CUDA_parse_cubin "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/CMake/FindCUDA/parse_cubin.cmake") # path
+set(source_file "D:/Github2/RenderingStuff/Optix/cuda/whitted.cu") # path
+set(NVCC_generated_dependency_file "D:/Github2/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.NVCC-depend") # path
+set(cmake_dependency_file "D:/Github2/RenderingStuff/Optix/build/sutil/CMakeFiles/sutil.dir/__/cuda/sutil_generated_whitted.cu.optixir.depend") # path
+set(CUDA_make2cmake "D:/Github2/RenderingStuff/Optix/CMake/FindCUDA/make2cmake.cmake") # path
+set(CUDA_parse_cubin "D:/Github2/RenderingStuff/Optix/CMake/FindCUDA/parse_cubin.cmake") # path
 set(build_cubin OFF) # bool
 set(CUDA_HOST_COMPILER "$(VCInstallDir)Tools/MSVC/$(VCToolsVersion)/bin/Host$(PreferredToolArchitecture)/$(PlatformTarget)") # path
 # We won't actually use these variables for now, but we need to set this, in
 # order to force this file to be run again if it changes.
-set(generated_file_path "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/$(Configuration)") # path
-set(generated_file_internal "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/$(Configuration)/sutil_generated_whitted.cu.optixir") # path
-set(generated_cubin_file_internal "C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/ptx/$(Configuration)/sutil_generated_whitted.cu.optixir.cubin.txt") # path
+set(generated_file_path "D:/Github2/RenderingStuff/Optix/build/lib/ptx/$(Configuration)") # path
+set(generated_file_internal "D:/Github2/RenderingStuff/Optix/build/lib/ptx/$(Configuration)/sutil_generated_whitted.cu.optixir") # path
+set(generated_cubin_file_internal "D:/Github2/RenderingStuff/Optix/build/lib/ptx/$(Configuration)/sutil_generated_whitted.cu.optixir.cubin.txt") # path
 
 set(CUDA_REMOVE_GLOBAL_MEMORY_SPACE_WARNING ON)
 
@@ -87,7 +87,7 @@ set(CUDA_NVCC_FLAGS_RELEASE  ; )
 set(CUDA_NVCC_FLAGS_MINSIZEREL  ; )
 set(CUDA_NVCC_FLAGS_RELWITHDEBINFO  ; )
 set(nvcc_flags -m64;-D_USE_MATH_DEFINES;-DNOMINMAX) # list
-set(CUDA_NVCC_INCLUDE_ARGS "-IC:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/include;-IC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/include;-IC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda;-IC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix;-IC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/include;-IC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build;-IC:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/include;-IC:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil") # list (needs to be in quotes to handle spaces properly).
+set(CUDA_NVCC_INCLUDE_ARGS "-IC:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/include;-IC:/ProgramData/NVIDIA Corporation/OptiX SDK 8.1.0/include;-ID:/Github2/RenderingStuff/Optix/cuda;-ID:/Github2/RenderingStuff/Optix;-ID:/Github2/RenderingStuff/Optix/build/include;-ID:/Github2/RenderingStuff/Optix/build;-IC:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/include;-ID:/Github2/RenderingStuff/Optix/sutil") # list (needs to be in quotes to handle spaces properly).
 set(format_flag "-optix-ir") # string
 set(cuda_language_flag ) # list
 

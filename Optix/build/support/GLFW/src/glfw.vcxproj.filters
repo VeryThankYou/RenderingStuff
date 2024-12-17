@@ -1,84 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\context.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\init.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\input.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\input.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\monitor.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\vulkan.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\vulkan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\window.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_init.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_joystick.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_joystick.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_monitor.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_time.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_time.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_tls.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_tls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_window.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\wgl_context.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\wgl_context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\egl_context.c">
+    <ClCompile Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\egl_context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\internal.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\support\GLFW\src\glfw_config.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\build\support\GLFW\src\glfw_config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include\GLFW\glfw3.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\include\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\include\GLFW\glfw3native.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\include\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_platform.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\win32_joystick.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\win32_joystick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\wgl_context.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\wgl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\egl_context.h">
+    <ClInclude Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\egl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\support\GLFW\src\CMakeLists.txt" />
+    <CustomBuild Include="D:\Github2\RenderingStuff\Optix\support\GLFW\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{1DE3730B-9A9A-3862-8A1C-E626E9D437E5}</UniqueIdentifier>
+      <UniqueIdentifier>{BFD73C70-6BC8-3741-8B7C-2910DEE15AA8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{E903CAC2-9632-34C6-AFEA-074436C50C90}</UniqueIdentifier>
+      <UniqueIdentifier>{C80F8B6A-7B46-345F-AC56-3869D23DF2DE}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

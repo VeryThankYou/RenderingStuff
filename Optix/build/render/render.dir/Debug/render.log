@@ -1,17 +1,10 @@
 ﻿  Building NVCC optixir file lib/ptx/Debug/render_generated_shaders.cu.optixir
   shaders.cu
-C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\render\shaders.cu(507): warning #177-D: variable "s" was declared but never referenced
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(506): warning #177-D: variable "s" was declared but never referenced
       const float s = 1.0f/hit_group_data->mtl_inside.shininess;
                   ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
   
   shaders.cu
-  render.cpp
-  ObjScene.cpp
-  HDRLoader.cpp
-  QuatTrackBall.cpp
-  SunSky.cpp
-     Creating library C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Debug/render.lib and object C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/build/lib/Debug/render.exp
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  render.vcxproj -> C:\Users\erikb\Documents\GitHub\RenderingStuff\Optix\build\bin\Debug\render.exe
+  render.vcxproj -> D:\Github2\RenderingStuff\Optix\build\bin\Debug\render.exe

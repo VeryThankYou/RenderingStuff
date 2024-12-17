@@ -1,5 +1,5 @@
-sphere.obj : C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/sphere.cu \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/sphere.cu \
+sphere.obj : D:/Github2/RenderingStuff/Optix/cuda/sphere.cu \
+    D:/Github2/RenderingStuff/Optix/cuda/sphere.cu \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/cuda_runtime.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/crt/host_config.h \
     C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.42.34433/include/crtdefs.h \
@@ -110,13 +110,13 @@ sphere.obj : C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/sphere.cu
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/optix_types.h \
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/internal/optix_device_impl.h \
     C:/ProgramData/NVIDIA\ Corporation/OptiX\ SDK\ 8.1.0/include/internal/optix_device_impl_transformations.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/vec_math.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/sutil/Preprocessor.h \
+    D:/Github2/RenderingStuff/Optix/sutil/vec_math.h \
+    D:/Github2/RenderingStuff/Optix/sutil/Preprocessor.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/vector_functions.h \
     C:/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.6/include/vector_types.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/whitted.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/BufferView.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/GeometryData.h \
+    D:/Github2/RenderingStuff/Optix/cuda/whitted.h \
+    D:/Github2/RenderingStuff/Optix/cuda/BufferView.h \
+    D:/Github2/RenderingStuff/Optix/cuda/GeometryData.h \
     C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.42.34433/include/cassert \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/Light.h \
-    C:/Users/erikb/Documents/GitHub/RenderingStuff/Optix/cuda/MaterialData.h
+    D:/Github2/RenderingStuff/Optix/cuda/Light.h \
+    D:/Github2/RenderingStuff/Optix/cuda/MaterialData.h

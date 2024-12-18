@@ -6,10 +6,10 @@
       "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\shaders.cu||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\envmap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\ObjScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\ObjScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\envmap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9FAD7B01-3E7C-38AE-AC72-90C9C7E864B0}|render\\render.vcxproj|D:\\Github2\\RenderingStuff\\Optix\\render\\HDRLoader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -29,13 +29,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ObjScene.cpp",
               "DocumentMoniker": "D:\\Github2\\RenderingStuff\\Optix\\render\\ObjScene.cpp",
               "RelativeDocumentMoniker": "..\\render\\ObjScene.cpp",
               "ToolTip": "D:\\Github2\\RenderingStuff\\Optix\\render\\ObjScene.cpp",
               "RelativeToolTip": "..\\render\\ObjScene.cpp",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAnwFwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAnwGgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-17T09:30:10.234Z",
               "EditorCaption": ""
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "envmap.h",
               "DocumentMoniker": "D:\\Github2\\RenderingStuff\\Optix\\render\\envmap.h",
               "RelativeDocumentMoniker": "..\\render\\envmap.h",
@@ -85,7 +85,7 @@
               "RelativeDocumentMoniker": "..\\render\\shaders.cu",
               "ToolTip": "D:\\Github2\\RenderingStuff\\Optix\\render\\shaders.cu",
               "RelativeToolTip": "..\\render\\shaders.cu",
-              "ViewState": "AgIAAJcBAAAAAAAAAAAYwJ4BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAYwJIBAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-12-17T08:08:11.767Z",
               "EditorCaption": ""

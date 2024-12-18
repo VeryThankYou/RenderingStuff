@@ -1,18 +1,19 @@
 ﻿  Building NVCC optixir file lib/ptx/Debug/render_generated_shaders.cu.optixir
   shaders.cu
-D:\Github2\RenderingStuff\Optix\render\shaders.cu(386): warning #780-D: reference is to variable "v" (declared at line 356) -- under old for-init scoping rules it would have been variable "v" (declared at line 372)
-          v = ((float)vi) / ((float)lp.env_height);
-          ^
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(333): warning #177-D: variable "tmin" was declared but never referenced
+      const float tmin = 1.0e-4f;
+                  ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
   
-D:\Github2\RenderingStuff\Optix\render\shaders.cu(387): warning #780-D: reference is to variable "v" (declared at line 356) -- under old for-init scoping rules it would have been variable "v" (declared at line 372)
-          dy = -cos(v * (float)3.14159265358979323846);
-                    ^
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(334): warning #177-D: variable "tmax" was declared but never referenced
+      const float tmax = 1.0e16f;
+                  ^
   
-D:\Github2\RenderingStuff\Optix\render\shaders.cu(564): warning #177-D: variable "s" was declared but never referenced
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(502): warning #177-D: variable "s" was declared but never referenced
       const float s = 1.0f/hit_group_data->mtl_inside.shininess;
                   ^
   
   shaders.cu
+  ObjScene.cpp
   render.vcxproj -> D:\Github2\RenderingStuff\Optix\build\bin\Debug\render.exe

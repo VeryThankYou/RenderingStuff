@@ -90,6 +90,8 @@ void ObjScene::initScene(bool bsdf)
       scene.addImage(hdr.width(), hdr.height(), 32, 4, hdr.raster());
       launch_params.env_width = hdr.width();
       launch_params.env_height = hdr.height();
+
+      
     }
     else
     {
@@ -162,6 +164,7 @@ void ObjScene::initLaunchParams(const Scene& scene)
   if(use_envmap)
   {
     lp.envmap = scene.getSampler(0);
+    
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.env_luminance), lp.env_width*lp.env_height*sizeof(float)));
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.marginal_f), lp.env_height*sizeof(float)));
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&lp.marginal_pdf), lp.env_height*sizeof(float)));

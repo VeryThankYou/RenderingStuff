@@ -1,10 +1,19 @@
 ﻿  Building NVCC optixir file lib/ptx/Debug/render_generated_shaders.cu.optixir
   shaders.cu
-D:\Github2\RenderingStuff\Optix\render\shaders.cu(506): warning #177-D: variable "s" was declared but never referenced
-      const float s = 1.0f/hit_group_data->mtl_inside.shininess;
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(333): warning #177-D: variable "tmin" was declared but never referenced
+      const float tmin = 1.0e-4f;
                   ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
   
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(334): warning #177-D: variable "tmax" was declared but never referenced
+      const float tmax = 1.0e16f;
+                  ^
+  
+D:\Github2\RenderingStuff\Optix\render\shaders.cu(502): warning #177-D: variable "s" was declared but never referenced
+      const float s = 1.0f/hit_group_data->mtl_inside.shininess;
+                  ^
+  
   shaders.cu
+  ObjScene.cpp
   render.vcxproj -> D:\Github2\RenderingStuff\Optix\build\bin\Debug\render.exe

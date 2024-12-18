@@ -81,6 +81,16 @@ extern "C" __global__ void __miss__envmap_radiance()
   PayloadRadiance* prd = getPayload();
   prd->result = env_lookup(ray_dir);
 #else
+  /*
+  float theta = acosf(ray_dir.y);
+  float phi = atan2f(ray_dir.x, -ray_dir.z);
+  float u = (phi + M_PIf) * 0.5f * M_1_PIf;
+  float v = theta * M_1_PIf;
+  int width = launch_params.env_width;
+  int height = launch_params.env_height;
+  int ui = int(floor(u * width));
+  int vi = int(floor(v * height));
+  setPayloadResult(launch_params.conditional_cdf[ui + vi*height] * env_lookup(ray_dir));*/
   setPayloadResult(env_lookup(ray_dir));
 #endif
 }
@@ -322,28 +332,15 @@ extern "C" __global__ void __closesthit__holdout()
   float3 result = emission;
   const float tmin = 1.0e-4f;
   const float tmax = 1.0e16f;
-#ifdef DIRECT
-  // Lambertian reflection
-  for(unsigned int i = 0; i < lp.lights.count; ++i)
-  {
-    const Directional& light = lp.lights[i];
-    const float3 wi = -light.direction;
-    const float cos_theta_i = dot(wi, n);
-    if(cos_theta_i > 0.0f)
-    {
-      const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
-      result += V*rho_d;
-    }
-  }
-#endif
-#ifdef INDIRECT
+
+
   // Indirect illumination
-  const bool V = !traceOcclusion(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax);
-  result += V*rho_d;
-#endif
-#if defined(DIRECT) && defined(INDIRECT)
-  result *= 0.5f;
-#endif
+  float3 new_dir = make_float3(0.0, 0.0, 0.0);
+  float3 new_L_e = make_float3(0.0, 0.0, 0.0);
+
+  float factor = sample_environment(x, new_dir, new_L_e, t);
+  const float3 Lenv = env_lookup(new_dir);
+  result += new_L_e*rho_d/Lenv;
 #ifdef PASS_PAYLOAD_POINTER
 #ifndef INDIRECT
   PayloadRadiance* prd = getPayload();

@@ -60,6 +60,7 @@ extern "C" __global__ void __raygen__pinhole()
   lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(accum_color)  // use to output sRGB images
       : make_rgba(accum_color);  // use to output RGB images (no gamma)
     */
+  
   float3 curr_sum = make_float3(lp.accum_buffer[image_idx]);
 
   float3 new_sum = curr_sum + payload.result;
@@ -68,6 +69,7 @@ extern "C" __global__ void __raygen__pinhole()
   float3 avg_color = new_sum / static_cast<float>(frame + 1);
 
   lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(avg_color) : make_rgba(avg_color);
+
   
 }
 
@@ -202,7 +204,8 @@ extern "C" __global__ void __closesthit__directional()
     payload.seed = t;
     payload.emit = 0;
     traceRadiance(lp.handle, x, wi, tmin, tmax, &payload);
-    result += rho_d * M_1_PIf * payload.result * dot(n, wi) * getPayloadEmit();
+    bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
+    result += rho_d * V * env_lookup(wi) * getPayloadEmit();
 #endif
 #ifdef INDIRECT
     // Indirect illumination
@@ -227,6 +230,7 @@ extern "C" __global__ void __closesthit__directional()
 #endif
 }
 /*
+default directional shader
 extern "C" __global__ void __closesthit__directional()
 {
     const LaunchParams& lp = launch_params;
@@ -388,7 +392,70 @@ extern "C" __global__ void __closesthit__arealight()
   setPayloadResult(result);
 #endif
 }
+/*
+Default holdout shader
+extern "C" __global__ void __closesthit__holdout()
+{
+  const LaunchParams& lp = launch_params;
+#ifdef INDIRECT
+#ifdef PASS_PAYLOAD_POINTER
+  PayloadRadiance* prd = getPayload();
+  unsigned int depth = prd->depth;
+  unsigned int& t = prd->seed;
+#else
+  unsigned int depth = getPayloadDepth();
+  unsigned int t = getPayloadSeed();
+#endif
+  if(depth > lp.max_depth)
+    return;
+#endif
+  const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
+  const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
 
+  // Retrieve material data
+  const float3& emission = hit_group_data->mtl_inside.emission;
+  const float3 ray_dir = optixGetWorldRayDirection();
+  float3 rho_d = env_lookup(ray_dir);
+
+  // Retrieve hit info
+  const float3& x = geom.P;
+  const float3 n = normalize(geom.N);
+  float3 result = emission;
+  const float tmin = 1.0e-4f;
+  const float tmax = 1.0e16f;
+
+#ifdef DIRECT
+  // Lambertian reflection
+  for(unsigned int i = 0; i < lp.lights.count; ++i)
+  {
+    const Directional& light = lp.lights[i];
+    const float3 wi = -light.direction;
+    const float cos_theta_i = dot(wi, n);
+    if(cos_theta_i > 0.0f)
+    {
+      const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
+      result += V*rho_d;
+    }
+  }
+#endif
+#ifdef INDIRECT
+  // Indirect illumination
+  const bool V = !traceOcclusion(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax);
+  result += V*rho_d;
+#endif
+#if defined(DIRECT) && defined(INDIRECT)
+  result *= 0.5f;
+#endif
+#ifdef PASS_PAYLOAD_POINTER
+#ifndef INDIRECT
+  PayloadRadiance* prd = getPayload();
+#endif
+  prd->result = result;
+#else
+  setPayloadResult(result);
+#endif
+}
+*/
 
 extern "C" __global__ void __closesthit__holdout()
 {
@@ -431,7 +498,7 @@ extern "C" __global__ void __closesthit__holdout()
     payload.emit = 0;
     traceRadiance(lp.handle, x, wi, tmin, tmax, &payload);
     bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
-    result += V*rho_d;
+    result += V * rho_d;
     
 #endif
 #ifdef INDIRECT

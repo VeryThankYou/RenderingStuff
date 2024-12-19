@@ -1,6 +1,6 @@
 ﻿  Building NVCC optixir file lib/ptx/Debug/render_generated_shaders.cu.optixir
   shaders.cu
-C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\shaders.cu(604): warning #177-D: variable "s" was declared but never referenced
+C:\Users\frede\Documents\GitHub\RenderingStuff\OptiX_Fred\render\shaders.cu(671): warning #177-D: variable "s" was declared but never referenced
       const float s = 1.0f/hit_group_data->mtl_inside.shininess;
                   ^
   

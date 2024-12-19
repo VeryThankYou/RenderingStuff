@@ -489,7 +489,7 @@ extern "C" __global__ void __closesthit__holdout()
 
 #ifdef DIRECT
     // Lambertian reflection
-    float3 wi = make_float3(1, 1, 1);
+    float3 wi = make_float3(0, 0, 0);
     float3 Lenv = make_float3(0, 0, 0);
     float factor = sample_environment(x, wi, Lenv, t);
     PayloadRadiance payload;

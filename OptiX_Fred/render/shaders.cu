@@ -202,7 +202,7 @@ extern "C" __global__ void __closesthit__directional()
     payload.seed = t;
     payload.emit = 0;
     traceRadiance(lp.handle, x, wi, tmin, tmax, &payload);
-    result += rho_d * M_1_PIf * payload.result * dot(n, wi);
+    result += rho_d * M_1_PIf * payload.result * dot(n, wi) * getPayloadEmit();
 #endif
 #ifdef INDIRECT
     // Indirect illumination
@@ -214,7 +214,7 @@ extern "C" __global__ void __closesthit__directional()
         payload.seed = t;
         payload.emit = 0;
         traceRadiance(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax, &payload);
-        result += rho_d * payload.result / prob * getPayloadEmit();
+        result += rho_d * payload.result / prob;
     }
 #endif
 #ifdef PASS_PAYLOAD_POINTER

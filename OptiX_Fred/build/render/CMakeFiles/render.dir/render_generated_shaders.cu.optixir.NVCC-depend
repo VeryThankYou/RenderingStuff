@@ -135,6 +135,6 @@ shaders.obj : C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/s
     C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/drand48.h \
     C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/fresnel.h \
     C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/microfacet.h \
-    C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/env_cameras.cu \
     C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/envmap.h \
-    C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/AreaLight.h
+    C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/AreaLight.h \
+    C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/render/env_cameras.cu

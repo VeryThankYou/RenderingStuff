@@ -1,1 +1,46 @@
-﻿
+﻿  1>Checking Build System
+  CMake is re-running because C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/render/CMakeFiles/generate.stamp is out-of-date.
+    the file 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/render/CMakeFiles/render.dir/render_generated_shaders.cu.optixir.depend'
+    is newer than 'C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/render/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  CMake Warning (dev) at CMakeLists.txt:82 (project):
+    cmake_minimum_required() should be called prior to this top-level project()
+    call.  Please see the cmake-commands(7) manual for usage documentation of
+    both commands.
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+  
+  -- Selecting Windows SDK version 10.0.22621.0 to target Windows 10.0.22631.
+  CMake Deprecation Warning at CMakeLists.txt:86 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+  
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+  
+  
+  CMake Deprecation Warning at CMakeLists.txt:94 (cmake_policy):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+  
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+  
+  
+  sutil OPTIXIR
+  ptx_files = C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/lib/ptx/$(Configuration)/sutil_generated_sphere.cu.optixir;C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build/lib/ptx/$(Configuration)/sutil_generated_whitted.cu.optixir
+  CMake Deprecation Warning at support/GLFW/CMakeLists.txt:5 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+  
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+  
+  
+  -- Could NOT find Vulkan (missing: VULKAN_LIBRARY VULKAN_INCLUDE_DIR) 
+  -- Using Win32 for window creation
+  -- Configuring done (1.4s)
+  -- Generating done (0.8s)
+  -- Build files have been written to: C:/Users/frede/Documents/GitHub/RenderingStuff/OptiX_Fred/build

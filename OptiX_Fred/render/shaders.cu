@@ -15,10 +15,10 @@
 extern "C" {
   __constant__ LaunchParams launch_params;
 }
-#include "env_cameras.cu"
+
 #include "envmap.h"
 #include "AreaLight.h"
-
+#include "env_cameras.cu"
 #define DIRECT
 #define INDIRECT
 
@@ -52,14 +52,23 @@ extern "C" __global__ void __raygen__pinhole()
   payload.seed = t;
   payload.emit = 1;
   traceRadiance(lp.handle, lp.eye, direction, 0.0f, 1.0e16f, &payload);
+  //Progressive update of image
+  /*
+  float3 curr_sum = make_float3(lp.accum_buffer[image_idx]) * static_cast<float>(frame);
+  float3 accum_color = (payload.result + curr_sum) / static_cast<float>(frame + 1);
 
-  // Progressive update of image
-  float3 curr_sum = make_float3(lp.accum_buffer[image_idx])*static_cast<float>(frame);
-  float3 accum_color = (payload.result + curr_sum)/static_cast<float>(frame + 1);
-
-  lp.accum_buffer[image_idx] = make_float4(accum_color, 1.0f);
   lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(accum_color)  // use to output sRGB images
       : make_rgba(accum_color);  // use to output RGB images (no gamma)
+    */
+  float3 curr_sum = make_float3(lp.accum_buffer[image_idx]);
+
+  float3 new_sum = curr_sum + payload.result;
+  lp.accum_buffer[image_idx] = make_float4(new_sum, 0.0f);
+
+  float3 avg_color = new_sum / static_cast<float>(frame + 1);
+
+  lp.frame_buffer[image_idx] = lp.use_srgb ? make_color(avg_color) : make_rgba(avg_color);
+  
 }
 
 
@@ -82,6 +91,16 @@ extern "C" __global__ void __miss__envmap_radiance()
   PayloadRadiance* prd = getPayload();
   prd->result = env_lookup(ray_dir);
 #else
+  /*
+  float theta = acosf(ray_dir.y);
+  float phi = atan2f(ray_dir.x, -ray_dir.z);
+  float u = (phi + M_PIf) * 0.5f * M_1_PIf;
+  float v = theta * M_1_PIf;
+  int width = launch_params.env_width;
+  int height = launch_params.env_height;
+  int ui = int(floor(u * width));
+  int vi = int(floor(v * height));
+  setPayloadResult(launch_params.conditional_cdf[ui + vi*height] * env_lookup(ray_dir));*/
   setPayloadResult(env_lookup(ray_dir));
 #endif
 }
@@ -128,92 +147,169 @@ extern "C" __global__ void __closesthit__basecolor()
 #endif
 }
 
-
-
 extern "C" __global__ void __closesthit__directional()
 {
-  const LaunchParams& lp = launch_params;
+    const LaunchParams& lp = launch_params;
 #ifdef INDIRECT
 #ifdef PASS_PAYLOAD_POINTER
-  PayloadRadiance* prd = getPayload();
-  unsigned int depth = prd->depth;
-  unsigned int& t = prd->seed;
+    PayloadRadiance* prd = getPayload();
+    unsigned int depth = prd->depth;
+    unsigned int& t = prd->seed;
 #else
-  unsigned int depth = getPayloadDepth();
-  unsigned int t = getPayloadSeed();
+    unsigned int depth = getPayloadDepth();
+    unsigned int t = getPayloadSeed();
 #endif
-  if(depth > lp.max_depth)
-    return;
+    if (depth > lp.max_depth)
+        return;
 #endif
-  const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
-  const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
+    const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
+    const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
 
-  // Retrieve material data
-  const float3& emission = hit_group_data->mtl_inside.emission;
-  float3 rho_d = hit_group_data->mtl_inside.base_color_tex
-    ? make_float3(tex2D<float4>(hit_group_data->mtl_inside.base_color_tex, geom.texcoord[0].UV.x, geom.texcoord[0].UV.y))
-    : hit_group_data->mtl_inside.rho_d;
+    // Retrieve material data
+    const float3& emission = hit_group_data->mtl_inside.emission;
+    float3 rho_d = hit_group_data->mtl_inside.base_color_tex
+        ? make_float3(tex2D<float4>(hit_group_data->mtl_inside.base_color_tex, geom.texcoord[0].UV.x, geom.texcoord[0].UV.y))
+        : hit_group_data->mtl_inside.rho_d;
 
-  // Retrieve hit info
-  const float3& x = geom.P;
-  const float3 n = normalize(geom.N);
+    // Retrieve hit info
+    const float3& x = geom.P;
+    const float3 n = normalize(geom.N);
 
-  // Implement Lambertian reflection here, include shadow rays.
-  //
-  // Output: 
-  // result        (payload: result is the reflected radiance)
-  //
-  // Relevant data fields that are available (see above):
-  // rho_d         (difuse reflectance of the material)
-  // x             (position where the ray hit the material)
-  // n             (normal where the ray hit the material)
-  // lp.lights     (array of directional light sources)
-  // lp.handle     (spatial data structure handle for tracing new rays)
-  //
-  // Hint: Use the function traceOcclusion to trace a shadow ray.
-  float3 result = emission;
-  const float tmin = 1.0e-4f;
-  const float tmax = 1.0e16f; 
+    // Implement Lambertian reflection here, include shadow rays.
+    //
+    // Output: 
+    // result        (payload: result is the reflected radiance)
+    //
+    // Relevant data fields that are available (see above):
+    // rho_d         (difuse reflectance of the material)
+    // x             (position where the ray hit the material)
+    // n             (normal where the ray hit the material)
+    // lp.lights     (array of directional light sources)
+    // lp.handle     (spatial data structure handle for tracing new rays)
+    //
+    // Hint: Use the function traceOcclusion to trace a shadow ray.
+    float3 result = emission;
+    const float tmin = 1.0e-4f;
+    const float tmax = 1.0e16f;
 
 #ifdef DIRECT
-  // Lambertian reflection
-  for(unsigned int i = 0; i < lp.lights.count; ++i)
-  {
-    const Directional& light = lp.lights[i];
-    const float3 wi = -light.direction;
-    const float cos_theta_i = dot(wi, n);
-    if(cos_theta_i > 0.0f)
-    {
-      const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
-      if(V)
-        result += rho_d*M_1_PIf*light.emission*cos_theta_i;
-    }
-  }
-#endif
-#ifdef INDIRECT
-  // Indirect illumination
-  float prob = (rho_d.x + rho_d.y + rho_d.z)/3.0f;
-  if(rnd(t) < prob)
-  {
+    // Lambertian reflection
+    float3 wi = make_float3(0, 0, 0);
+    float3 Lenv = make_float3(0, 0, 0);
+    float factor = sample_environment(x, wi, Lenv, t);
     PayloadRadiance payload;
     payload.depth = depth + 1;
     payload.seed = t;
     payload.emit = 0;
-    traceRadiance(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax, &payload);
-    result += rho_d*payload.result/prob;
-  }
+    traceRadiance(lp.handle, x, wi, tmin, tmax, &payload);
+    result += rho_d * M_1_PIf * payload.result * dot(n, wi);
+#endif
+#ifdef INDIRECT
+    // Indirect illumination
+    float prob = (rho_d.x + rho_d.y + rho_d.z) / 3.0f;
+    if (rnd(t) < prob)
+    {
+        PayloadRadiance payload;
+        payload.depth = depth + 1;
+        payload.seed = t;
+        payload.emit = 0;
+        traceRadiance(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax, &payload);
+        result += rho_d * payload.result / prob * getPayloadEmit();
+    }
 #endif
 #ifdef PASS_PAYLOAD_POINTER
 #ifndef INDIRECT
-  PayloadRadiance* prd = getPayload();
+    PayloadRadiance* prd = getPayload();
 #endif
-  prd->result = result;
+    prd->result = result;
 #else
-  setPayloadResult(result);
+    setPayloadResult(result);
 #endif
-  }
+}
+/*
+extern "C" __global__ void __closesthit__directional()
+{
+    const LaunchParams& lp = launch_params;
+#ifdef INDIRECT
+#ifdef PASS_PAYLOAD_POINTER
+    PayloadRadiance* prd = getPayload();
+    unsigned int depth = prd->depth;
+    unsigned int& t = prd->seed;
+#else
+    unsigned int depth = getPayloadDepth();
+    unsigned int t = getPayloadSeed();
+#endif
+    if (depth > lp.max_depth)
+        return;
+#endif
+    const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
+    const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
 
+    // Retrieve material data
+    const float3& emission = hit_group_data->mtl_inside.emission;
+    float3 rho_d = hit_group_data->mtl_inside.base_color_tex
+        ? make_float3(tex2D<float4>(hit_group_data->mtl_inside.base_color_tex, geom.texcoord[0].UV.x, geom.texcoord[0].UV.y))
+        : hit_group_data->mtl_inside.rho_d;
 
+    // Retrieve hit info
+    const float3& x = geom.P;
+    const float3 n = normalize(geom.N);
+
+    // Implement Lambertian reflection here, include shadow rays.
+    //
+    // Output: 
+    // result        (payload: result is the reflected radiance)
+    //
+    // Relevant data fields that are available (see above):
+    // rho_d         (difuse reflectance of the material)
+    // x             (position where the ray hit the material)
+    // n             (normal where the ray hit the material)
+    // lp.lights     (array of directional light sources)
+    // lp.handle     (spatial data structure handle for tracing new rays)
+    //
+    // Hint: Use the function traceOcclusion to trace a shadow ray.
+    float3 result = emission;
+    const float tmin = 1.0e-4f;
+    const float tmax = 1.0e16f;
+
+#ifdef DIRECT
+    // Lambertian reflection
+    for (unsigned int i = 0; i < lp.lights.count; ++i)
+    {
+        const Directional& light = lp.lights[i];
+        const float3 wi = -light.direction;
+        const float cos_theta_i = dot(wi, n);
+        if (cos_theta_i > 0.0f)
+        {
+            const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
+            if (V)
+                result += rho_d * M_1_PIf * light.emission * cos_theta_i;
+        }
+    }
+#endif
+#ifdef INDIRECT
+    // Indirect illumination
+    float prob = (rho_d.x + rho_d.y + rho_d.z) / 3.0f;
+    if (rnd(t) < prob)
+    {
+        PayloadRadiance payload;
+        payload.depth = depth + 1;
+        payload.seed = t;
+        payload.emit = 0;
+        traceRadiance(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax, &payload);
+        result += rho_d * payload.result / prob;
+    }
+#endif
+#ifdef PASS_PAYLOAD_POINTER
+#ifndef INDIRECT
+    PayloadRadiance* prd = getPayload();
+#endif
+    prd->result = result;
+#else
+    setPayloadResult(result);
+#endif
+}
+*/
 extern "C" __global__ void __closesthit__arealight()
 {
 #ifdef PASS_PAYLOAD_POINTER
@@ -296,64 +392,65 @@ extern "C" __global__ void __closesthit__arealight()
 
 extern "C" __global__ void __closesthit__holdout()
 {
-  const LaunchParams& lp = launch_params;
+    const LaunchParams& lp = launch_params;
 #ifdef INDIRECT
 #ifdef PASS_PAYLOAD_POINTER
-  PayloadRadiance* prd = getPayload();
-  unsigned int depth = prd->depth;
-  unsigned int& t = prd->seed;
+    PayloadRadiance* prd = getPayload();
+    unsigned int depth = prd->depth;
+    unsigned int& t = prd->seed;
 #else
-  unsigned int depth = getPayloadDepth();
-  unsigned int t = getPayloadSeed();
+    unsigned int depth = getPayloadDepth();
+    unsigned int t = getPayloadSeed();
 #endif
-  if(depth > lp.max_depth)
-    return;
+    if (depth > lp.max_depth)
+        return;
 #endif
-  const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
-  const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
+    const HitGroupData* hit_group_data = reinterpret_cast<HitGroupData*>(optixGetSbtDataPointer());
+    const LocalGeometry geom = getLocalGeometry(hit_group_data->geometry);
 
-  // Retrieve material data
-  const float3& emission = hit_group_data->mtl_inside.emission;
-  const float3 ray_dir = optixGetWorldRayDirection();
-  float3 rho_d = env_lookup(ray_dir);
+    // Retrieve material data
+    const float3& emission = hit_group_data->mtl_inside.emission;
+    const float3 ray_dir = optixGetWorldRayDirection();
+    float3 rho_d = env_lookup(ray_dir);
 
-  // Retrieve hit info
-  const float3& x = geom.P;
-  const float3 n = normalize(geom.N);
-  float3 result = emission;
-  const float tmin = 1.0e-4f;
-  const float tmax = 1.0e16f;
+    // Retrieve hit info
+    const float3& x = geom.P;
+    const float3 n = normalize(geom.N);
+    float3 result = emission;
+    const float tmin = 1.0e-4f;
+    const float tmax = 1.0e16f;
 
 #ifdef DIRECT
-  // Lambertian reflection
-  for(unsigned int i = 0; i < lp.lights.count; ++i)
-  {
-    const Directional& light = lp.lights[i];
-    const float3 wi = -light.direction;
-    const float cos_theta_i = dot(wi, n);
-    if(cos_theta_i > 0.0f)
-    {
-      const bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
-      result += V*rho_d;
-    }
-  }
+    // Lambertian reflection
+    float3 wi = make_float3(1, 1, 1);
+    float3 Lenv = make_float3(0, 0, 0);
+    float factor = sample_environment(x, wi, Lenv, t);
+    PayloadRadiance payload;
+    payload.depth = depth + 1;
+    payload.seed = t;
+    payload.emit = 0;
+    traceRadiance(lp.handle, x, wi, tmin, tmax, &payload);
+    bool V = !traceOcclusion(lp.handle, x, wi, tmin, tmax);
+    result += V*rho_d;
+    
 #endif
 #ifdef INDIRECT
-  // Indirect illumination
-  const bool V = !traceOcclusion(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax);
-  result += V*rho_d;
+    // Indirect illumination
+    //const bool V = !traceOcclusion(lp.handle, x, sample_cosine_weighted(n, t), tmin, tmax);
+    //result += V * rho_d;
 #endif
 #if defined(DIRECT) && defined(INDIRECT)
-  result *= 0.5f;
+    //result *= 0.5f;
 #endif
 #ifdef PASS_PAYLOAD_POINTER
 #ifndef INDIRECT
-  PayloadRadiance* prd = getPayload();
+    PayloadRadiance* prd = getPayload();
 #endif
-  prd->result = result;
+    prd->result = result;
 #else
-  setPayloadResult(result);
+    setPayloadResult(result);
 #endif
+
 }
 
 

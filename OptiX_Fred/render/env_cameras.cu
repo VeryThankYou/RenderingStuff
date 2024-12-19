@@ -136,6 +136,10 @@ __device__ __inline__ float sample_environment(const float3& pos, float3& dir, f
   float theta = v*M_PIf;
   float phi = (2.0f*u - 0.96f)*M_PIf;
   float sin_theta, cos_theta, sin_phi, cos_phi;
+  sin_theta = sin(theta);
+  cos_theta = cos(theta);
+  sin_phi = sin(phi);
+  cos_phi = cos(phi);
   sincosf(theta, &sin_theta, &cos_theta);
   sincosf(phi, &sin_phi, &cos_phi);
   dir = make_float3(sin_theta*sin_phi, cos_theta, sin_theta*cos_phi);
